@@ -1,6 +1,7 @@
 //! Win32 Shell integration module for SpotiVista on Windows Vista SP2 and Windows 7 SP1.
 
 pub mod aero;
+pub mod compat;
 pub mod media_keys;
 pub mod taskbar;
 pub mod tray;
