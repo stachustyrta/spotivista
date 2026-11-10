@@ -1123,6 +1123,8 @@ fn link_recording(
 
 impl App {
     pub fn new(waker: &Waker, dirs: AppDirs, mut settings: Settings, options: AppOptions) -> Self {
+        // SpotiVista does not support Soloist on Windows Vista / 7
+        settings.soloist_enabled = false;
         let milkdrop_backdrop = settings.lyrics_milkdrop;
         // The legacy password file has no endpoint of its own. Keep the old
         // settings beside it until migration binds that password in the store.
@@ -1774,31 +1776,13 @@ impl App {
     }
 
     pub fn show_soloist_onboarding(&self) -> bool {
-        self.soloist_onboarding != crate::settings::SoloistOnboarding::Complete
-            && crate::soloist::install::supported()
-            && self.is_connected()
-            && self.user.as_ref().is_some_and(|user| {
-                user.product
-                    .as_deref()
-                    .is_none_or(|product| product == "premium")
-            })
+        false
     }
 
-    /// What Soloist's state does to the window. Setup belongs to people who
-    /// have not finished it. Once they have, nothing Soloist does takes the
-    /// app away: a stopped player is a banner over a working library.
+    /// What Soloist's state does to the window. In SpotiVista, Soloist is
+    /// disabled, so this always stays in App mode.
     pub fn soloist_view(&self) -> SoloistView {
-        use crate::soloist::Status;
-        if self.show_soloist_onboarding() {
-            SoloistView::Setup
-        } else if !self.soloist_waiting()
-            || self.soloist_settled
-            || matches!(self.soloist_status, Status::NeedsKey | Status::Failed(_))
-        {
-            SoloistView::App
-        } else {
-            SoloistView::Loading
-        }
+        SoloistView::App
     }
 
     /// SpotiVista is bringing the player back and needs nothing from the

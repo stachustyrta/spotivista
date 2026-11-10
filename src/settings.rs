@@ -1917,21 +1917,17 @@ pub struct SessionState {
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum SoloistOnboarding {
-    #[default]
     Welcome,
     Setup,
+    #[default]
     Complete,
 }
 
 impl SoloistOnboarding {
     /// Existing Soloist listeners have already chosen. An interrupted setup
     /// resumes even if its download enabled the player before the app closed.
-    pub fn restore(self, enabled: bool) -> Self {
-        if enabled && self == Self::Welcome {
-            Self::Complete
-        } else {
-            self
-        }
+    pub fn restore(self, _enabled: bool) -> Self {
+        Self::Complete
     }
 }
 

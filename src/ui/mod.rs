@@ -55,7 +55,8 @@ pub fn show(app: &mut App, ui: &mut egui::Ui) {
         fastframe_titlebar::resize(ui);
         return;
     }
-    let soloist_view = app.soloist_view();
+    // SpotiVista runs native librespot playback; Soloist onboarding is bypassed.
+    let soloist_view = crate::app::SoloistView::App;
     if soloist_view != crate::app::SoloistView::App {
         player_bar::end_tint_session(ctx);
         if soloist_view == crate::app::SoloistView::Loading {
