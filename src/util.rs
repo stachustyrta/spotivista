@@ -229,10 +229,24 @@ pub fn tray_template_rgba(size: usize) -> Vec<u8> {
 /// The mark rasterised to pixels: the window icon, the trays and the logo
 /// drawn in the app (`theme::logo`) all use this one picture.
 ///
-/// It is the polished disc of `packaging/icons` at every size: a darker rim
-/// around a lit face.
+/// It is the glass play button in `assets/brand/icon.png`, scaled to each
+/// size. The artwork is decoded once.
 pub fn app_icon_rgba(size: usize) -> Vec<u8> {
-    mark_rgba(size, true)
+    use std::sync::OnceLock;
+    static ARTWORK: OnceLock<Option<image::RgbaImage>> = OnceLock::new();
+    let artwork = ARTWORK.get_or_init(|| {
+        image::load_from_memory(include_bytes!("../assets/brand/icon.png"))
+            .ok()
+            .map(|image| image.into_rgba8())
+    });
+    match artwork {
+        Some(artwork) => {
+            let side = size as u32;
+            image::imageops::resize(artwork, side, side, image::imageops::FilterType::Lanczos3)
+                .into_raw()
+        }
+        None => mark_rgba(size, true),
+    }
 }
 
 /// Mixes two colours, `t` of the way from `a` to `b`.
@@ -459,22 +473,17 @@ mod tests {
         // #given the icon at a dock size and at a tray size
         let (large, small) = (app_icon_rgba(128), app_icon_rgba(32));
 
-        // #then both have a darker rim around a lighter face
-        let rim = pixel(&large, 128, 64, 6);
-        let face = pixel(&large, 128, 64, 20);
-        assert!(
-            face[1] > rim[1],
-            "face {face:?} should be lighter than rim {rim:?}"
-        );
-        assert!(pixel(&small, 32, 16, 6)[1] > pixel(&small, 32, 16, 2)[1]);
-        // #and a lit top fading to a deeper bottom
-        let low = pixel(&large, 128, 64, 108);
-        assert!(face[1] > low[1]);
+        // #then both are the blue glass disc: opaque and blue below the glow
+        for (icon, size) in [(&large, 128), (&small, 32)] {
+            let lower = pixel(icon, size, size / 2, size * 7 / 8);
+            assert_eq!(lower[3], 255, "disc is opaque at {size}");
+            assert!(lower[2] > lower[0], "disc is blue at {size}: {lower:?}");
+        }
 
         // #and both carry the dark triangle, a little right of centre
         for (icon, size) in [(&large, 128), (&small, 32)] {
             let centre = pixel(icon, size, size / 2 + size / 16, size / 2);
-            assert!(centre[1] < 40, "triangle missing at {size}: {centre:?}");
+            assert!(centre[1] < 60, "triangle missing at {size}: {centre:?}");
         }
 
         // #and the corners stay clear
