@@ -417,3 +417,48 @@ pub unsafe extern "system" fn WakeByAddressAll(address: *mut c_void) {
         unsafe { f(address) };
     }
 }
+
+// ============================================================================
+// 8. Random Bytes (Windows 10+ bcryptprimitives.dll ProcessPrng)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn ProcessPrng(data: *mut u8, len: usize) -> i32 {
+    type Func = unsafe extern "system" fn(*mut u8, usize) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let bp = unsafe { windows_sys::Win32::System::LibraryLoader::LoadLibraryA(b"bcryptprimitives.dll\0".as_ptr()) };
+        if !bp.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(bp, b"ProcessPrng\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        return unsafe { f(data, len) };
+    }
+    // Windows Vista / 7: RtlGenRandom (SystemFunction036) from advapi32.dll
+    type RtlGenRandom = unsafe extern "system" fn(*mut u8, u32) -> u8;
+    let adv = unsafe { windows_sys::Win32::System::LibraryLoader::LoadLibraryA(b"advapi32.dll\0".as_ptr()) };
+    if adv.is_null() {
+        return 0;
+    }
+    let Some(gen_proc) = (unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(adv, b"SystemFunction036\0".as_ptr()) }) else {
+        return 0;
+    };
+    let gen_fn: RtlGenRandom = unsafe { std::mem::transmute(gen_proc) };
+    let mut offset = 0usize;
+    while offset < len {
+        let chunk = (len - offset).min(u32::MAX as usize) as u32;
+        if unsafe { gen_fn(data.add(offset), chunk) } == 0 {
+            return 0;
+        }
+        offset += chunk as usize;
+    }
+    1
+}
