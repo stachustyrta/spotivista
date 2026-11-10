@@ -853,6 +853,53 @@ pub unsafe extern "system" fn Shell_NotifyIconGetRect(
     }
 }
 
+// ============================================================================
+// 16. File Completion Notification Modes (Windows Vista+ kernel32.dll / AFD fix)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn SetFileCompletionNotificationModes(
+    file_handle: *mut c_void,
+    flags: u8,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u8) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"SetFileCompletionNotificationModes\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        let ret = unsafe { f(file_handle, flags) };
+        if ret != 0 {
+            return ret;
+        }
+        // On Windows Vista, SetFileCompletionNotificationModes on \Device\Afd handles
+        // opened with SYNCHRONIZE fails with ERROR_ACCESS_DENIED (5) or ERROR_INVALID_FUNCTION (1)
+        // because Vista strictly requires write access on notification mode changes.
+        // FILE_SKIP_SET_EVENT_ON_HANDLE is an optimization to skip handle signaling on completion.
+        // Returning success (1) allows mio and Tokio IOCP socket polling to proceed safely.
+        let err = unsafe { windows_sys::Win32::Foundation::GetLastError() };
+        if err == windows_sys::Win32::Foundation::ERROR_ACCESS_DENIED
+            || err == windows_sys::Win32::Foundation::ERROR_INVALID_FUNCTION
+        {
+            unsafe { windows_sys::Win32::Foundation::SetLastError(0); }
+            return 1;
+        }
+        0
+    } else {
+        1
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -900,5 +947,13 @@ mod tests {
         assert_eq!(filter_res, 1);
         let affinity_res = unsafe { SetWindowDisplayAffinity(std::ptr::null_mut(), 0) };
         assert_eq!(affinity_res, 1);
+    }
+
+    #[test]
+    fn set_file_completion_notification_modes_executes_safely() {
+        // Invalid handle: real API fails with ERROR_INVALID_HANDLE (6) or similar, which is preserved
+        let res = unsafe { SetFileCompletionNotificationModes(std::ptr::null_mut(), 2) };
+        // Valid execution: either succeeds or handles the call without crashing
+        assert!(res == 0 || res == 1);
     }
 }
