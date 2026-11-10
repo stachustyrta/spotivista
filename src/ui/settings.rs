@@ -2524,6 +2524,12 @@ pub fn show(app: &mut App, ui: &mut egui::Ui) {
             ui.add_space(8.0);
             ui.horizontal_wrapped(|ui| {
                 ui.spacing_mut().item_spacing = Vec2::splat(8.0);
+                if theme::soft_button(ui, &palette, Some(Icon::ExternalLink), &check_for_updates, false)
+                    .clicked()
+                {
+                    app.actions
+                        .push(Action::OpenUrl(widgets::FORK_RELEASES_URL.to_owned()));
+                }
                 if theme::soft_button(ui, &palette, Some(Icon::Info), &keyboard_shortcuts, false)
                     .clicked()
                 {
@@ -2540,6 +2546,10 @@ pub fn show(app: &mut App, ui: &mut egui::Ui) {
             if widgets::credit(ui, &palette, locale) {
                 app.actions
                     .push(Action::OpenUrl(widgets::AUTHOR_URL.to_owned()));
+            }
+            if widgets::fork_credit(ui, &palette) {
+                app.actions
+                    .push(Action::OpenUrl(widgets::FORK_URL.to_owned()));
             }
         });
     }

@@ -95,5 +95,6 @@ The resulting binary `target/release/spotivista.exe` has:
 ## License
 
 SpotiVista is distributed under the [MIT License](LICENSE).  
-Upstream Spotifast is created by Carmine Paolino.
+Upstream Spotifast is created by [Carmine Paolino](https://paolino.me).  
+SpotiVista is forked for Windows Vista and 7 by [stachustyrta](https://github.com/stachustyrta). New versions are published on the [releases page](https://github.com/stachustyrta/spotivista/releases).
 SpotiVista is an independent project and is not affiliated with Spotify AB.

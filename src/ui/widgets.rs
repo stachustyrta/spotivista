@@ -3715,6 +3715,30 @@ pub fn credit(ui: &mut Ui, palette: &Palette, locale: Locale) -> bool {
     clicked
 }
 
+/// The SpotiVista repository, which hosts this fork's releases.
+pub const FORK_URL: &str = "https://github.com/stachustyrta/spotivista";
+
+/// Where to look for new SpotiVista versions.
+pub const FORK_RELEASES_URL: &str = "https://github.com/stachustyrta/spotivista/releases";
+
+/// "Forked for Windows Vista and 7 by stachustyrta", with the name linking
+/// to [FORK_URL]. Returns whether the name was clicked.
+pub fn fork_credit(ui: &mut Ui, palette: &Palette) -> bool {
+    let mut clicked = false;
+    ui.horizontal_wrapped(|ui| {
+        ui.spacing_mut().item_spacing.x = 0.0;
+        theme::text(
+            ui,
+            "Forked for Windows Vista and 7 by ",
+            theme::regular(13.0),
+            palette.secondary,
+        );
+        clicked = theme::link(ui, "stachustyrta", theme::medium(13.0), palette.text)
+            .on_hover_text(FORK_URL)
+            .clicked();
+    });
+    clicked
+}
 /// The width a settings row keeps for its control: switches, fields and
 /// buttons fit in it.
 const SETTING_CONTROL_WIDTH: f32 = 260.0;
