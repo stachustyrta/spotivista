@@ -244,7 +244,11 @@ fn sign_in_column(app: &mut App, ui: &mut egui::Ui, connecting: bool, beside: Op
             )
             .clicked()
             {
-                ctx.open_url(egui::OpenUrl::new_tab(url));
+                ctx.open_url(egui::OpenUrl::new_tab(url.clone()));
+            }
+            ui.add_space(4.0);
+            if theme::pill_button(ui, &palette, "Copy Authorization Link (for Supermium)", false).clicked() {
+                ui.ctx().copy_text(url.clone());
             }
             ui.add_space(2.0);
             // Spotify stops on its own page for this, and never tells the

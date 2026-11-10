@@ -1,7 +1,12 @@
 # Windows downloads are standalone. Keep the MSVC runtime in the executable
 # so both the portable zip and the installer work on a clean machine.
+# Target Windows Vista SP2 (NT 6.0) and Windows 7 SP1 (NT 6.1) with GUI subsystem.
 [target.x86_64-pc-windows-msvc]
-rustflags = ["-C", "target-feature=+crt-static"]
+rustflags = [
+    "-C", "target-feature=+crt-static",
+]
 
-[target.aarch64-pc-windows-msvc]
-rustflags = ["-C", "target-feature=+crt-static"]
+[target.i686-pc-windows-msvc]
+rustflags = [
+    "-C", "target-feature=+crt-static",
+]

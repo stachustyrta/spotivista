@@ -1,3 +1,6 @@
+use spotivista as spotifast;
+#[cfg(windows)]
+use spotivista::shell::DwmProvider;
 use spotifast::{app, backend, paths, settings, single_instance, util};
 
 use clap::{CommandFactory, FromArgMatches, Parser};
@@ -700,26 +703,28 @@ pub(crate) fn run() -> eframe::Result<()> {
             }
             app.attach(&cc.egui_ctx);
             #[cfg(windows)]
-            let thumbbar = {
+            let (thumbbar, shell_mgr) = {
                 use raw_window_handle::{HasWindowHandle, RawWindowHandle};
                 let mut toolbar = spotifast::thumbbar::ThumbBar::new();
-                if thumbbar_enabled
-                    && let Ok(handle) = cc.window_handle()
-                    && let RawWindowHandle::Win32(window) = handle.as_raw()
-                {
-                    let wake = creator_waker.clone();
-                    // The shell and toolbar share this window's thread
-                    // and lifetime; the toolbar is detached on shell
-                    // drop.
-                    unsafe { toolbar.attach(window.hwnd.get(), move || wake.wake()) };
+                let shell = spotifast::shell::ShellManager::new();
+                if let Ok(handle) = cc.window_handle() {
+                    if let RawWindowHandle::Win32(window) = handle.as_raw() {
+                        let wake = creator_waker.clone();
+                        if thumbbar_enabled {
+                            unsafe { toolbar.attach(window.hwnd.get(), move || wake.wake()) };
+                        }
+                        shell.attach(window.hwnd.get());
+                    }
                 }
-                toolbar
+                (toolbar, shell)
             };
             Ok(Box::new(Shell {
                 app,
                 recovery_checked: false,
                 #[cfg(windows)]
                 thumbbar,
+                #[cfg(windows)]
+                shell_mgr,
                 #[cfg(feature = "demo")]
                 shot: creator_shot.clone(),
                 #[cfg(feature = "demo")]
@@ -907,7 +912,8 @@ fn native_options(
                 .with_decorations(main_window_decorated(fastframe_titlebar::enabled()))
                 .with_inner_size(size)
                 .with_min_inner_size(inner_size.unwrap_or(spotifast::window::MAIN_MIN_SIZE))
-                .with_fullscreen(fullscreen);
+                .with_fullscreen(fullscreen)
+                .with_transparent(true);
             if inner_size.is_some() {
                 viewport.with_max_inner_size(size)
             } else {
@@ -1296,6 +1302,8 @@ struct Shell {
     recovery_checked: bool,
     #[cfg(windows)]
     thumbbar: spotifast::thumbbar::ThumbBar,
+    #[cfg(windows)]
+    shell_mgr: std::sync::Arc<spotifast::shell::ShellManager>,
     /// A pending `--demo-shot` capture, if this is a screenshot run.
     #[cfg(feature = "demo")]
     shot: Option<Shot>,
@@ -1318,11 +1326,10 @@ impl Shell {
     /// keeping the last screen's, so the dial falls back to MilkDrop's.
     fn read_screen_hz(&mut self, ctx: &egui::Context, frame: &eframe::Frame) {
         let place = ctx.input(|input| input.viewport().outer_rect);
-        if let Some((asked, when)) = self.screen_asked
-            && asked == place
-            && when.elapsed() < std::time::Duration::from_secs(1)
-        {
-            return;
+        if let Some((asked, when)) = self.screen_asked {
+            if asked == place && when.elapsed() < std::time::Duration::from_secs(1) {
+                return;
+            }
         }
         self.screen_asked = Some((place, std::time::Instant::now()));
         self.app.screen_hz = frame
@@ -1405,6 +1412,103 @@ impl Shell {
             if let Some(action) = command.action(&app.thumb_state(false)) {
                 app.actions.push(action);
             }
+        }
+        #[cfg(windows)]
+        while let Ok(event) = self.shell_mgr.receiver().try_recv() {
+            use spotivista::model::Action;
+            use spotifast::shell::{ShellEvent, MediaAction, TrayAction, TaskbarButtonCommand};
+            match event {
+                ShellEvent::Media(media) => {
+                    let is_playing = app.now_playing().map(|n| n.playing).unwrap_or(false);
+                    let action = match media {
+                        MediaAction::PlayPause => Some(Action::TogglePlay),
+                        MediaAction::Play => (!is_playing).then_some(Action::TogglePlay),
+                        MediaAction::Pause | MediaAction::Stop => is_playing.then_some(Action::TogglePlay),
+                        MediaAction::NextTrack => Some(Action::Next),
+                        MediaAction::PreviousTrack => Some(Action::Previous),
+                        MediaAction::VolumeMute => Some(Action::ToggleMute),
+                        MediaAction::VolumeDown => Some(Action::VolumeBy(-5)),
+                        MediaAction::VolumeUp => Some(Action::VolumeBy(5)),
+                    };
+                    if let Some(act) = action {
+                        app.actions.push(act);
+                    }
+                }
+                ShellEvent::Tray(tray) => {
+                    match tray {
+                        TrayAction::PlayPause => app.actions.push(Action::TogglePlay),
+                        TrayAction::Next => app.actions.push(Action::Next),
+                        TrayAction::Previous => app.actions.push(Action::Previous),
+                        TrayAction::RestoreWindow => {
+                            ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+                            ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(false));
+                            ctx.send_viewport_cmd(egui::ViewportCommand::Focus);
+                            #[cfg(windows)]
+                            {
+                                let hwnd = self.shell_mgr.hwnd();
+                                if hwnd != 0 {
+                                    unsafe {
+                                        let is_iconic = windows_sys::Win32::UI::WindowsAndMessaging::IsIconic(hwnd as _) != 0;
+                                        let show_cmd = if is_iconic {
+                                            windows_sys::Win32::UI::WindowsAndMessaging::SW_RESTORE
+                                        } else {
+                                            windows_sys::Win32::UI::WindowsAndMessaging::SW_SHOW
+                                        };
+                                        windows_sys::Win32::UI::WindowsAndMessaging::ShowWindow(hwnd as _, show_cmd);
+                                        windows_sys::Win32::UI::WindowsAndMessaging::SetForegroundWindow(hwnd as _);
+                                    }
+                                }
+                            }
+                        }
+                        TrayAction::Exit => {
+                            ctx.send_viewport_cmd(egui::ViewportCommand::Close);
+                        }
+                    }
+                }
+                ShellEvent::Taskbar(tb) => {
+                    if app.thumb_state(false).can_control {
+                        let action = match tb {
+                            TaskbarButtonCommand::PlayPause => Action::TogglePlay,
+                            TaskbarButtonCommand::Next => Action::Next,
+                            TaskbarButtonCommand::Previous => Action::Previous,
+                        };
+                        app.actions.push(action);
+                    }
+                }
+                ShellEvent::RestoreWindow => {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(false));
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Focus);
+                    #[cfg(windows)]
+                    {
+                        let hwnd = self.shell_mgr.hwnd();
+                        if hwnd != 0 {
+                            unsafe {
+                                let is_iconic = windows_sys::Win32::UI::WindowsAndMessaging::IsIconic(hwnd as _) != 0;
+                                let show_cmd = if is_iconic {
+                                    windows_sys::Win32::UI::WindowsAndMessaging::SW_RESTORE
+                                } else {
+                                    windows_sys::Win32::UI::WindowsAndMessaging::SW_SHOW
+                                };
+                                windows_sys::Win32::UI::WindowsAndMessaging::ShowWindow(hwnd as _, show_cmd);
+                                windows_sys::Win32::UI::WindowsAndMessaging::SetForegroundWindow(hwnd as _);
+                            }
+                        }
+                    }
+                }
+                ShellEvent::DwmCompositionChanged(_) => {
+                    ctx.request_repaint();
+                }
+            }
+        }
+        #[cfg(windows)]
+        if let Some(now) = app.now_playing() {
+            let status = if now.playing { "Playing" } else { "Paused" };
+            let tip = format!("{} - {} ({status})", now.title, now.subtitle);
+            self.shell_mgr.tray.update_tooltip(self.shell_mgr.hwnd(), &tip);
+            self.shell_mgr.set_playback_state(Some(&tip), now.playing);
+        } else {
+            self.shell_mgr.set_playback_state(None, false);
         }
         app.background_frame(ctx);
         #[cfg(windows)]
@@ -1576,10 +1680,14 @@ impl eframe::App for Shell {
     /// The mini player's window is see-through where the skin leaves it
     /// out; the big window paints itself over eframe's own ground.
     fn clear_color(&self, _visuals: &egui::Visuals) -> [f32; 4] {
+        #[cfg(windows)]
+        if self.shell_mgr.aero.is_composition_enabled() {
+            return [0.0; 4];
+        }
         if self.app.settings.winamp_window {
             [0.0; 4]
         } else {
-            egui::Color32::from_rgba_unmultiplied(12, 12, 12, 180).to_normalized_gamma_f32()
+            egui::Color32::from_rgb(12, 12, 12).to_normalized_gamma_f32()
         }
     }
 
@@ -1590,11 +1698,12 @@ impl eframe::App for Shell {
     }
 }
 
-/// The toolbar goes before the window; the app then returns to the shell
-/// with the `Held` field.
+/// The shell manager unhooks before the thumbbar toolbar so subclassing
+/// unwinds strictly in reverse installation order (LIFO).
 #[cfg(windows)]
 impl Drop for Shell {
     fn drop(&mut self) {
+        self.shell_mgr.detach();
         self.thumbbar.detach();
     }
 }

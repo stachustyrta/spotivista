@@ -36,16 +36,15 @@ use windows_sys::Win32::System::Com::{
 };
 use windows_sys::Win32::System::Registry::{HKEY_CURRENT_USER, RRF_RT_REG_DWORD, RegGetValueW};
 use windows_sys::Win32::UI::Accessibility::{HCF_HIGHCONTRASTON, HIGHCONTRASTW};
-use windows_sys::Win32::UI::HiDpi::{GetDpiForWindow, GetSystemMetricsForDpi};
 use windows_sys::Win32::UI::Shell::{
     THB_FLAGS, THB_ICON, THB_TOOLTIP, THBF_DISABLED, THBF_ENABLED, THBN_CLICKED, THUMBBUTTON,
     TaskbarList,
 };
 use windows_sys::Win32::UI::WindowsAndMessaging::{
     CallWindowProcW, CreateIconIndirect, DefWindowProcW, DestroyIcon, GWLP_WNDPROC, GetPropW,
-    HICON, ICONINFO, RegisterWindowMessageW, RemovePropW, SM_CXSMICON, SPI_GETHIGHCONTRAST,
-    SetPropW, SetWindowLongPtrW, SystemParametersInfoW, WM_COMMAND, WM_NCDESTROY, WM_SETTINGCHANGE,
-    WM_THEMECHANGED, WNDPROC,
+    GetSystemMetrics, HICON, ICONINFO, RegisterWindowMessageW, RemovePropW, SM_CXSMICON,
+    SPI_GETHIGHCONTRAST, SetPropW, SetWindowLongPtrW, SystemParametersInfoW, WM_COMMAND,
+    WM_NCDESTROY, WM_SETTINGCHANGE, WM_THEMECHANGED, WNDPROC,
 };
 use windows_sys::core::{GUID, HRESULT};
 
@@ -524,8 +523,25 @@ fn system_dark() -> Option<bool> {
 }
 
 fn icon_size(hwnd: HWND) -> u32 {
-    let dpi = unsafe { GetDpiForWindow(hwnd) }.max(96);
-    unsafe { GetSystemMetricsForDpi(SM_CXSMICON, dpi) }.clamp(16, 64) as u32
+    // Dynamically query GetDpiForWindow and GetSystemMetricsForDpi on Windows 10+,
+    // falling back to GetSystemMetrics(SM_CXSMICON) on Windows Vista and Windows 7.
+    unsafe {
+        type GetDpiForWindowFn = unsafe extern "system" fn(HWND) -> u32;
+        type GetSystemMetricsForDpiFn = unsafe extern "system" fn(i32, u32) -> i32;
+
+        let user32 = windows_sys::Win32::System::LibraryLoader::GetModuleHandleW(windows_sys::w!("user32.dll"));
+        if !user32.is_null() {
+            let get_dpi = windows_sys::Win32::System::LibraryLoader::GetProcAddress(user32, b"GetDpiForWindow\0".as_ptr());
+            let get_metrics = windows_sys::Win32::System::LibraryLoader::GetProcAddress(user32, b"GetSystemMetricsForDpi\0".as_ptr());
+            if let (Some(get_dpi_ptr), Some(get_metrics_ptr)) = (get_dpi, get_metrics) {
+                let get_dpi_fn: GetDpiForWindowFn = std::mem::transmute(get_dpi_ptr);
+                let get_metrics_fn: GetSystemMetricsForDpiFn = std::mem::transmute(get_metrics_ptr);
+                let dpi = get_dpi_fn(hwnd).max(96);
+                return get_metrics_fn(SM_CXSMICON, dpi).clamp(16, 64) as u32;
+            }
+        }
+        GetSystemMetrics(SM_CXSMICON).clamp(16, 64) as u32
+    }
 }
 
 /// One button as Windows wants it described.
@@ -581,12 +597,13 @@ fn make_icon(pixmap: &tiny_skia::Pixmap) -> Option<HICON> {
     let source = pixmap.data();
     let destination = unsafe { std::slice::from_raw_parts_mut(bits.cast::<u8>(), source.len()) };
     for (out, pixel) in destination
-        .as_chunks_mut::<4>()
-        .0
-        .iter_mut()
-        .zip(source.as_chunks::<4>().0)
+        .chunks_exact_mut(4)
+        .zip(source.chunks_exact(4))
     {
-        *out = [pixel[2], pixel[1], pixel[0], pixel[3]];
+        out[0] = pixel[2];
+        out[1] = pixel[1];
+        out[2] = pixel[0];
+        out[3] = pixel[3];
     }
     // A 32-bit colour bitmap carries its own transparency, but an icon is
     // still made of two bitmaps, so this hands over an empty mask and lets
@@ -654,15 +671,15 @@ unsafe extern "system" fn procedure(
     }
     // A press arrives as a command from the toolbar, the button's own
     // identifier in the low half and the reason in the high one.
-    if message == WM_COMMAND
-        && ((wparam >> 16) & 0xffff) as u32 == THBN_CLICKED
-        && let Some(command) = command_for((wparam & 0xffff) as u32)
-        && hook.presses.send(command).is_ok()
-    {
-        // The window may be behind a preview and drawing nothing, so
-        // the press has to ask for the frame that acts on it.
-        (hook.wake)();
-        return 0;
+    if message == WM_COMMAND && ((wparam >> 16) & 0xffff) as u32 == THBN_CLICKED {
+        if let Some(command) = command_for((wparam & 0xffff) as u32) {
+            if hook.presses.send(command).is_ok() {
+                // The window may be behind a preview and drawing nothing, so
+                // the press has to ask for the frame that acts on it.
+                (hook.wake)();
+                return 0;
+            }
+        }
     }
     unsafe { forward(hook.previous.get(), hwnd, message, wparam, lparam) }
 }

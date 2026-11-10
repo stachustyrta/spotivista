@@ -17,29 +17,6 @@ use std::path::{Path, PathBuf};
 use std::sync::mpsc;
 use std::time::{Duration, Instant};
 
-/// The MilkDrop child process: its own window, context, and event loop.
-#[cfg(feature = "milkdrop")]
-pub mod child;
-#[cfg(feature = "milkdrop")]
-pub mod engine;
-/// Finished frames in shared memory, from the child to a skin's pane.
-#[cfg(feature = "milkdrop")]
-pub mod frames;
-/// The app's side of the child process: spawning it and talking to it.
-#[cfg(feature = "milkdrop")]
-pub mod host;
-/// The child's mode with no window, drawing frames for a pane.
-#[cfg(feature = "milkdrop")]
-mod offscreen;
-/// Fading text over the picture: the keys, the playing song.
-pub mod overlay;
-/// The app's side of a pane's picture: the stream of frames and its child.
-#[cfg(feature = "milkdrop")]
-pub mod pane;
-/// The shared-memory audio ring between the app and the MilkDrop child.
-#[cfg(feature = "milkdrop")]
-pub mod shm;
-
 /// How long a preset plays before the next fades in.
 pub const DEFAULT_SECONDS: u32 = 10;
 /// How many frames a second the window draws by default.
@@ -198,10 +175,10 @@ impl Presets {
         let spawned = std::thread::Builder::new()
             .name("milkdrop-list".into())
             .spawn(move || {
-                if sender.send(list_presets(&folder)).is_ok()
-                    && let Some(ctx) = wake
-                {
-                    ctx.request_repaint();
+                if sender.send(list_presets(&folder)).is_ok() {
+                    if let Some(ctx) = wake {
+                        ctx.request_repaint();
+                    }
                 }
             });
         match spawned {

@@ -19,7 +19,7 @@ use sha2::{Digest, Sha256};
 
 use crate::{auth::StoredToken, paths::AppDirs};
 
-const SERVICE: &str = "rocks.spotifast.Spotifast";
+const SERVICE: &str = "rocks.spotivista.SpotiVista";
 const TIMEOUT: Duration = Duration::from_secs(20);
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -231,7 +231,7 @@ fn write_preferring_enterprise(
     local: impl FnOnce() -> Result<(), keyring_core::Error>,
 ) -> Result<(), Error> {
     let kept = match enterprise() {
-        Ok(persistence) if persistence.as_deref().is_none_or(|kind| kind != "Session") => {
+        Ok(persistence) if persistence.as_deref().map_or(true, |kind| kind != "Session") => {
             return Ok(());
         }
         Ok(_) => {
@@ -354,10 +354,10 @@ impl<P: ProtectedStore, C: ProtectedStore> ProtectedStore for WithSealedCopy<P, 
         if let Ok(Some(secret)) = &primary {
             // A grant saved before the copy existed gains one here, so it
             // survives the next time the native store loses it.
-            if !matches!(self.copy.read(key), Ok(Some(copy)) if copy == *secret)
-                && let Err(error) = self.copy.write(key, secret)
-            {
-                log::warn!("could not keep a sealed copy of the grant: {error:?}");
+            if !matches!(self.copy.read(key), Ok(Some(copy)) if copy == *secret) {
+                if let Err(error) = self.copy.write(key, secret) {
+                    log::warn!("could not keep a sealed copy of the grant: {error:?}");
+                }
             }
             return primary;
         }

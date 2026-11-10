@@ -1,0 +1,42 @@
+#define VS_VERSION_INFO 1
+#define VS_FFI_FILEFLAGSMASK 0x3fL
+#define VOS_NT_WINDOWS32 0x40004L
+#define VFT_APP 0x1L
+#define VFT2_UNKNOWN 0x0L
+
+1 ICON "res/spotivista.ico"
+101 ICON "res/prev.ico"
+102 ICON "res/play.ico"
+103 ICON "res/pause.ico"
+104 ICON "res/next.ico"
+
+1 24 "res/spotivista.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     0,1,0,0
+PRODUCTVERSION  0,1,0,0
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       0
+FILEOS          VOS_NT_WINDOWS32
+FILETYPE        VFT_APP
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName",      "SpotiVista Contributors"
+            VALUE "FileDescription",  "SpotiVista"
+            VALUE "FileVersion",      "0.1.0.0"
+            VALUE "InternalName",     "spotivista"
+            VALUE "LegalCopyright",   "Copyright (C) 2026 SpotiVista Contributors"
+            VALUE "OriginalFilename", "spotivista.exe"
+            VALUE "ProductName",      "SpotiVista"
+            VALUE "ProductVersion",   "0.1.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0409, 1200
+    END
+END

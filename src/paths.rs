@@ -13,8 +13,8 @@ use std::path::{Path, PathBuf};
 /// the single-instance files a running installed copy holds locked and the
 /// logs of its runs.
 const FOLDERS: fastframe_dirs::App = fastframe_dirs::App {
-    not_copied: &["instance", "spotifast.log", "panic.log"],
-    ..fastframe_dirs::App::new("spotifast", "me", "paolino", "spotifast")
+    not_copied: &["instance", "spotivista.log", "panic.log"],
+    ..fastframe_dirs::App::new("spotivista", "stachustyrta", "spotivista", "spotivista")
 };
 
 #[derive(Clone, Debug)]
@@ -85,13 +85,13 @@ impl AppDirs {
         let portable = matches!(found.mode, fastframe_dirs::Mode::Portable { .. });
         if portable {
             // The per-user file may be an installed copy's, so it stays.
-            if let Some(from) = installed_window_file()
-                && let Err(error) = adopt_window_file(&from, &dirs.portable_window_file())
-            {
-                lines.push((
-                    log::Level::Warn,
-                    format!("unable to copy {}: {error}", from.display()),
-                ));
+            if let Some(from) = installed_window_file() {
+                if let Err(error) = adopt_window_file(&from, &dirs.portable_window_file()) {
+                    lines.push((
+                        log::Level::Warn,
+                        format!("unable to copy {}: {error}", from.display()),
+                    ));
+                }
             }
             // Its sign-in follows the folder when it moves to another drive.
             if let Err(error) = crate::credentials::keep_profile(&dirs.state) {
@@ -175,7 +175,7 @@ impl AppDirs {
 
     /// The log of the current run, replaced at every start.
     pub fn log_file(&self) -> PathBuf {
-        self.state.join("spotifast.log")
+        self.state.join("spotivista.log")
     }
 
     /// Where a panic is recorded before the process dies of it.
@@ -277,7 +277,7 @@ fn account_file_name(account_id: &str) -> String {
 /// What eframe remembers about the main window, in the folder it picks
 /// itself, which on Windows is `%APPDATA%\spotifast\data`.
 pub fn installed_window_file() -> Option<PathBuf> {
-    eframe::storage_dir("spotifast").map(|dir| dir.join("app.ron"))
+    eframe::storage_dir("spotivista").map(|dir| dir.join("app.ron"))
 }
 
 /// Gives a portable copy that has no window file yet a copy of `from`, so

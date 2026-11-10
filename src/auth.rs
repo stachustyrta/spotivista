@@ -241,7 +241,49 @@ pub async fn wait_for_code_on_listener(
             Ok(Ok(_)) if request_line.ends_with('\n') => {}
             _ => continue,
         }
-        let outcome = parse_request_line(&request_line, expected_state);
+
+        // Validate Host header per RFC 8252 Section 8.3 & RFC 7230 Section 5.4
+        let mut host_valid = false;
+        let mut host_count = 0usize;
+        loop {
+            let mut header_line = String::new();
+            match tokio::time::timeout(REQUEST_TIMEOUT, reader.read_line(&mut header_line)).await {
+                Ok(Ok(0)) | Ok(Err(_)) => break,
+                Ok(Ok(_)) => {
+                    let trimmed = header_line.trim_end_matches(['\r', '\n']);
+                    if trimmed.is_empty() {
+                        break;
+                    }
+                    if let Some((name, val)) = trimmed.split_once(':') {
+                        if name.eq_ignore_ascii_case("host") {
+                            host_count += 1;
+                            let host = val.trim();
+                            let host_name = if host.starts_with('[') {
+                                if let Some(end) = host.find(']') {
+                                    &host[..=end]
+                                } else {
+                                    ""
+                                }
+                            } else {
+                                host.split(':').next().unwrap_or("").trim()
+                            };
+                            if host_name == "127.0.0.1" || host_name == "localhost" || host_name == "[::1]" {
+                                host_valid = true;
+                            } else {
+                                host_valid = false;
+                            }
+                        }
+                    }
+                }
+                Err(_) => break,
+            }
+        }
+
+        let outcome = if host_count != 1 || !host_valid {
+            Err(anyhow!("invalid host header; redirect must target 127.0.0.1 or localhost"))
+        } else {
+            parse_request_line(&request_line, expected_state)
+        };
         let (status, body) = match &outcome {
             Ok(_) => ("200 OK", success_page()),
             Err(error) => ("400 Bad Request", failure_page(&error.to_string())),
@@ -567,7 +609,55 @@ mod tests {
             .await
             .unwrap();
         browser
-            .write_all(b"GET /login?code=test-code&state=state HTTP/1.1\r\n\r\n")
+            .write_all(b"GET /login?code=test-code&state=state HTTP/1.1\r\nHost: 127.0.0.1\r\n\r\n")
+            .await
+            .unwrap();
+        let code = tokio::time::timeout(Duration::from_secs(2), waiting)
+            .await
+            .unwrap()
+            .unwrap()
+            .unwrap();
+        assert_eq!(code, "test-code");
+        drop(cancel);
+    }
+
+    #[tokio::test]
+    async fn rejects_dns_rebinding_host_header() {
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let port = listener.local_addr().unwrap().port();
+        let (cancel, receiver) = watch::channel(false);
+        let _waiting =
+            tokio::spawn(
+                async move { wait_for_code_on_listener(listener, "state", receiver).await },
+            );
+        let mut browser = tokio::net::TcpStream::connect(("127.0.0.1", port))
+            .await
+            .unwrap();
+        browser
+            .write_all(b"GET /login?code=test-code&state=state HTTP/1.1\r\nHost: 127.0.0.1.attacker.com:8989\r\n\r\n")
+            .await
+            .unwrap();
+        let mut response = Vec::new();
+        let _ = browser.read_to_end(&mut response).await;
+        let response_str = String::from_utf8_lossy(&response);
+        assert!(response_str.starts_with("HTTP/1.1 400 Bad Request"));
+        drop(cancel);
+    }
+
+    #[tokio::test]
+    async fn accepts_ipv6_loopback_host_header() {
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let port = listener.local_addr().unwrap().port();
+        let (cancel, receiver) = watch::channel(false);
+        let waiting =
+            tokio::spawn(
+                async move { wait_for_code_on_listener(listener, "state", receiver).await },
+            );
+        let mut browser = tokio::net::TcpStream::connect(("127.0.0.1", port))
+            .await
+            .unwrap();
+        browser
+            .write_all(b"GET /login?code=test-code&state=state HTTP/1.1\r\nHost: [::1]:8989\r\n\r\n")
             .await
             .unwrap();
         let code = tokio::time::timeout(Duration::from_secs(2), waiting)
@@ -595,7 +685,7 @@ mod tests {
             .await
             .unwrap();
         browser
-            .write_all(b"GET /login?code=test-code&state=state HTTP/1.1\r\n\r\n")
+            .write_all(b"GET /login?code=test-code&state=state HTTP/1.1\r\nHost: 127.0.0.1\r\n\r\n")
             .await
             .unwrap();
         let (_cancel, receiver) = watch::channel(false);

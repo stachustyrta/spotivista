@@ -132,10 +132,10 @@ impl AudioTap {
         // could turn out to be the last, and free it on this thread.
         #[cfg(feature = "milkdrop")]
         for slot in [&self.shm, &self.pane_shm] {
-            if let Ok(ring) = slot.try_lock()
-                && let Some(ring) = ring.as_ref()
-            {
-                record_stereo(ring, interleaved, gain);
+            if let Ok(ring) = slot.try_lock() {
+                if let Some(ring) = ring.as_ref() {
+                    record_stereo(ring, interleaved, gain);
+                }
             }
         }
     }
@@ -174,7 +174,7 @@ impl AudioTap {
 }
 
 fn record_mono(samples: &mut VecDeque<f32>, interleaved: &[f64], gain: f32) {
-    for frame in interleaved.as_chunks::<{ NUM_CHANNELS as usize }>().0 {
+    for frame in interleaved.chunks_exact(NUM_CHANNELS as usize) {
         let mono = frame.iter().sum::<f64>() as f32 / frame.len() as f32 * gain;
         if samples.len() == KEPT {
             samples.pop_front();
@@ -189,12 +189,13 @@ fn record_mono(samples: &mut VecDeque<f32>, interleaved: &[f64], gain: f32) {
 fn record_stereo(ring: &crate::milkdrop::shm::Ring, interleaved: &[f64], gain: f32) {
     const FRAMES: usize = 256;
     let mut stereo = [0.0f32; FRAMES * 2];
-    let (frames, _) = interleaved.as_chunks::<{ NUM_CHANNELS as usize }>();
-    for piece in frames.chunks(FRAMES) {
-        for (out, frame) in stereo.as_chunks_mut::<2>().0.iter_mut().zip(piece) {
-            *out = [frame[0] as f32 * gain, frame[1] as f32 * gain];
+    for piece in interleaved.chunks(FRAMES * NUM_CHANNELS as usize) {
+        for (out, frame) in stereo.chunks_exact_mut(2).zip(piece.chunks_exact(NUM_CHANNELS as usize)) {
+            out[0] = frame[0] as f32 * gain;
+            out[1] = frame[1] as f32 * gain;
         }
-        ring.push(&stereo[..piece.len() * 2]);
+        let frame_count = piece.len() / NUM_CHANNELS as usize;
+        ring.push(&stereo[..frame_count * 2]);
     }
 }
 
