@@ -462,3 +462,443 @@ pub unsafe extern "system" fn ProcessPrng(data: *mut u8, len: usize) -> i32 {
     }
     1
 }
+
+// ============================================================================
+// 9. PSAPI Performance Information (Windows 7+ kernel32.dll / Vista psapi.dll)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn K32GetPerformanceInfo(
+    p_performance_information: *mut c_void,
+    cb: u32,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u32) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        // 1. Try kernel32.dll for K32GetPerformanceInfo (Windows 7+)
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        let mut proc = if !k32.is_null() {
+            unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"K32GetPerformanceInfo\0".as_ptr()) }
+        } else {
+            None
+        };
+        // 2. If not found in kernel32 (Windows Vista / XP), load psapi.dll and lookup GetPerformanceInfo
+        if proc.is_none() {
+            let psapi = unsafe { windows_sys::Win32::System::LibraryLoader::LoadLibraryA(b"psapi.dll\0".as_ptr()) };
+            if !psapi.is_null() {
+                proc = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(psapi, b"GetPerformanceInfo\0".as_ptr()) };
+            }
+        }
+        if let Some(p) = proc {
+            FUNC.store(p as *mut c_void, Ordering::Release);
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(p_performance_information, cb) }
+    } else {
+        unsafe { windows_sys::Win32::Foundation::SetLastError(windows_sys::Win32::Foundation::ERROR_NOT_SUPPORTED); }
+        0
+    }
+}
+
+// ============================================================================
+// 10. Thread Error Mode (Windows 7+ kernel32.dll)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn SetThreadErrorMode(
+    dw_new_mode: u32,
+    lp_old_mode: *mut u32,
+) -> i32 {
+    type Func = unsafe extern "system" fn(u32, *mut u32) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"SetThreadErrorMode\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(dw_new_mode, lp_old_mode) }
+    } else {
+        // Fallback for Windows Vista: SetErrorMode sets process error mode and returns previous mode
+        type SetErrorModeFn = unsafe extern "system" fn(u32) -> u32;
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            if let Some(proc) = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"SetErrorMode\0".as_ptr()) } {
+                let f: SetErrorModeFn = unsafe { std::mem::transmute(proc) };
+                let prev = unsafe { f(dw_new_mode) };
+                if !lp_old_mode.is_null() {
+                    unsafe { *lp_old_mode = prev; }
+                }
+                return 1;
+            }
+        }
+        1
+    }
+}
+
+// ============================================================================
+// 11. Power Availability Requests (Windows 7+ kernel32.dll)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn PowerCreateRequest(
+    context: *const c_void,
+) -> *mut c_void {
+    type Func = unsafe extern "system" fn(*const c_void) -> *mut c_void;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"PowerCreateRequest\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(context) }
+    } else {
+        // Vista fallback: create a valid dummy event handle so callers can pass it to CloseHandle safely
+        let h = unsafe { windows_sys::Win32::System::Threading::CreateEventW(std::ptr::null(), 0, 0, std::ptr::null()) };
+        h as *mut c_void
+    }
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn PowerSetRequest(
+    power_request: *mut c_void,
+    request_type: u32,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u32) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"PowerSetRequest\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(power_request, request_type) }
+    } else {
+        // Fallback for Windows Vista: SetThreadExecutionState
+        type SetThreadExecutionStateFn = unsafe extern "system" fn(u32) -> u32;
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            if let Some(proc) = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"SetThreadExecutionState\0".as_ptr()) } {
+                let f: SetThreadExecutionStateFn = unsafe { std::mem::transmute(proc) };
+                const ES_CONTINUOUS: u32 = 0x80000000;
+                const ES_SYSTEM_REQUIRED: u32 = 0x00000001;
+                const ES_DISPLAY_REQUIRED: u32 = 0x00000002;
+                let mut flags = ES_CONTINUOUS | ES_SYSTEM_REQUIRED;
+                if request_type == 0 { // PowerRequestDisplayRequired
+                    flags |= ES_DISPLAY_REQUIRED;
+                }
+                unsafe { f(flags) };
+            }
+        }
+        1
+    }
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn PowerClearRequest(
+    power_request: *mut c_void,
+    request_type: u32,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u32) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"PowerClearRequest\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(power_request, request_type) }
+    } else {
+        type SetThreadExecutionStateFn = unsafe extern "system" fn(u32) -> u32;
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            if let Some(proc) = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"SetThreadExecutionState\0".as_ptr()) } {
+                let f: SetThreadExecutionStateFn = unsafe { std::mem::transmute(proc) };
+                const ES_CONTINUOUS: u32 = 0x80000000;
+                unsafe { f(ES_CONTINUOUS) };
+            }
+        }
+        1
+    }
+}
+
+// ============================================================================
+// 12. Window Display Affinity (Windows 7+ user32.dll)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn SetWindowDisplayAffinity(
+    hwnd: *mut c_void,
+    affinity: u32,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u32) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let u32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"user32.dll\0".as_ptr()) };
+        if !u32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(u32, b"SetWindowDisplayAffinity\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(hwnd, affinity) }
+    } else {
+        1
+    }
+}
+
+// ============================================================================
+// 13. UIPI Window Message Filter (Windows 7+ user32.dll)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn ChangeWindowMessageFilterEx(
+    hwnd: *mut c_void,
+    message: u32,
+    action: u32,
+    filter_struct: *mut c_void,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u32, u32, *mut c_void) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let u32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"user32.dll\0".as_ptr()) };
+        if !u32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(u32, b"ChangeWindowMessageFilterEx\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(hwnd, message, action, filter_struct) }
+    } else {
+        // Fallback for Windows Vista: ChangeWindowMessageFilter(message, action)
+        type VistaFunc = unsafe extern "system" fn(u32, u32) -> i32;
+        let u32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"user32.dll\0".as_ptr()) };
+        if !u32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(u32, b"ChangeWindowMessageFilter\0".as_ptr()) };
+            if let Some(proc) = p {
+                let f: VistaFunc = unsafe { std::mem::transmute(proc) };
+                return unsafe { f(message, action) };
+            }
+        }
+        1
+    }
+}
+
+// ============================================================================
+// 14. Windows Touch APIs (Windows 7+ user32.dll)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn RegisterTouchWindow(
+    hwnd: *mut c_void,
+    flags: u32,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u32) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let u32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"user32.dll\0".as_ptr()) };
+        if !u32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(u32, b"RegisterTouchWindow\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(hwnd, flags) }
+    } else {
+        unsafe { windows_sys::Win32::Foundation::SetLastError(windows_sys::Win32::Foundation::ERROR_NOT_SUPPORTED); }
+        0
+    }
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn GetTouchInputInfo(
+    touch_input: *mut c_void,
+    inputs: u32,
+    p_inputs: *mut c_void,
+    cb_size: i32,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void, u32, *mut c_void, i32) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let u32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"user32.dll\0".as_ptr()) };
+        if !u32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(u32, b"GetTouchInputInfo\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(touch_input, inputs, p_inputs, cb_size) }
+    } else {
+        unsafe { windows_sys::Win32::Foundation::SetLastError(windows_sys::Win32::Foundation::ERROR_NOT_SUPPORTED); }
+        0
+    }
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn CloseTouchInputHandle(
+    touch_input: *mut c_void,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*mut c_void) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let u32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"user32.dll\0".as_ptr()) };
+        if !u32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(u32, b"CloseTouchInputHandle\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(touch_input) }
+    } else {
+        1
+    }
+}
+
+// ============================================================================
+// 15. Notification Area Geometry (Windows 7+ shell32.dll)
+// ============================================================================
+
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn Shell_NotifyIconGetRect(
+    identifier: *const c_void,
+    icon_location: *mut c_void,
+) -> i32 {
+    type Func = unsafe extern "system" fn(*const c_void, *mut c_void) -> i32;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let s32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"shell32.dll\0".as_ptr()) };
+        if !s32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(s32, b"Shell_NotifyIconGetRect\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        unsafe { f(identifier, icon_location) }
+    } else {
+        0x80004001u32 as i32 // E_NOTIMPL on Windows Vista
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn process_prng_fills_buffer() {
+        let mut buf = [0u8; 32];
+        let res = unsafe { ProcessPrng(buf.as_mut_ptr(), buf.len()) };
+        assert_eq!(res, 1);
+        assert!(buf.iter().any(|&b| b != 0));
+    }
+
+    #[test]
+    fn k32_get_performance_info_executes_safely() {
+        let mut perf_info = [0usize; 13];
+        let cb = std::mem::size_of_val(&perf_info) as u32;
+        let res = unsafe { K32GetPerformanceInfo(perf_info.as_mut_ptr() as *mut c_void, cb) };
+        assert_eq!(res, 1);
+    }
+
+    #[test]
+    fn set_thread_error_mode_executes_safely() {
+        let mut old_mode: u32 = 0;
+        let res = unsafe { SetThreadErrorMode(1, &mut old_mode) };
+        assert_eq!(res, 1);
+        let mut dummy: u32 = 0;
+        let res2 = unsafe { SetThreadErrorMode(old_mode, &mut dummy) };
+        assert_eq!(res2, 1);
+    }
+
+    #[test]
+    fn power_request_shims_execute_safely() {
+        let req = unsafe { PowerCreateRequest(std::ptr::null()) };
+        assert!(!req.is_null());
+        let set_res = unsafe { PowerSetRequest(req, 1) };
+        assert_eq!(set_res, 1);
+        let clear_res = unsafe { PowerClearRequest(req, 1) };
+        assert_eq!(clear_res, 1);
+        unsafe { windows_sys::Win32::Foundation::CloseHandle(req as _) };
+    }
+
+    #[test]
+    fn touch_and_filter_shims_execute_safely() {
+        let filter_res = unsafe { ChangeWindowMessageFilterEx(std::ptr::null_mut(), 0, 1, std::ptr::null_mut()) };
+        assert_eq!(filter_res, 1);
+        let affinity_res = unsafe { SetWindowDisplayAffinity(std::ptr::null_mut(), 0) };
+        assert_eq!(affinity_res, 1);
+    }
+}
