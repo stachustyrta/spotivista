@@ -1,4 +1,4 @@
-//! Optional, user-installed Spotify Soloist. Spotifast owns only the child it
+//! Optional, user-installed Spotify Soloist. SpotiVista owns only the child it
 //! started, and keeps its files and credentials separate from librespot.
 mod audio;
 pub mod install;
@@ -79,11 +79,11 @@ impl Failure {
             Self::InvalidKey => gettext(locale, "That doesn't look like a Soloist key."),
             Self::KeyStore => gettext(
                 locale,
-                "Spotifast couldn't reach your saved key. Unlock the system credential store and try again.",
+                "SpotiVista couldn't reach your saved key. Unlock the system credential store and try again.",
             ),
             Self::Download => gettext(
                 locale,
-                "Spotifast couldn't download Soloist. Check your connection and try again.",
+                "SpotiVista couldn't download Soloist. Check your connection and try again.",
             ),
             Self::NotReady => gettext(
                 locale,
@@ -283,7 +283,7 @@ async fn run(args: Config, client: Client, mut stopped: watch::Receiver<bool>) -
             "{:x}",
             Sha256::digest(format!("{instance}:{}", data.to_string_lossy()).as_bytes())
         );
-        let name = format!("Spotifast Soloist ({})", &suffix[..8]);
+        let name = format!("SpotiVista Soloist ({})", &suffix[..8]);
         let build = if let Some(build) = install::saved(&root, "pending.json").await {
             build
         } else if let Some(build) = install::saved(&root, "current.json").await {
@@ -736,7 +736,7 @@ async fn copy_output(
     }
 }
 
-/// Stops a Soloist that an earlier Spotifast left running. It still holds the
+/// Stops a Soloist that an earlier SpotiVista left running. It still holds the
 /// data directory's lock, so a new player would exit before it is ready
 /// (#1140). Only a process started from one of our own builds is stopped: the
 /// recorded PID may since belong to an unrelated program.
@@ -768,7 +768,7 @@ fn reclaim(builds: &std::path::Path, data: &std::path::Path) {
     if !ours || !process.kill() {
         return;
     }
-    log::info!("Stopped a Soloist left running by an earlier Spotifast");
+    log::info!("Stopped a Soloist left running by an earlier SpotiVista");
     let deadline = Instant::now() + Duration::from_secs(2);
     while !exited(&mut system, pid) && Instant::now() < deadline {
         std::thread::sleep(Duration::from_millis(10));

@@ -719,7 +719,7 @@ pub fn populate(app: &mut App) {
     app.devices = vec![
         Device {
             id: Some("local-demo".into()),
-            name: "Spotifast".into(),
+            name: "SpotiVista".into(),
             is_active: false,
             is_restricted: false,
             volume_percent: Some(70),
@@ -1279,7 +1279,7 @@ pub fn apply_flags(app: &mut App, page: Option<&str>, show: Option<&str>) {
                         total: 14_000_000,
                     },
                     "soloist-pairing" => Status::Pairing {
-                        name: "Spotifast Soloist (12345678)".into(),
+                        name: "SpotiVista Soloist (12345678)".into(),
                         version: "1.3.10".into(),
                     },
                     "soloist-ready" | "soloist-playing" | "soloist-verifying" => {
@@ -1288,7 +1288,7 @@ pub fn apply_flags(app: &mut App, page: Option<&str>, show: Option<&str>) {
                         if surface == "soloist-playing" {
                             let device = Device {
                                 id: app.soloist_device_id.clone(),
-                                name: "Spotifast Soloist (12345678)".into(),
+                                name: "SpotiVista Soloist (12345678)".into(),
                                 kind: "speaker".into(),
                                 is_active: true,
                                 volume_percent: Some(62),
@@ -1305,7 +1305,7 @@ pub fn apply_flags(app: &mut App, page: Option<&str>, show: Option<&str>) {
                             }
                         }
                         Status::Ready {
-                            name: "Spotifast Soloist (12345678)".into(),
+                            name: "SpotiVista Soloist (12345678)".into(),
                             version: "1.3.10".into(),
                             expires: crate::soloist::install::now()
                                 + 75 * crate::soloist::install::DAY,
@@ -3824,7 +3824,7 @@ mod tests {
             let button = accessible_node(
                 &tree,
                 if setup {
-                    "Register Spotifast"
+                    "Register SpotiVista"
                 } else {
                     "Close banner"
                 },
@@ -3911,7 +3911,7 @@ mod tests {
             let button = accessible_node(
                 &tree,
                 if setup {
-                    "Register Spotifast"
+                    "Register SpotiVista"
                 } else {
                     "Not now"
                 },
@@ -4204,7 +4204,7 @@ mod tests {
         app.dialog = Some(Dialog::PersonalAppIntro);
         accessible_frame(&ctx, &mut app, vec![]);
         let tree = accessible_frame(&ctx, &mut app, vec![]);
-        let setup = accessible_node(&tree, "Register Spotifast", Role::Button);
+        let setup = accessible_node(&tree, "Register SpotiVista", Role::Button);
         accessible_frame(
             &ctx,
             &mut app,
@@ -4505,13 +4505,13 @@ mod tests {
 
         app.settings.web_client_id = None;
         app.web_app = None;
-        let text = settings_text(&ctx, &mut app, "Spotifast registered");
+        let text = settings_text(&ctx, &mut app, "SpotiVista registered");
         assert!(!text.iter().any(|text| text == "Account"));
         assert!(text.iter().any(|text| text.starts_with("No settings for")));
         app.settings.web_client_id = Some("test-client".into());
         app.web_app = Some("test-client".into());
-        let text = settings_text(&ctx, &mut app, "Spotifast registered");
-        assert!(text.iter().any(|text| text == "Spotifast registered"));
+        let text = settings_text(&ctx, &mut app, "SpotiVista registered");
+        assert!(text.iter().any(|text| text == "SpotiVista registered"));
         app.backend.shutdown();
     }
 
@@ -4521,17 +4521,17 @@ mod tests {
         app.settings.web_client_id = None;
         app.web_app = None;
         let text = settings_text(&ctx, &mut app, "Account");
-        assert!(text.iter().any(|text| text == "Register Spotifast"));
+        assert!(text.iter().any(|text| text == "Register SpotiVista"));
 
         app.settings.web_client_id = Some("test-client".into());
         let text = settings_text(&ctx, &mut app, "Account");
-        assert!(text.iter().any(|text| text == "Register Spotifast"));
+        assert!(text.iter().any(|text| text == "Register SpotiVista"));
         assert!(text.iter().any(|text| text == "Authorize your Client ID"));
 
         app.web_app = Some("test-client".into());
         let text = settings_text(&ctx, &mut app, "Account");
-        assert!(text.iter().any(|text| text == "Spotifast registered"));
-        assert!(!text.iter().any(|text| text == "Register Spotifast"));
+        assert!(text.iter().any(|text| text == "SpotiVista registered"));
+        assert!(!text.iter().any(|text| text == "Register SpotiVista"));
         assert!(!text.iter().any(|text| text == "Setup guide"));
         app.backend.shutdown();
     }
@@ -7247,7 +7247,7 @@ mod tests {
         let painted = view_frame(&ctx, &mut app, vec![], App::frame_ui);
         let title = sidebar_text(&painted, "Light mode theme");
         assert!(sidebar_text(&painted, "Dark mode theme").top() > title.top());
-        // The picker beside the title shows Spotifast's own Light.
+        // The picker beside the title shows SpotiVista's own Light.
         let picker = painted
             .iter()
             .find(|(text, rect)| {
@@ -8351,7 +8351,7 @@ mod tests {
                             "{:?} is cut off at {size:?} in {state:?}",
                             text.galley.job.text
                         );
-                        if text.galley.job.text == "Spotifast" {
+                        if text.galley.job.text == "SpotiVista" {
                             title = Some(rect);
                         }
                     }
@@ -9478,16 +9478,16 @@ mod tests {
         // A matching name is not proof that a player belongs to this process.
         app.devices.push(Device {
             id: Some("someone-elses-soloist".into()),
-            name: "Spotifast Soloist (12345678)".into(),
+            name: "SpotiVista Soloist (12345678)".into(),
             kind: "speaker".into(),
             ..Default::default()
         });
         accessible_frame(&ctx, &mut app, vec![]);
         let tree = accessible_frame(&ctx, &mut app, vec![]);
         accessible_node(&tree, "This computer", Role::Button);
-        accessible_node(&tree, "Spotifast Soloist (12345678)", Role::Button);
+        accessible_node(&tree, "SpotiVista Soloist (12345678)", Role::Button);
         assert!(!tree.nodes.iter().any(|(_, n)| n.label().is_some_and(|s| {
-            s.starts_with("Playing on") || s == "Spotifast (this computer)" || s == "Audio output"
+            s.starts_with("Playing on") || s == "SpotiVista (this computer)" || s == "Audio output"
         })));
         assert!(app.targets_own_soloist());
         assert!(
@@ -9510,14 +9510,14 @@ mod tests {
         assert!(!app.targets_own_soloist());
         accessible_node(
             &tree,
-            "Playing on Spotifast Soloist (12345678)",
+            "Playing on SpotiVista Soloist (12345678)",
             Role::Button,
         );
 
         app.apply(Action::SetSoloist(false), &ctx);
         accessible_frame(&ctx, &mut app, vec![]);
         let tree = accessible_frame(&ctx, &mut app, vec![]);
-        accessible_node(&tree, "Spotifast (this computer)", Role::Button);
+        accessible_node(&tree, "SpotiVista (this computer)", Role::Button);
         accessible_node(&tree, "Audio output", Role::Button);
         app.backend.shutdown();
     }
@@ -9718,7 +9718,7 @@ mod tests {
                     };
                     let title = bounds(title);
                     let instruction = bounds(instruction);
-                    let device = bounds("Spotifast Soloist (12345678)");
+                    let device = bounds("SpotiVista Soloist (12345678)");
                     let status = bounds(waiting);
                     let fallback = bounds("Use the built-in player");
                     assert!(title.bottom() < instruction.top());
@@ -9764,7 +9764,7 @@ mod tests {
         let (ctx, mut app) = accessible_app("soloist-long-device");
         app.backend.set_offline(true);
         apply_flags(&mut app, None, Some("soloist-onboarding,soloist-pairing"));
-        let name = "Spotifast Soloist on the living room computer (12345678)";
+        let name = "SpotiVista Soloist on the living room computer (12345678)";
         app.soloist_status = crate::soloist::Status::Pairing {
             name: name.into(),
             version: "test".into(),
@@ -9902,7 +9902,7 @@ mod tests {
         app.backend.shutdown();
     }
 
-    /// While Spotifast restarts the player there is nothing to press.
+    /// While SpotiVista restarts the player there is nothing to press.
     #[cfg(feature = "demo")]
     #[test]
     fn a_reconnecting_soloist_asks_for_nothing() {
@@ -10000,11 +10000,11 @@ mod tests {
                     total: 10,
                 },
                 crate::soloist::Status::Pairing {
-                    name: "Spotifast Soloist (12345678)".into(),
+                    name: "SpotiVista Soloist (12345678)".into(),
                     version: "1.3".into(),
                 },
                 crate::soloist::Status::Ready {
-                    name: "Spotifast Soloist (12345678)".into(),
+                    name: "SpotiVista Soloist (12345678)".into(),
                     version: "1.3".into(),
                     expires: crate::soloist::install::now() + 86400,
                 },
@@ -11220,7 +11220,7 @@ mod tests {
         app.backend.shutdown();
     }
 
-    /// "Next up" plays from the current context, not from a list Spotifast
+    /// "Next up" plays from the current context, not from a list SpotiVista
     /// can rewrite, so it is never a drop target: dropping a queued row on
     /// it must not move or insert anything, even though the row sits inside
     /// the same scrollable list as "Playing next".

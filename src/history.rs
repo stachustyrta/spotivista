@@ -1,6 +1,6 @@
 //! Local play history.
 //!
-//! Spotify does not record playback from librespot clients. Spotifast stores
+//! Spotify does not record playback from librespot clients. SpotiVista stores
 //! local plays and merges them with `/me/player/recently-played`, which covers
 //! other devices. A track counts only after enough listening time, so skips do
 //! not fill the history.
@@ -179,7 +179,7 @@ pub fn merged(local: &[PlayHistory], remote: &[PlayHistory]) -> Vec<PlayHistory>
     let mut reports: Vec<_> = remote.iter().map(|play| (time(play), play)).collect();
     reports.sort_by_key(|&(at, _)| at);
     for (at, play) in reports {
-        // Spotify dates a play when it ends, Spotifast when it counts, so a
+        // Spotify dates a play when it ends, SpotiVista when it counts, so a
         // report can follow the play made here by up to the song's length.
         let lag = i64::from(play.track.duration_ms / 1000) + SAME_PLAY;
         if let Some(at) = at
@@ -293,7 +293,7 @@ mod tests {
         assert_eq!(merged(&local, &distant).len(), 2, "five minutes apart");
     }
 
-    /// Spotify dates a play when it ends, Spotifast half a minute in, when
+    /// Spotify dates a play when it ends, SpotiVista half a minute in, when
     /// it counts. A play both report is one row, minutes apart.
     #[test]
     fn a_play_spotify_dates_at_its_end_is_one_row() {

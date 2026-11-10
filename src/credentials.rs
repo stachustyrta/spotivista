@@ -92,7 +92,7 @@ impl Grant {
         match (slot, self) {
             // The slot says which session a grant belongs to. A shared grant
             // carries the client ID it was issued to and refreshes with it,
-            // so it keeps working without Spotifast knowing that ID.
+            // so it keeps working without SpotiVista knowing that ID.
             (Slot::Shared | Slot::Personal, Self::Web(token)) => {
                 !token.client_id.is_empty() && !token.refresh_token.is_empty()
             }
@@ -1939,7 +1939,7 @@ mod tests {
         }
     }
 
-    /// Spotifast no longer knows the client ID shared access was issued
+    /// SpotiVista no longer knows the client ID shared access was issued
     /// to. A grant saved for it still loads, whatever that ID, and
     /// refreshes with the ID it carries.
     #[tokio::test]

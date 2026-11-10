@@ -2,7 +2,7 @@
 //!
 //! A `.wsz` file contains bitmap sprite sheets and two small text files. This
 //! module decodes them to RGBA textures. [`sprites`] defines source coordinates;
-//! [`layout`] defines window positions. Missing files fall back to Spotifast's
+//! [`layout`] defines window positions. Missing files fall back to SpotiVista's
 //! built-in classic skin. Modern `.wal` skins are unsupported. A Windows Media
 //! Player skin (`.wmz`) is read by [`wmp`] and carried on the same type.
 
@@ -33,7 +33,7 @@ pub enum SkinError {
     NotAnArchive,
     #[error("{0}")]
     Archive(zip::ZipError),
-    #[error("this is a modern Winamp skin, which Spotifast cannot draw; it needs a classic one")]
+    #[error("this is a modern Winamp skin, which SpotiVista cannot draw; it needs a classic one")]
     ModernSkin,
     #[error("no skin bitmaps were found inside")]
     Empty,
@@ -298,14 +298,14 @@ impl Skin {
         })
     }
 
-    /// The skin Spotifast ships, drawn for it and packed as a `.wsz` like
+    /// The skin SpotiVista ships, drawn for it and packed as a `.wsz` like
     /// any other, so it goes through the same reader. It has every sheet,
     /// so any other skin's gaps can be filled from it.
     pub fn builtin() -> Arc<Skin> {
         BUILTIN.clone()
     }
 
-    /// The Windows Media Player skin Spotifast ships, read as any other is.
+    /// The Windows Media Player skin SpotiVista ships, read as any other is.
     pub fn ribbon() -> Result<Skin, SkinError> {
         Skin::from_archive(RIBBON, RIBBON_ARCHIVE)
     }
@@ -443,9 +443,9 @@ fn wanted(file_name: &str) -> bool {
 /// The built-in skin, drawn by `examples/default_skin.rs`.
 /// The name the settings hold for [`Skin::ribbon`], which is no file in the
 /// skins folder.
-pub const RIBBON: &str = "Spotifast Tall";
+pub const RIBBON: &str = "SpotiVista Tall";
 /// The same, for [`Skin::wide`].
-pub const WIDE: &str = "Spotifast Wide";
+pub const WIDE: &str = "SpotiVista Wide";
 /// The skins the app ships, in the order they are listed.
 pub const SHIPPED: [&str; 2] = [RIBBON, WIDE];
 
@@ -455,7 +455,7 @@ const RIBBON_ARCHIVE: &[u8] = include_bytes!("../../assets/skins/spotifast-ribbo
 const WIDE_ARCHIVE: &[u8] = include_bytes!("../../assets/skins/spotifast-wide.wmz");
 
 static BUILTIN: LazyLock<Arc<Skin>> = LazyLock::new(|| {
-    Arc::new(Skin::from_archive("Spotifast", BUILTIN_ARCHIVE).expect("the built-in skin reads"))
+    Arc::new(Skin::from_archive("SpotiVista", BUILTIN_ARCHIVE).expect("the built-in skin reads"))
 });
 
 #[cfg(test)]
@@ -502,7 +502,7 @@ mod tests {
             );
         }
         assert!(skin.has_extended_digits());
-        assert_eq!(skin.name, "Spotifast");
+        assert_eq!(skin.name, "SpotiVista");
     }
 
     #[test]

@@ -1,5 +1,5 @@
 //! Only commands documented by Spotify's Soloist WebSocket API. Context
-//! loads retain their offsets through Spotifast's existing Spotify API path.
+//! loads retain their offsets through SpotiVista's existing Spotify API path.
 use crate::{
     api::{client::ApiError, models::*},
     backend::{ApiRequest, ApiResponse, RemoteAction},

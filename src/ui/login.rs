@@ -10,7 +10,7 @@ use crate::settings::ProxyMode;
 use crate::theme;
 
 /// Where listeners create their own Spotify app. Shown as a link they
-/// click; Spotifast never opens it by itself.
+/// click; SpotiVista never opens it by itself.
 pub const DASHBOARD_URL: &str = "https://developer.spotify.com/dashboard";
 
 /// The width of the card on its own, and at most of each column beside
@@ -153,7 +153,7 @@ pub fn show(app: &mut App, ui: &mut egui::Ui, connecting: bool) {
                 // Translators: {version} is the app's version number, such as 1.2.0.
                 gettext(
                     app.locale,
-                    "Spotifast {version} • not affiliated with Spotify",
+                    "SpotiVista {version} • not affiliated with Spotify",
                 )
                 .replace("{version}", env!("CARGO_PKG_VERSION")),
                 theme::regular(11.5),
@@ -179,7 +179,7 @@ fn problem_text(locale: crate::i18n::Locale, problem: SignInProblem) -> String {
         ),
         SignInProblem::SharedRetired => gettext(
             locale,
-            "Spotify no longer accepts the shared sign-in Spotifast used before. Register Spotifast to keep listening.",
+            "Spotify no longer accepts the shared sign-in SpotiVista used before. Register SpotiVista to keep listening.",
         ),
         SignInProblem::Expired => {
             gettext(locale, "Your Spotify sign-in expired. Please sign in again.")
@@ -209,7 +209,7 @@ fn sign_in_column(app: &mut App, ui: &mut egui::Ui, connecting: bool, beside: Op
     ui.add_space(6.0);
     theme::text(
         ui,
-        "Spotifast",
+        "SpotiVista",
         theme::bold(if steps { 26.0 } else { 30.0 }),
         palette.text,
     );
@@ -322,7 +322,7 @@ fn sign_in_column(app: &mut App, ui: &mut egui::Ui, connecting: bool, beside: Op
                 ui,
                 gettext(
                     locale,
-                    "Sign in through your browser. Spotifast never sees your password. Local playback needs Spotify Premium.",
+                    "Sign in through your browser. SpotiVista never sees your password. Local playback needs Spotify Premium.",
                 ),
                 theme::regular(12.5),
                 palette.secondary,
@@ -331,7 +331,7 @@ fn sign_in_column(app: &mut App, ui: &mut egui::Ui, connecting: bool, beside: Op
                 ui.add_space(4.0);
                 if theme::link(
                     ui,
-                    gettext(locale, "How to register Spotifast"),
+                    gettext(locale, "How to register SpotiVista"),
                     theme::regular(13.0),
                     palette.secondary,
                 )
@@ -446,7 +446,7 @@ pub(super) fn step(
     ui.add_space(4.0);
 }
 
-/// How to create the app Spotifast signs in with, the same steps the
+/// How to create the app SpotiVista signs in with, the same steps the
 /// guide gives (make-it-even-faster.md, Make a Spotify app).
 fn setup_steps(app: &mut App, ui: &mut egui::Ui, width: f32) {
     let palette = app.palette;
@@ -457,7 +457,7 @@ fn setup_steps(app: &mut App, ui: &mut egui::Ui, width: f32) {
     ui.add_space(4.0);
     theme::text(
         ui,
-        gettext(locale, "Register Spotifast"),
+        gettext(locale, "Register SpotiVista"),
         theme::bold(18.0),
         palette.text,
     );
@@ -465,7 +465,7 @@ fn setup_steps(app: &mut App, ui: &mut egui::Ui, width: f32) {
         ui,
         gettext(
             locale,
-            "Spotify asks you to register Spotifast once, on an account with Premium. It takes about two minutes and gives you a Client ID.",
+            "Spotify asks you to register SpotiVista once, on an account with Premium. It takes about two minutes and gives you a Client ID.",
         ),
         theme::regular(13.0),
         palette.secondary,

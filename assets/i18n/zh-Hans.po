@@ -1,14 +1,14 @@
-# Simplified Chinese translation of the Spotifast navigation pilot.
-# Distributed under the same MIT license as Spotifast.
+# Simplified Chinese translation of the SpotiVista navigation pilot.
+# Distributed under the same MIT license as SpotiVista.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Spotifast\n"
+"Project-Id-Version: SpotiVista\n"
 "Report-Msgid-Bugs-To: https://github.com/crmne/spotifast/issues/new?"
 "template=translation.yml\n"
 "POT-Creation-Date: 2026-11-02 20:27+0100\n"
 "PO-Revision-Date: 2026-09-09 13:30+0000\n"
-"Last-Translator: Spotifast contributors\n"
+"Last-Translator: SpotiVista contributors\n"
 "Language-Team: Simplified Chinese\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -304,8 +304,8 @@ msgid "Mute"
 msgstr "静音"
 
 #: src/ui/player_bar.rs:1011
-msgid "This device's volume can't be changed from Spotifast"
-msgstr "无法从 Spotifast 更改此设备的音量"
+msgid "This device's volume can't be changed from SpotiVista"
+msgstr "无法从 SpotiVista 更改此设备的音量"
 
 #: src/ui/player_bar.rs:1031 src/ui/devices.rs:401
 msgid "Connect to a device"
@@ -410,8 +410,8 @@ msgstr "当前处于离线状态"
 #: src/ui/collection.rs:2272 src/ui/collection.rs:2531 src/ui/home.rs:34
 #: src/ui/library.rs:262 src/ui/show.rs:69 src/ui/show.rs:115
 #: src/ui/show.rs:145
-msgid "Spotifast will reconnect automatically when your connection returns."
-msgstr "连接恢复后，Spotifast 将自动重新连接。"
+msgid "SpotiVista will reconnect automatically when your connection returns."
+msgstr "连接恢复后，SpotiVista 将自动重新连接。"
 
 #. Translators: Keep {error} unchanged. It is the original failure detail.
 #: src/ui/lyrics.rs:171 src/ui/lyrics.rs:465 src/ui/lyrics.rs:819
@@ -717,8 +717,8 @@ msgid "Restoring proxy settings"
 msgstr "正在恢复代理设置"
 
 #: src/app.rs:1734
-msgid "Couldn't change how Spotifast starts with your computer."
-msgstr "无法更改 Spotifast 随电脑启动的方式。"
+msgid "Couldn't change how SpotiVista starts with your computer."
+msgstr "无法更改 SpotiVista 随电脑启动的方式。"
 
 #: src/app.rs:2025 src/ui/soloist.rs:851
 msgid "Starting Soloist…"
@@ -743,7 +743,7 @@ msgstr "正在连接 Spotify…"
 msgid "Cleared {size} of audio"
 msgstr "已清除 {size} 的音频缓存"
 
-#. Translators: Files in the audio cache that Spotifast did not put there, such as .DS_Store. They were not deleted.
+#. Translators: Files in the audio cache that SpotiVista did not put there, such as .DS_Store. They were not deleted.
 #: src/app.rs:2878
 #, rust-format
 msgid "{count} unrecognized file was left in place."
@@ -781,12 +781,12 @@ msgstr "{error}原始设置文件保持不变，更改的偏好设置尚未保�
 #. Translators: {version} is a version number such as 1.4.0.
 #: src/app.rs:3161
 #, rust-format
-msgid "Spotifast {version} is available"
-msgstr "Spotifast {version} 已推出"
+msgid "SpotiVista {version} is available"
+msgstr "SpotiVista {version} 已推出"
 
 #: src/app.rs:3178
-msgid "Spotifast is up to date"
-msgstr "Spotifast 已是最新版本"
+msgid "SpotiVista is up to date"
+msgstr "SpotiVista 已是最新版本"
 
 #. Translators: {error} is an error message.
 #: src/app.rs:3186
@@ -1028,8 +1028,8 @@ msgid "This song's album is not on Spotify"
 msgstr "这首歌曲所属的专辑不在 Spotify 上"
 
 #: src/app.rs:10010
-msgid "Spotifast cannot open this kind of Spotify link"
-msgstr "Spotifast 无法打开这类 Spotify 链接"
+msgid "SpotiVista cannot open this kind of Spotify link"
+msgstr "SpotiVista 无法打开这类 Spotify 链接"
 
 #: src/app.rs:10258
 msgid "Nothing is playing. Pick something first"
@@ -1319,28 +1319,28 @@ msgstr "Spotify 注册"
 
 #: src/ui/settings.rs:541
 msgid ""
-"You're still on the shared sign-in Spotifast used before, which Spotify can "
-"stop accepting at any time. Register Spotifast to keep listening."
+"You're still on the shared sign-in SpotiVista used before, which Spotify can "
+"stop accepting at any time. Register SpotiVista to keep listening."
 msgstr ""
-"你仍在使用 Spotifast 以前使用的共享登录，Spotify 随时可能停止接受它。请注册 "
-"Spotifast 以继续收听。"
+"你仍在使用 SpotiVista 以前使用的共享登录，Spotify 随时可能停止接受它。请注册 "
+"SpotiVista 以继续收听。"
 
 #: src/ui/settings.rs:546
-msgid "Spotifast connects with the Client ID you registered with Spotify."
-msgstr "Spotifast 使用你在 Spotify 注册的 Client ID 进行连接。"
+msgid "SpotiVista connects with the Client ID you registered with Spotify."
+msgstr "SpotiVista 使用你在 Spotify 注册的 Client ID 进行连接。"
 
 #: src/ui/settings.rs:551 src/ui/dialogs.rs:50 src/ui/login.rs:456
 #: src/ui/mod.rs:417
-msgid "Register Spotifast"
-msgstr "注册 Spotifast"
+msgid "Register SpotiVista"
+msgstr "注册 SpotiVista"
 
 #: src/ui/settings.rs:554
 msgid "It takes about two minutes in Spotify's developer dashboard."
 msgstr "在 Spotify 开发者控制台中大约需要两分钟。"
 
 #: src/ui/settings.rs:559
-msgid "Spotifast registered"
-msgstr "Spotifast 已注册"
+msgid "SpotiVista registered"
+msgstr "SpotiVista 已注册"
 
 #: src/ui/settings.rs:563
 msgid ""
@@ -1348,8 +1348,8 @@ msgid ""
 msgstr "受支持的请求使用你的 Client ID。其他请求使用共享登录。"
 
 #: src/ui/settings.rs:568
-msgid "Spotifast uses your Client ID for Spotify's Web API."
-msgstr "Spotifast 将你的 Client ID 用于 Spotify 的 Web API。"
+msgid "SpotiVista uses your Client ID for Spotify's Web API."
+msgstr "SpotiVista 将你的 Client ID 用于 Spotify 的 Web API。"
 
 #: src/ui/settings.rs:574
 msgid "Authorize your Client ID"
@@ -1511,13 +1511,13 @@ msgstr "歌曲之间不插入静音。"
 
 #: src/ui/settings.rs:802
 msgid ""
-"Spotifast hides to the system tray. Quit from the tray menu or with Ctrl+Q."
-msgstr "Spotifast 会隐藏到系统托盘。可通过托盘菜单或 Ctrl+Q 退出。"
+"SpotiVista hides to the system tray. Quit from the tray menu or with Ctrl+Q."
+msgstr "SpotiVista 会隐藏到系统托盘。可通过托盘菜单或 Ctrl+Q 退出。"
 
 #: src/ui/settings.rs:807
 msgid ""
-"Spotifast hides to the menu bar. Quit from its menu-bar icon or with Cmd+Q."
-msgstr "Spotifast 会隐藏到菜单栏。可通过菜单栏图标或 Cmd+Q 退出。"
+"SpotiVista hides to the menu bar. Quit from its menu-bar icon or with Cmd+Q."
+msgstr "SpotiVista 会隐藏到菜单栏。可通过菜单栏图标或 Cmd+Q 退出。"
 
 #: src/ui/settings.rs:814
 msgid "Checks GitHub once a day. No personal data is sent."
@@ -1559,10 +1559,10 @@ msgstr "本地文件"
 
 #: src/ui/settings.rs:850
 msgid ""
-"When off, Spotifast lives in the menu bar and leaves Cmd+Tab. Open it from "
+"When off, SpotiVista lives in the menu bar and leaves Cmd+Tab. Open it from "
 "its menu-bar icon."
 msgstr ""
-"关闭后，Spotifast 只留在菜单栏，也不会出现在 Cmd+Tab 中。请从菜单栏图标打开"
+"关闭后，SpotiVista 只留在菜单栏，也不会出现在 Cmd+Tab 中。请从菜单栏图标打开"
 "它。"
 
 #: src/ui/settings.rs:856
@@ -1728,8 +1728,8 @@ msgstr ""
 
 #: src/ui/settings.rs:1335
 msgid ""
-"Draw Spotifast's own title bar and window buttons instead of the desktop's."
-msgstr "使用 Spotifast 自己的标题栏和窗口按钮，而不是桌面环境提供的。"
+"Draw SpotiVista's own title bar and window buttons instead of the desktop's."
+msgstr "使用 SpotiVista 自己的标题栏和窗口按钮，而不是桌面环境提供的。"
 
 #: src/ui/settings.rs:1343
 msgid ""
@@ -1937,34 +1937,34 @@ msgstr "预设"
 #: src/ui/settings.rs:2113
 #, rust-format
 msgid ""
-"None yet in {folder}. Add .milk files here. Spotifast downloads presets when "
+"None yet in {folder}. Add .milk files here. SpotiVista downloads presets when "
 "MilkDrop first opens with an empty folder."
 msgstr ""
 "{folder} 中还没有预设。请将 .milk 文件添加到此处。首次打开 MilkDrop 时如果文"
-"件夹为空，Spotifast 会下载预设。"
+"件夹为空，SpotiVista 会下载预设。"
 
 #. Translators: {folder} is the path of the MilkDrop presets folder.
 #: src/ui/settings.rs:2119
 #, rust-format
 msgid ""
-"One preset in {folder}. Add .milk files here. Spotifast downloads presets "
+"One preset in {folder}. Add .milk files here. SpotiVista downloads presets "
 "when MilkDrop first opens with an empty folder."
 msgstr ""
 "{folder} 中有 1 个预设。请将 .milk 文件添加到此处。首次打开 MilkDrop 时如果文"
-"件夹为空，Spotifast 会下载预设。"
+"件夹为空，SpotiVista 会下载预设。"
 
 #. Translators: {count} is the number of presets, {folder} the path of the MilkDrop presets folder.
 #: src/ui/settings.rs:2125
 #, rust-format
 msgid ""
-"{count} preset in {folder}. Add .milk files here. Spotifast downloads "
+"{count} preset in {folder}. Add .milk files here. SpotiVista downloads "
 "presets when MilkDrop first opens with an empty folder."
 msgid_plural ""
-"{count} presets in {folder}. Add .milk files here. Spotifast downloads "
+"{count} presets in {folder}. Add .milk files here. SpotiVista downloads "
 "presets when MilkDrop first opens with an empty folder."
 msgstr[0] ""
 "{folder} 中有 {count} 个预设。请将 .milk 文件添加到此处。首次打开 MilkDrop 时"
-"如果文件夹为空，Spotifast 会下载预设。"
+"如果文件夹为空，SpotiVista 会下载预设。"
 
 #: src/ui/settings.rs:2134
 msgid "Time per preset"
@@ -2161,8 +2161,8 @@ msgid "In the tray"
 msgstr "在托盘中"
 
 #: src/ui/settings.rs:2623
-msgid "Allow Spotifast in System Settings, General, Login Items."
-msgstr "请在“系统设置”>“通用”>“登录项”中允许 Spotifast。"
+msgid "Allow SpotiVista in System Settings, General, Login Items."
+msgstr "请在“系统设置”>“通用”>“登录项”中允许 SpotiVista。"
 
 #: src/ui/settings.rs:2629
 msgid ""
@@ -2178,12 +2178,12 @@ msgid ""
 msgstr "要在托盘中启动，需要开启“关闭窗口后继续播放音乐”。在此之前会打开窗口。"
 
 #: src/ui/settings.rs:2640
-msgid "Open Spotifast when you log in, with its window or in the menu bar."
-msgstr "登录时打开 Spotifast，显示窗口或留在菜单栏中。"
+msgid "Open SpotiVista when you log in, with its window or in the menu bar."
+msgstr "登录时打开 SpotiVista，显示窗口或留在菜单栏中。"
 
 #: src/ui/settings.rs:2645
-msgid "Open Spotifast when you log in, with its window or in the tray."
-msgstr "登录时打开 Spotifast，显示窗口或留在托盘中。"
+msgid "Open SpotiVista when you log in, with its window or in the tray."
+msgstr "登录时打开 SpotiVista，显示窗口或留在托盘中。"
 
 #: src/ui/settings.rs:2751
 msgctxt "language"
@@ -2210,17 +2210,17 @@ msgstr "用 Spotify Soloist 聆听"
 
 #: src/ui/soloist.rs:315
 msgid ""
-"Spotify's own player, running on this computer. Spotifast sets it up and "
+"Spotify's own player, running on this computer. SpotiVista sets it up and "
 "keeps it updated."
-msgstr "Spotify 官方播放器，在这台电脑上运行。Spotifast 负责设置和更新。"
+msgstr "Spotify 官方播放器，在这台电脑上运行。SpotiVista 负责设置和更新。"
 
 #: src/ui/soloist.rs:321
 msgid "Get your personal key from Spotify."
 msgstr "从 Spotify 获取你的个人密钥。"
 
 #: src/ui/soloist.rs:322
-msgid "Spotifast downloads the player."
-msgstr "Spotifast 下载播放器。"
+msgid "SpotiVista downloads the player."
+msgstr "SpotiVista 下载播放器。"
 
 #: src/ui/soloist.rs:323
 msgid "Choose it once in the Spotify app."
@@ -2244,10 +2244,10 @@ msgstr "获取 Soloist 密钥"
 
 #: src/ui/soloist.rs:368
 msgid ""
-"Spotify gives each Premium account its own key. Spotifast keeps it in your "
+"Spotify gives each Premium account its own key. SpotiVista keeps it in your "
 "system's credential store."
 msgstr ""
-"Spotify 为每个 Premium 账户提供专属密钥。Spotifast 将其保存在系统凭据存储中。"
+"Spotify 为每个 Premium 账户提供专属密钥。SpotiVista 将其保存在系统凭据存储中。"
 
 #: src/ui/soloist.rs:384
 msgid "Copy your key from Spotify's Soloist page."
@@ -2397,8 +2397,8 @@ msgid "Soloist needs your key"
 msgstr "Soloist 需要你的密钥"
 
 #: src/ui/soloist.rs:744 src/ui/soloist.rs:858
-msgid "Spotifast can't find the key you saved."
-msgstr "Spotifast 找不到你保存的密钥。"
+msgid "SpotiVista can't find the key you saved."
+msgstr "SpotiVista 找不到你保存的密钥。"
 
 #: src/ui/soloist.rs:747 src/ui/soloist.rs:955
 msgid "Add your key"
@@ -2490,14 +2490,14 @@ msgstr "这看起来不是 Soloist 密钥。"
 
 #: src/soloist/mod.rs:82
 msgid ""
-"Spotifast couldn't reach your saved key. Unlock the system credential store "
+"SpotiVista couldn't reach your saved key. Unlock the system credential store "
 "and try again."
-msgstr "Spotifast 无法读取你保存的密钥。请解锁系统凭据存储后重试。"
+msgstr "SpotiVista 无法读取你保存的密钥。请解锁系统凭据存储后重试。"
 
 #: src/soloist/mod.rs:86
 msgid ""
-"Spotifast couldn't download Soloist. Check your connection and try again."
-msgstr "Spotifast 无法下载 Soloist。请检查连接后重试。"
+"SpotiVista couldn't download Soloist. Check your connection and try again."
+msgstr "SpotiVista 无法下载 Soloist。请检查连接后重试。"
 
 #: src/soloist/mod.rs:90
 msgid ""
@@ -2861,17 +2861,17 @@ msgid "Play here"
 msgstr "在此播放"
 
 #: src/ui/dialogs.rs:44
-msgid "Register Spotifast with Spotify"
-msgstr "向 Spotify 注册 Spotifast"
+msgid "Register SpotiVista with Spotify"
+msgstr "向 Spotify 注册 SpotiVista"
 
 #: src/ui/dialogs.rs:46
 msgid ""
-"You're on the shared sign-in Spotifast used before. Spotifast no longer "
-"offers it, and Spotify can stop accepting it at any time. Register Spotifast "
+"You're on the shared sign-in SpotiVista used before. SpotiVista no longer "
+"offers it, and Spotify can stop accepting it at any time. Register SpotiVista "
 "so nothing stops your music. It takes about two minutes."
 msgstr ""
-"你正在使用 Spotifast 以前使用的共享登录。Spotifast 已不再提供它，Spotify 也随"
-"时可能停止接受它。请注册 Spotifast，让音乐不会中断。大约需要两分钟。"
+"你正在使用 SpotiVista 以前使用的共享登录。SpotiVista 已不再提供它，Spotify 也随"
+"时可能停止接受它。请注册 SpotiVista，让音乐不会中断。大约需要两分钟。"
 
 #: src/ui/dialogs.rs:64
 msgid "Delete playlist?"
@@ -2921,9 +2921,9 @@ msgstr "此账户无法在此播放音乐"
 #: src/ui/dialogs.rs:213
 msgid ""
 "Playback needs Spotify Premium. Free accounts can browse and search, but "
-"cannot play music through Spotifast."
+"cannot play music through SpotiVista."
 msgstr ""
-"播放需要 Spotify Premium。免费账户可以浏览和搜索，但无法通过 Spotifast 播放音"
+"播放需要 Spotify Premium。免费账户可以浏览和搜索，但无法通过 SpotiVista 播放音"
 "乐。"
 
 #: src/ui/dialogs.rs:222
@@ -3286,8 +3286,8 @@ msgstr "你关注的艺人的新专辑和单曲会显示在这里。"
 
 #: src/ui/login.rs:156
 #, rust-format
-msgid "Spotifast {version} • not affiliated with Spotify"
-msgstr "Spotifast {version} • 与 Spotify 无关"
+msgid "SpotiVista {version} • not affiliated with Spotify"
+msgstr "SpotiVista {version} • 与 Spotify 无关"
 
 #: src/ui/login.rs:170
 msgid ""
@@ -3313,10 +3313,10 @@ msgstr ""
 
 #: src/ui/login.rs:182
 msgid ""
-"Spotify no longer accepts the shared sign-in Spotifast used before. Register "
-"Spotifast to keep listening."
+"Spotify no longer accepts the shared sign-in SpotiVista used before. Register "
+"SpotiVista to keep listening."
 msgstr ""
-"Spotify 已不再接受 Spotifast 以前使用的共享登录。请注册 Spotifast 以继续收"
+"Spotify 已不再接受 SpotiVista 以前使用的共享登录。请注册 SpotiVista 以继续收"
 "听。"
 
 #: src/ui/login.rs:219
@@ -3346,15 +3346,15 @@ msgstr "使用 Spotify 登录"
 
 #: src/ui/login.rs:321
 msgid ""
-"Sign in through your browser. Spotifast never sees your password. Local "
+"Sign in through your browser. SpotiVista never sees your password. Local "
 "playback needs Spotify Premium."
 msgstr ""
-"通过浏览器登录。Spotifast 永远不会看到你的密码。本地播放需要 Spotify "
+"通过浏览器登录。SpotiVista 永远不会看到你的密码。本地播放需要 Spotify "
 "Premium。"
 
 #: src/ui/login.rs:330
-msgid "How to register Spotifast"
-msgstr "如何注册 Spotifast"
+msgid "How to register SpotiVista"
+msgstr "如何注册 SpotiVista"
 
 #: src/ui/login.rs:354
 msgid "Proxy Settings"
@@ -3368,10 +3368,10 @@ msgstr "Client ID 由 32 个字母和数字组成。请从 Spotify 开发者控�
 
 #: src/ui/login.rs:464
 msgid ""
-"Spotify asks you to register Spotifast once, on an account with Premium. It "
+"Spotify asks you to register SpotiVista once, on an account with Premium. It "
 "takes about two minutes and gives you a Client ID."
 msgstr ""
-"Spotify 要求你用具有 Premium 的账户注册一次 Spotifast。大约需要两分钟，完成后"
+"Spotify 要求你用具有 Premium 的账户注册一次 SpotiVista。大约需要两分钟，完成后"
 "你会得到一个 Client ID。"
 
 #: src/ui/login.rs:474
@@ -3401,10 +3401,10 @@ msgstr "Spotify 在共享登录上响应缓慢。"
 
 #: src/ui/mod.rs:412
 msgid ""
-"Spotifast no longer offers the shared sign-in, and Spotify can stop "
-"accepting it at any time. Register Spotifast and you won't have to wait."
+"SpotiVista no longer offers the shared sign-in, and Spotify can stop "
+"accepting it at any time. Register SpotiVista and you won't have to wait."
 msgstr ""
-"Spotifast 已不再提供共享登录，Spotify 也随时可能停止接受它。注册 Spotifast，"
+"SpotiVista 已不再提供共享登录，Spotify 也随时可能停止接受它。注册 SpotiVista，"
 "就不用再等待了。"
 
 #. Translators: a button that opens a page explaining why
@@ -3415,11 +3415,11 @@ msgstr "为什么？"
 
 #: src/ui/mod.rs:446
 msgid ""
-"Spotify refused the key that unlocks the audio. Spotifast can't fix that, "
+"Spotify refused the key that unlocks the audio. SpotiVista can't fix that, "
 "but it sometimes clears up on its own. You can still play on your phone or "
 "another Spotify device."
 msgstr ""
-"Spotify 拒绝提供解锁音频的密钥。Spotifast 没法解决，但有时过一会儿会自己恢"
+"Spotify 拒绝提供解锁音频的密钥。SpotiVista 没法解决，但有时过一会儿会自己恢"
 "复。你仍然可以在手机或其他 Spotify 设备上播放。"
 
 #: src/ui/mod.rs:451
@@ -3656,8 +3656,8 @@ msgstr "想听什么？"
 
 #: src/ui/topbar.rs:546
 msgid ""
-"Spotifast is offline. Reconnecting automatically when connection returns."
-msgstr "Spotifast 处于离线状态。连接恢复后将自动重新连接。"
+"SpotiVista is offline. Reconnecting automatically when connection returns."
+msgstr "SpotiVista 处于离线状态。连接恢复后将自动重新连接。"
 
 #: src/ui/topbar.rs:574
 msgid "MilkDrop visualiser (Ctrl+Shift+K)"
@@ -3690,8 +3690,8 @@ msgid "Version {version} is available."
 msgstr "版本 {version} 已推出。"
 
 #: src/ui/update.rs:19
-msgid "Update Spotifast"
-msgstr "更新 Spotifast"
+msgid "Update SpotiVista"
+msgstr "更新 SpotiVista"
 
 #: src/ui/update.rs:51
 msgid "Close update"
@@ -3706,8 +3706,8 @@ msgid "Ready to install"
 msgstr "可以安装"
 
 #: src/ui/update.rs:115
-msgid "Music playing on this computer will stop when Spotifast restarts."
-msgstr "Spotifast 重启时，这台电脑上正在播放的音乐将停止。"
+msgid "Music playing on this computer will stop when SpotiVista restarts."
+msgstr "SpotiVista 重启时，这台电脑上正在播放的音乐将停止。"
 
 #: src/ui/update.rs:122
 msgid "Restart to update"
@@ -4026,8 +4026,8 @@ msgid "On Wayland, use your desktop's Keep Above shortcut or window rule."
 msgstr "在 Wayland 上，请使用桌面环境的“保持在最上层”快捷键或窗口规则。"
 
 #: src/window.rs:31
-msgid "Spotifast cannot open its window"
-msgstr "Spotifast 无法打开窗口"
+msgid "SpotiVista cannot open its window"
+msgstr "SpotiVista 无法打开窗口"
 
 #: src/window.rs:34
 msgid "Open page"
@@ -4035,24 +4035,24 @@ msgstr "打开页面"
 
 #: src/window.rs:51
 msgid ""
-"On Windows on ARM, the OpenGL that Spotifast draws with comes from "
+"On Windows on ARM, the OpenGL that SpotiVista draws with comes from "
 "Microsoft's OpenCL, OpenGL & Vulkan Compatibility Pack. Open its Microsoft "
 "Store page to install or repair it?"
 msgstr ""
-"在 ARM 版 Windows 上，Spotifast 用于绘制界面的 OpenGL 由 Microsoft 的 "
+"在 ARM 版 Windows 上，SpotiVista 用于绘制界面的 OpenGL 由 Microsoft 的 "
 "OpenCL, OpenGL & Vulkan Compatibility Pack 提供。要打开其 Microsoft Store 页"
 "面以安装或修复吗？"
 
 #. Translators: Keep {url} exactly as written. It becomes the address
-#. of the Spotifast download page.
+#. of the SpotiVista download page.
 #: src/window.rs:58
 #, rust-format
 msgid ""
-"Spotifast needs a graphics driver with OpenGL 2.0 or newer, and this PC or "
+"SpotiVista needs a graphics driver with OpenGL 2.0 or newer, and this PC or "
 "virtual machine does not provide one. Install the graphics driver, or turn "
 "on GPU acceleration for the virtual machine. Open {url} to read more?"
 msgstr ""
-"Spotifast 需要支持 OpenGL 2.0 或更高版本的显卡驱动程序，而这台电脑或虚拟机没"
+"SpotiVista 需要支持 OpenGL 2.0 或更高版本的显卡驱动程序，而这台电脑或虚拟机没"
 "有提供。请安装显卡驱动程序，或为虚拟机开启 GPU 加速。要打开 {url} 了解更多"
 "吗？"
 
@@ -4073,8 +4073,8 @@ msgstr ""
 #~ msgid "Spotify's official player for listening outside the Spotify app."
 #~ msgstr "Spotify 官方播放器，可在 Spotify 应用之外收听音乐。"
 
-#~ msgid "Requires Spotify Premium. Spotifast handles downloads and updates."
-#~ msgstr "需要 Spotify Premium。Spotifast 会处理下载和更新。"
+#~ msgid "Requires Spotify Premium. SpotiVista handles downloads and updates."
+#~ msgstr "需要 Spotify Premium。SpotiVista 会处理下载和更新。"
 
 #~ msgid ""
 #~ "Open Spotify with the same account and network.\n"
@@ -4139,15 +4139,15 @@ msgstr ""
 #~ msgstr "个人 Spotify 应用"
 
 #~ msgid ""
-#~ "You're still signed in through the shared app Spotifast used before, "
+#~ "You're still signed in through the shared app SpotiVista used before, "
 #~ "which Spotify can stop accepting at any time. Set up your own app to keep "
 #~ "listening."
 #~ msgstr ""
-#~ "你仍在通过 Spotifast 以前使用的共享应用登录，Spotify 随时可能停止接受它。"
+#~ "你仍在通过 SpotiVista 以前使用的共享应用登录，Spotify 随时可能停止接受它。"
 #~ "请设置你自己的应用以继续收听。"
 
-#~ msgid "Spotifast signs in through your own free Spotify app."
-#~ msgstr "Spotifast 通过你自己的免费 Spotify 应用登录。"
+#~ msgid "SpotiVista signs in through your own free Spotify app."
+#~ msgstr "SpotiVista 通过你自己的免费 Spotify 应用登录。"
 
 #~ msgid "Create an app"
 #~ msgstr "创建应用"
@@ -4161,8 +4161,8 @@ msgstr ""
 #~ msgid "Supported requests use your app. Other requests use the shared app."
 #~ msgstr "支持的请求使用你的应用，其他请求使用共享应用。"
 
-#~ msgid "Spotifast uses your app for Spotify's Web API."
-#~ msgstr "Spotifast 使用你的应用访问 Spotify 的 Web API。"
+#~ msgid "SpotiVista uses your app for Spotify's Web API."
+#~ msgstr "SpotiVista 使用你的应用访问 Spotify 的 Web API。"
 
 #~ msgid "Authorize your personal app"
 #~ msgstr "授权你的个人应用"
@@ -4171,12 +4171,12 @@ msgstr ""
 #~ msgstr "改用你自己的 Spotify 应用"
 
 #~ msgid ""
-#~ "You're signed in through the shared app Spotifast used before. Spotifast "
+#~ "You're signed in through the shared app SpotiVista used before. SpotiVista "
 #~ "no longer offers it, and Spotify can stop accepting it at any time. Set "
 #~ "up your own free Spotify app so nothing stops your music. It takes a few "
 #~ "minutes."
 #~ msgstr ""
-#~ "你正在通过 Spotifast 以前使用的共享应用登录。Spotifast 已不再提供它，"
+#~ "你正在通过 SpotiVista 以前使用的共享应用登录。SpotiVista 已不再提供它，"
 #~ "Spotify 也随时可能停止接受它。请设置你自己的免费 Spotify 应用，让音乐不会"
 #~ "中断。只需几分钟。"
 
@@ -4203,10 +4203,10 @@ msgstr ""
 #~ "户需要 Premium。"
 
 #~ msgid ""
-#~ "Spotify no longer accepts the shared sign-in Spotifast used before. Set "
+#~ "Spotify no longer accepts the shared sign-in SpotiVista used before. Set "
 #~ "up your own Spotify app to keep listening."
 #~ msgstr ""
-#~ "Spotify 已不再接受 Spotifast 以前使用的共享登录。请设置你自己的 Spotify 应"
+#~ "Spotify 已不再接受 SpotiVista 以前使用的共享登录。请设置你自己的 Spotify 应"
 #~ "用以继续收听。"
 
 #~ msgid "How to set up your Spotify app"
@@ -4219,10 +4219,10 @@ msgstr ""
 #~ msgstr "设置你的 Spotify 应用"
 
 #~ msgid ""
-#~ "Spotifast signs in through your own free Spotify app. Spotify requires "
+#~ "SpotiVista signs in through your own free Spotify app. Spotify requires "
 #~ "its owner to have Premium."
 #~ msgstr ""
-#~ "Spotifast 通过你自己的免费 Spotify 应用登录。Spotify 要求应用所有者拥有 "
+#~ "SpotiVista 通过你自己的免费 Spotify 应用登录。Spotify 要求应用所有者拥有 "
 #~ "Premium。"
 
 #~ msgid "Click Create app. Any name will do."
@@ -4235,11 +4235,11 @@ msgstr ""
 #~ msgstr "Spotify 在共享应用上响应很慢。"
 
 #~ msgid ""
-#~ "Spotifast no longer offers the shared app, and Spotify can stop accepting "
+#~ "SpotiVista no longer offers the shared app, and Spotify can stop accepting "
 #~ "it at any time. Set up your own free Spotify app and you won't have to "
 #~ "wait."
 #~ msgstr ""
-#~ "Spotifast 已不再提供共享应用，Spotify 也随时可能停止接受它。设置你自己的免"
+#~ "SpotiVista 已不再提供共享应用，Spotify 也随时可能停止接受它。设置你自己的免"
 #~ "费 Spotify 应用，就不用再等待了。"
 
 #~ msgid "Winamp skins"
@@ -4279,10 +4279,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "You'll need Spotify Premium, your personal Soloist key and one pairing in "
-#~ "Spotify. Spotifast handles the download and updates."
+#~ "Spotify. SpotiVista handles the download and updates."
 #~ msgstr ""
 #~ "需要 Spotify Premium、你的个人 Soloist 密钥，以及在 Spotify 中完成一次配"
-#~ "对。Spotifast 会负责下载和更新。"
+#~ "对。SpotiVista 会负责下载和更新。"
 
 #~ msgid ""
 #~ "For local files and full queue editing, use the built-in player. You can "
@@ -4299,10 +4299,10 @@ msgstr ""
 #~ "Client ID 不同。"
 
 #~ msgid ""
-#~ "Soloist makes its own Spotify connections. Spotifast's proxy settings do "
+#~ "Soloist makes its own Spotify connections. SpotiVista's proxy settings do "
 #~ "not route its audio traffic."
 #~ msgstr ""
-#~ "Soloist 自行连接 Spotify。Spotifast 的代理设置不适用于 Soloist 的音频流"
+#~ "Soloist 自行连接 Spotify。SpotiVista 的代理设置不适用于 Soloist 的音频流"
 #~ "量。"
 
 #~ msgid ""
@@ -4319,15 +4319,15 @@ msgstr ""
 #~ msgstr "在同一网络上打开 Spotify，使用此处登录的账号。在设备列表中选择："
 
 #~ msgid ""
-#~ "Spotifast will notice when pairing finishes. Future starts reconnect "
+#~ "SpotiVista will notice when pairing finishes. Future starts reconnect "
 #~ "automatically."
-#~ msgstr "Spotifast 会检测到配对完成。以后启动时会自动重新连接。"
+#~ msgstr "SpotiVista 会检测到配对完成。以后启动时会自动重新连接。"
 
 #~ msgid ""
 #~ "If this takes a while, make sure Spotify is signed in to the same account "
-#~ "as Spotifast, then select this device there."
+#~ "as SpotiVista, then select this device there."
 #~ msgstr ""
-#~ "如果等待较久，请确认 Spotify 与 Spotifast 登录的是同一个账号，然后在 "
+#~ "如果等待较久，请确认 Spotify 与 SpotiVista 登录的是同一个账号，然后在 "
 #~ "Spotify 中选择此设备。"
 
 #~ msgid ""
@@ -4349,10 +4349,10 @@ msgstr ""
 #~ msgstr "详细信息"
 
 #~ msgid ""
-#~ "Spotifast checks daily for a replacement during the last 30 days of each "
+#~ "SpotiVista checks daily for a replacement during the last 30 days of each "
 #~ "build. Updates wait until Soloist is inactive."
 #~ msgstr ""
-#~ "在每个版本到期前的最后 30 天内，Spotifast 每天检查是否有替代版本。更新会等"
+#~ "在每个版本到期前的最后 30 天内，SpotiVista 每天检查是否有替代版本。更新会等"
 #~ "待 Soloist 进入非活动状态。"
 
 #~ msgid ""
@@ -4380,11 +4380,11 @@ msgstr ""
 #~ "以及在 Spotify 应用中进行一次配对。"
 
 #~ msgid ""
-#~ "Soloist plays through your system audio output. Spotifast's EQ, "
+#~ "Soloist plays through your system audio output. SpotiVista's EQ, "
 #~ "visualizers, local files, and full queue editing are available with the "
 #~ "built-in player."
 #~ msgstr ""
-#~ "Soloist 使用系统音频输出。Spotifast 的均衡器、可视化、本地文件和完整队列编"
+#~ "Soloist 使用系统音频输出。SpotiVista 的均衡器、可视化、本地文件和完整队列编"
 #~ "辑功能可通过内置播放器使用。"
 
 #~ msgid "Soloist is ready"
@@ -4392,9 +4392,9 @@ msgstr ""
 
 #~ msgid ""
 #~ "A fresh build is downloaded. It will be applied when Soloist is inactive "
-#~ "or Spotifast restarts."
+#~ "or SpotiVista restarts."
 #~ msgstr ""
-#~ "新版本已下载。Soloist 处于非活动状态或 Spotifast 重新启动时将应用更新。"
+#~ "新版本已下载。Soloist 处于非活动状态或 SpotiVista 重新启动时将应用更新。"
 
 #~ msgid "Soloist setup, privacy and limitations"
 #~ msgstr "Soloist 设置、隐私和限制"
@@ -4414,11 +4414,11 @@ msgstr ""
 #~ msgstr "使用共享应用时 Spotify 可能会很慢"
 
 #~ msgid ""
-#~ "Everyone using Spotifast shares one app, and Spotify slows it down when "
+#~ "Everyone using SpotiVista shares one app, and Spotify slows it down when "
 #~ "it's busy. Set up your own personal Spotify app and you won't have to "
 #~ "wait. It's free and takes a few minutes."
 #~ msgstr ""
-#~ "所有 Spotifast 用户共用一个应用，Spotify 在繁忙时会限制它的速度。设置你自"
+#~ "所有 SpotiVista 用户共用一个应用，Spotify 在繁忙时会限制它的速度。设置你自"
 #~ "己的个人 Spotify 应用，就不用再等了。它是免费的，只需几分钟。"
 
 #~ msgid "Use the shared Spotify app instead"
@@ -4431,8 +4431,8 @@ msgstr ""
 #~ "设置你自己的个人 Spotify 应用，就不用再等了。它是免费的，只需几分钟。"
 
 #~ msgid ""
-#~ "Spotifast hides to the system tray. Quit from the tray menu or with Cmd+Q."
-#~ msgstr "Spotifast 会隐藏到系统托盘。可通过托盘菜单或 Cmd+Q 退出。"
+#~ "SpotiVista hides to the system tray. Quit from the tray menu or with Cmd+Q."
+#~ msgstr "SpotiVista 会隐藏到系统托盘。可通过托盘菜单或 Cmd+Q 退出。"
 
 #~ msgid "Your most-played tracks from the last four weeks."
 #~ msgstr "过去四周你播放最多的歌曲。"
@@ -4441,11 +4441,11 @@ msgstr ""
 #~ msgstr "减少等待 Spotify 的时间"
 
 #~ msgid ""
-#~ "Spotifast's default connection shares Spotify's request limit with other "
+#~ "SpotiVista's default connection shares Spotify's request limit with other "
 #~ "listeners. When it gets busy, loading music and using playback controls "
 #~ "can take longer."
 #~ msgstr ""
-#~ "Spotifast 的默认连接与其他听众共享 Spotify 的请求限额。繁忙时，加载音乐和"
+#~ "SpotiVista 的默认连接与其他听众共享 Spotify 的请求限额。繁忙时，加载音乐和"
 #~ "使用播放控制可能需要更长时间。"
 
 #~ msgid ""

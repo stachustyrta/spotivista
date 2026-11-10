@@ -1,14 +1,14 @@
-# Korean translation of Spotifast.
-# Distributed under the same MIT license as Spotifast.
+# Korean translation of SpotiVista.
+# Distributed under the same MIT license as SpotiVista.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Spotifast\n"
+"Project-Id-Version: SpotiVista\n"
 "Report-Msgid-Bugs-To: https://github.com/crmne/spotifast/issues/new?"
 "template=translation.yml\n"
 "POT-Creation-Date: 2026-11-02 20:27+0100\n"
 "PO-Revision-Date: 2026-10-15 12:00+0900\n"
-"Last-Translator: Spotifast contributors\n"
+"Last-Translator: SpotiVista contributors\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -304,8 +304,8 @@ msgid "Mute"
 msgstr "음소거"
 
 #: src/ui/player_bar.rs:1011
-msgid "This device's volume can't be changed from Spotifast"
-msgstr "Spotifast에서 이 기기의 볼륨을 변경할 수 없습니다"
+msgid "This device's volume can't be changed from SpotiVista"
+msgstr "SpotiVista에서 이 기기의 볼륨을 변경할 수 없습니다"
 
 #: src/ui/player_bar.rs:1031 src/ui/devices.rs:401
 msgid "Connect to a device"
@@ -410,8 +410,8 @@ msgstr "오프라인 상태입니다"
 #: src/ui/collection.rs:2272 src/ui/collection.rs:2531 src/ui/home.rs:34
 #: src/ui/library.rs:262 src/ui/show.rs:69 src/ui/show.rs:115
 #: src/ui/show.rs:145
-msgid "Spotifast will reconnect automatically when your connection returns."
-msgstr "연결이 복구되면 Spotifast가 자동으로 다시 연결합니다."
+msgid "SpotiVista will reconnect automatically when your connection returns."
+msgstr "연결이 복구되면 SpotiVista가 자동으로 다시 연결합니다."
 
 #. Translators: Keep {error} unchanged. It is the original failure detail.
 #: src/ui/lyrics.rs:171 src/ui/lyrics.rs:465 src/ui/lyrics.rs:819
@@ -720,8 +720,8 @@ msgid "Restoring proxy settings"
 msgstr "프록시 설정을 복원하는 중"
 
 #: src/app.rs:1734
-msgid "Couldn't change how Spotifast starts with your computer."
-msgstr "컴퓨터와 함께 Spotifast를 시작하는 방식을 바꾸지 못했습니다."
+msgid "Couldn't change how SpotiVista starts with your computer."
+msgstr "컴퓨터와 함께 SpotiVista를 시작하는 방식을 바꾸지 못했습니다."
 
 #: src/app.rs:2025 src/ui/soloist.rs:851
 msgid "Starting Soloist…"
@@ -746,7 +746,7 @@ msgstr "Spotify에 연결하는 중…"
 msgid "Cleared {size} of audio"
 msgstr "{size}의 오디오를 지웠습니다"
 
-#. Translators: Files in the audio cache that Spotifast did not put there, such as .DS_Store. They were not deleted.
+#. Translators: Files in the audio cache that SpotiVista did not put there, such as .DS_Store. They were not deleted.
 #: src/app.rs:2878
 #, rust-format
 msgid "{count} unrecognized file was left in place."
@@ -786,12 +786,12 @@ msgstr ""
 #. Translators: {version} is a version number such as 1.4.0.
 #: src/app.rs:3161
 #, rust-format
-msgid "Spotifast {version} is available"
-msgstr "Spotifast {version} 버전을 사용할 수 있습니다"
+msgid "SpotiVista {version} is available"
+msgstr "SpotiVista {version} 버전을 사용할 수 있습니다"
 
 #: src/app.rs:3178
-msgid "Spotifast is up to date"
-msgstr "Spotifast가 최신 버전입니다"
+msgid "SpotiVista is up to date"
+msgstr "SpotiVista가 최신 버전입니다"
 
 #. Translators: {error} is an error message.
 #: src/app.rs:3186
@@ -1038,8 +1038,8 @@ msgid "This song's album is not on Spotify"
 msgstr "이 곡의 앨범은 Spotify에 없습니다"
 
 #: src/app.rs:10010
-msgid "Spotifast cannot open this kind of Spotify link"
-msgstr "Spotifast에서 열 수 없는 종류의 Spotify 링크입니다"
+msgid "SpotiVista cannot open this kind of Spotify link"
+msgstr "SpotiVista에서 열 수 없는 종류의 Spotify 링크입니다"
 
 #: src/app.rs:10258
 msgid "Nothing is playing. Pick something first"
@@ -1338,28 +1338,28 @@ msgstr "Spotify 등록"
 
 #: src/ui/settings.rs:541
 msgid ""
-"You're still on the shared sign-in Spotifast used before, which Spotify can "
-"stop accepting at any time. Register Spotifast to keep listening."
+"You're still on the shared sign-in SpotiVista used before, which Spotify can "
+"stop accepting at any time. Register SpotiVista to keep listening."
 msgstr ""
-"Spotifast가 이전에 사용하던 공유 로그인을 아직 사용 중이며, Spotify는 언제든"
-"지 이를 허용하지 않을 수 있습니다. 계속 들으려면 Spotifast를 등록하세요."
+"SpotiVista가 이전에 사용하던 공유 로그인을 아직 사용 중이며, Spotify는 언제든"
+"지 이를 허용하지 않을 수 있습니다. 계속 들으려면 SpotiVista를 등록하세요."
 
 #: src/ui/settings.rs:546
-msgid "Spotifast connects with the Client ID you registered with Spotify."
-msgstr "Spotifast는 Spotify에 등록한 Client ID로 연결합니다."
+msgid "SpotiVista connects with the Client ID you registered with Spotify."
+msgstr "SpotiVista는 Spotify에 등록한 Client ID로 연결합니다."
 
 #: src/ui/settings.rs:551 src/ui/dialogs.rs:50 src/ui/login.rs:456
 #: src/ui/mod.rs:417
-msgid "Register Spotifast"
-msgstr "Spotifast 등록"
+msgid "Register SpotiVista"
+msgstr "SpotiVista 등록"
 
 #: src/ui/settings.rs:554
 msgid "It takes about two minutes in Spotify's developer dashboard."
 msgstr "Spotify 개발자 대시보드에서 약 2분이면 됩니다."
 
 #: src/ui/settings.rs:559
-msgid "Spotifast registered"
-msgstr "Spotifast 등록됨"
+msgid "SpotiVista registered"
+msgstr "SpotiVista 등록됨"
 
 #: src/ui/settings.rs:563
 msgid ""
@@ -1369,8 +1369,8 @@ msgstr ""
 "니다."
 
 #: src/ui/settings.rs:568
-msgid "Spotifast uses your Client ID for Spotify's Web API."
-msgstr "Spotifast는 Spotify Web API에 내 Client ID를 사용합니다."
+msgid "SpotiVista uses your Client ID for Spotify's Web API."
+msgstr "SpotiVista는 Spotify Web API에 내 Client ID를 사용합니다."
 
 #: src/ui/settings.rs:574
 msgid "Authorize your Client ID"
@@ -1532,15 +1532,15 @@ msgstr "트랙 사이에 무음 구간 없이 재생합니다."
 
 #: src/ui/settings.rs:802
 msgid ""
-"Spotifast hides to the system tray. Quit from the tray menu or with Ctrl+Q."
+"SpotiVista hides to the system tray. Quit from the tray menu or with Ctrl+Q."
 msgstr ""
-"Spotifast가 시스템 트레이로 숨겨집니다. 트레이 메뉴나 Ctrl+Q로 종료하세요."
+"SpotiVista가 시스템 트레이로 숨겨집니다. 트레이 메뉴나 Ctrl+Q로 종료하세요."
 
 #: src/ui/settings.rs:807
 msgid ""
-"Spotifast hides to the menu bar. Quit from its menu-bar icon or with Cmd+Q."
+"SpotiVista hides to the menu bar. Quit from its menu-bar icon or with Cmd+Q."
 msgstr ""
-"Spotifast가 메뉴 막대로 숨겨집니다. 메뉴 막대 아이콘이나 Cmd+Q로 종료하세요."
+"SpotiVista가 메뉴 막대로 숨겨집니다. 메뉴 막대 아이콘이나 Cmd+Q로 종료하세요."
 
 #: src/ui/settings.rs:814
 msgid "Checks GitHub once a day. No personal data is sent."
@@ -1584,10 +1584,10 @@ msgstr "로컬 파일"
 
 #: src/ui/settings.rs:850
 msgid ""
-"When off, Spotifast lives in the menu bar and leaves Cmd+Tab. Open it from "
+"When off, SpotiVista lives in the menu bar and leaves Cmd+Tab. Open it from "
 "its menu-bar icon."
 msgstr ""
-"끄면 Spotifast가 메뉴 막대에만 있고 Cmd+Tab에도 나타나지 않습니다. 메뉴 막대 "
+"끄면 SpotiVista가 메뉴 막대에만 있고 Cmd+Tab에도 나타나지 않습니다. 메뉴 막대 "
 "아이콘에서 여세요."
 
 #: src/ui/settings.rs:856
@@ -1755,8 +1755,8 @@ msgstr ""
 
 #: src/ui/settings.rs:1335
 msgid ""
-"Draw Spotifast's own title bar and window buttons instead of the desktop's."
-msgstr "데스크톱 대신 Spotifast 자체의 제목 표시줄과 창 버튼을 그립니다."
+"Draw SpotiVista's own title bar and window buttons instead of the desktop's."
+msgstr "데스크톱 대신 SpotiVista 자체의 제목 표시줄과 창 버튼을 그립니다."
 
 #: src/ui/settings.rs:1343
 msgid ""
@@ -1971,34 +1971,34 @@ msgstr "프리셋"
 #: src/ui/settings.rs:2113
 #, rust-format
 msgid ""
-"None yet in {folder}. Add .milk files here. Spotifast downloads presets when "
+"None yet in {folder}. Add .milk files here. SpotiVista downloads presets when "
 "MilkDrop first opens with an empty folder."
 msgstr ""
 "{folder}에 아직 프리셋이 없습니다. 여기에 .milk 파일을 추가하세요. 폴더가 비"
-"어 있으면 MilkDrop을 처음 열 때 Spotifast가 프리셋을 다운로드합니다."
+"어 있으면 MilkDrop을 처음 열 때 SpotiVista가 프리셋을 다운로드합니다."
 
 #. Translators: {folder} is the path of the MilkDrop presets folder.
 #: src/ui/settings.rs:2119
 #, rust-format
 msgid ""
-"One preset in {folder}. Add .milk files here. Spotifast downloads presets "
+"One preset in {folder}. Add .milk files here. SpotiVista downloads presets "
 "when MilkDrop first opens with an empty folder."
 msgstr ""
 "{folder}에 프리셋이 1개 있습니다. 여기에 .milk 파일을 추가하세요. 폴더가 비"
-"어 있으면 MilkDrop을 처음 열 때 Spotifast가 프리셋을 다운로드합니다."
+"어 있으면 MilkDrop을 처음 열 때 SpotiVista가 프리셋을 다운로드합니다."
 
 #. Translators: {count} is the number of presets, {folder} the path of the MilkDrop presets folder.
 #: src/ui/settings.rs:2125
 #, rust-format
 msgid ""
-"{count} preset in {folder}. Add .milk files here. Spotifast downloads "
+"{count} preset in {folder}. Add .milk files here. SpotiVista downloads "
 "presets when MilkDrop first opens with an empty folder."
 msgid_plural ""
-"{count} presets in {folder}. Add .milk files here. Spotifast downloads "
+"{count} presets in {folder}. Add .milk files here. SpotiVista downloads "
 "presets when MilkDrop first opens with an empty folder."
 msgstr[0] ""
 "{folder}에 프리셋이 {count}개 있습니다. 여기에 .milk 파일을 추가하세요. 폴더"
-"가 비어 있으면 MilkDrop을 처음 열 때 Spotifast가 프리셋을 다운로드합니다."
+"가 비어 있으면 MilkDrop을 처음 열 때 SpotiVista가 프리셋을 다운로드합니다."
 
 #: src/ui/settings.rs:2134
 msgid "Time per preset"
@@ -2199,8 +2199,8 @@ msgid "In the tray"
 msgstr "트레이에서"
 
 #: src/ui/settings.rs:2623
-msgid "Allow Spotifast in System Settings, General, Login Items."
-msgstr "시스템 설정 > 일반 > 로그인 항목에서 Spotifast를 허용하세요."
+msgid "Allow SpotiVista in System Settings, General, Login Items."
+msgstr "시스템 설정 > 일반 > 로그인 항목에서 SpotiVista를 허용하세요."
 
 #: src/ui/settings.rs:2629
 msgid ""
@@ -2219,12 +2219,12 @@ msgstr ""
 "전까지는 창이 열립니다."
 
 #: src/ui/settings.rs:2640
-msgid "Open Spotifast when you log in, with its window or in the menu bar."
-msgstr "로그인할 때 Spotifast를 창과 함께 열거나 메뉴 막대에서 시작합니다."
+msgid "Open SpotiVista when you log in, with its window or in the menu bar."
+msgstr "로그인할 때 SpotiVista를 창과 함께 열거나 메뉴 막대에서 시작합니다."
 
 #: src/ui/settings.rs:2645
-msgid "Open Spotifast when you log in, with its window or in the tray."
-msgstr "로그인할 때 Spotifast를 창과 함께 열거나 트레이에서 시작합니다."
+msgid "Open SpotiVista when you log in, with its window or in the tray."
+msgstr "로그인할 때 SpotiVista를 창과 함께 열거나 트레이에서 시작합니다."
 
 #: src/ui/settings.rs:2751
 msgctxt "language"
@@ -2251,19 +2251,19 @@ msgstr "Spotify Soloist로 듣기"
 
 #: src/ui/soloist.rs:315
 msgid ""
-"Spotify's own player, running on this computer. Spotifast sets it up and "
+"Spotify's own player, running on this computer. SpotiVista sets it up and "
 "keeps it updated."
 msgstr ""
 "이 컴퓨터에서 실행되는 Spotify 공식 플레이어입니다. 설정과 업데이트는 "
-"Spotifast가 맡습니다."
+"SpotiVista가 맡습니다."
 
 #: src/ui/soloist.rs:321
 msgid "Get your personal key from Spotify."
 msgstr "Spotify에서 개인 키를 받습니다."
 
 #: src/ui/soloist.rs:322
-msgid "Spotifast downloads the player."
-msgstr "Spotifast가 플레이어를 다운로드합니다."
+msgid "SpotiVista downloads the player."
+msgstr "SpotiVista가 플레이어를 다운로드합니다."
 
 #: src/ui/soloist.rs:323
 msgid "Choose it once in the Spotify app."
@@ -2287,10 +2287,10 @@ msgstr "Soloist 키 받기"
 
 #: src/ui/soloist.rs:368
 msgid ""
-"Spotify gives each Premium account its own key. Spotifast keeps it in your "
+"Spotify gives each Premium account its own key. SpotiVista keeps it in your "
 "system's credential store."
 msgstr ""
-"Spotify는 Premium 계정마다 전용 키를 제공합니다. Spotifast는 이 키를 시스템 "
+"Spotify는 Premium 계정마다 전용 키를 제공합니다. SpotiVista는 이 키를 시스템 "
 "자격 증명 저장소에 보관합니다."
 
 #: src/ui/soloist.rs:384
@@ -2444,8 +2444,8 @@ msgid "Soloist needs your key"
 msgstr "Soloist에 키가 필요합니다"
 
 #: src/ui/soloist.rs:744 src/ui/soloist.rs:858
-msgid "Spotifast can't find the key you saved."
-msgstr "Spotifast가 저장된 키를 찾을 수 없습니다."
+msgid "SpotiVista can't find the key you saved."
+msgstr "SpotiVista가 저장된 키를 찾을 수 없습니다."
 
 #: src/ui/soloist.rs:747 src/ui/soloist.rs:955
 msgid "Add your key"
@@ -2543,17 +2543,17 @@ msgstr "Soloist 키가 아닌 것 같습니다."
 
 #: src/soloist/mod.rs:82
 msgid ""
-"Spotifast couldn't reach your saved key. Unlock the system credential store "
+"SpotiVista couldn't reach your saved key. Unlock the system credential store "
 "and try again."
 msgstr ""
-"Spotifast가 저장된 키에 접근하지 못했습니다. 시스템 자격 증명 저장소의 잠금"
+"SpotiVista가 저장된 키에 접근하지 못했습니다. 시스템 자격 증명 저장소의 잠금"
 "을 해제하고 다시 시도하세요."
 
 #: src/soloist/mod.rs:86
 msgid ""
-"Spotifast couldn't download Soloist. Check your connection and try again."
+"SpotiVista couldn't download Soloist. Check your connection and try again."
 msgstr ""
-"Spotifast가 Soloist를 다운로드하지 못했습니다. 연결 상태를 확인하고 다시 시도"
+"SpotiVista가 Soloist를 다운로드하지 못했습니다. 연결 상태를 확인하고 다시 시도"
 "하세요."
 
 #: src/soloist/mod.rs:90
@@ -2930,18 +2930,18 @@ msgid "Play here"
 msgstr "여기에서 재생"
 
 #: src/ui/dialogs.rs:44
-msgid "Register Spotifast with Spotify"
-msgstr "Spotify에 Spotifast 등록"
+msgid "Register SpotiVista with Spotify"
+msgstr "Spotify에 SpotiVista 등록"
 
 #: src/ui/dialogs.rs:46
 msgid ""
-"You're on the shared sign-in Spotifast used before. Spotifast no longer "
-"offers it, and Spotify can stop accepting it at any time. Register Spotifast "
+"You're on the shared sign-in SpotiVista used before. SpotiVista no longer "
+"offers it, and Spotify can stop accepting it at any time. Register SpotiVista "
 "so nothing stops your music. It takes about two minutes."
 msgstr ""
-"Spotifast가 이전에 사용하던 공유 로그인을 사용 중입니다. Spotifast는 더 이상 "
+"SpotiVista가 이전에 사용하던 공유 로그인을 사용 중입니다. SpotiVista는 더 이상 "
 "이를 제공하지 않으며, Spotify는 언제든지 허용하지 않을 수 있습니다. 음악이 끊"
-"기지 않도록 Spotifast를 등록하세요. 약 2분이면 됩니다."
+"기지 않도록 SpotiVista를 등록하세요. 약 2분이면 됩니다."
 
 #: src/ui/dialogs.rs:64
 msgid "Delete playlist?"
@@ -2992,10 +2992,10 @@ msgstr "이 계정으로는 여기에서 음악을 재생할 수 없습니다"
 #: src/ui/dialogs.rs:213
 msgid ""
 "Playback needs Spotify Premium. Free accounts can browse and search, but "
-"cannot play music through Spotifast."
+"cannot play music through SpotiVista."
 msgstr ""
 "재생하려면 Spotify Premium이 필요합니다. 무료 계정은 둘러보기와 검색은 가능하"
-"지만 Spotifast에서 음악을 재생할 수는 없습니다."
+"지만 SpotiVista에서 음악을 재생할 수는 없습니다."
 
 #: src/ui/dialogs.rs:222
 msgid "OK"
@@ -3361,8 +3361,8 @@ msgstr "팔로우하는 아티스트의 새 앨범과 싱글이 여기에 표시
 
 #: src/ui/login.rs:156
 #, rust-format
-msgid "Spotifast {version} • not affiliated with Spotify"
-msgstr "Spotifast {version} • Spotify와 관련 없음"
+msgid "SpotiVista {version} • not affiliated with Spotify"
+msgstr "SpotiVista {version} • Spotify와 관련 없음"
 
 #: src/ui/login.rs:170
 msgid ""
@@ -3390,11 +3390,11 @@ msgstr ""
 
 #: src/ui/login.rs:182
 msgid ""
-"Spotify no longer accepts the shared sign-in Spotifast used before. Register "
-"Spotifast to keep listening."
+"Spotify no longer accepts the shared sign-in SpotiVista used before. Register "
+"SpotiVista to keep listening."
 msgstr ""
-"Spotify는 더 이상 Spotifast가 이전에 사용하던 공유 로그인을 허용하지 않습니"
-"다. 계속 들으려면 Spotifast를 등록하세요."
+"Spotify는 더 이상 SpotiVista가 이전에 사용하던 공유 로그인을 허용하지 않습니"
+"다. 계속 들으려면 SpotiVista를 등록하세요."
 
 #: src/ui/login.rs:219
 msgid "A native Spotify client."
@@ -3423,15 +3423,15 @@ msgstr "Spotify로 로그인"
 
 #: src/ui/login.rs:321
 msgid ""
-"Sign in through your browser. Spotifast never sees your password. Local "
+"Sign in through your browser. SpotiVista never sees your password. Local "
 "playback needs Spotify Premium."
 msgstr ""
-"브라우저를 통해 로그인합니다. Spotifast는 비밀번호를 볼 수 없습니다. 로컬 재"
+"브라우저를 통해 로그인합니다. SpotiVista는 비밀번호를 볼 수 없습니다. 로컬 재"
 "생에는 Spotify Premium이 필요합니다."
 
 #: src/ui/login.rs:330
-msgid "How to register Spotifast"
-msgstr "Spotifast 등록 방법"
+msgid "How to register SpotiVista"
+msgstr "SpotiVista 등록 방법"
 
 #: src/ui/login.rs:354
 msgid "Proxy Settings"
@@ -3446,10 +3446,10 @@ msgstr ""
 
 #: src/ui/login.rs:464
 msgid ""
-"Spotify asks you to register Spotifast once, on an account with Premium. It "
+"Spotify asks you to register SpotiVista once, on an account with Premium. It "
 "takes about two minutes and gives you a Client ID."
 msgstr ""
-"Spotify에서는 Premium 계정으로 Spotifast를 한 번 등록해야 합니다. 약 2분이면 "
+"Spotify에서는 Premium 계정으로 SpotiVista를 한 번 등록해야 합니다. 약 2분이면 "
 "되고 Client ID를 받게 됩니다."
 
 #: src/ui/login.rs:474
@@ -3481,11 +3481,11 @@ msgstr "공유 로그인에서 Spotify가 느려지고 있습니다."
 
 #: src/ui/mod.rs:412
 msgid ""
-"Spotifast no longer offers the shared sign-in, and Spotify can stop "
-"accepting it at any time. Register Spotifast and you won't have to wait."
+"SpotiVista no longer offers the shared sign-in, and Spotify can stop "
+"accepting it at any time. Register SpotiVista and you won't have to wait."
 msgstr ""
-"Spotifast는 더 이상 공유 로그인을 제공하지 않으며, Spotify는 언제든지 이를 허"
-"용하지 않을 수 있습니다. Spotifast를 등록하면 기다릴 필요가 없습니다."
+"SpotiVista는 더 이상 공유 로그인을 제공하지 않으며, Spotify는 언제든지 이를 허"
+"용하지 않을 수 있습니다. SpotiVista를 등록하면 기다릴 필요가 없습니다."
 
 #. Translators: a button that opens a page explaining why
 #. the banner it sits in appeared.
@@ -3495,11 +3495,11 @@ msgstr "이유는?"
 
 #: src/ui/mod.rs:446
 msgid ""
-"Spotify refused the key that unlocks the audio. Spotifast can't fix that, "
+"Spotify refused the key that unlocks the audio. SpotiVista can't fix that, "
 "but it sometimes clears up on its own. You can still play on your phone or "
 "another Spotify device."
 msgstr ""
-"Spotify가 오디오 잠금을 해제하는 키를 거부했습니다. Spotifast에서 고칠 수는 "
+"Spotify가 오디오 잠금을 해제하는 키를 거부했습니다. SpotiVista에서 고칠 수는 "
 "없지만, 저절로 해결되기도 합니다. 휴대폰이나 다른 Spotify 기기에서는 계속 재"
 "생할 수 있습니다."
 
@@ -3737,9 +3737,9 @@ msgstr "무엇을 듣고 싶으세요?"
 
 #: src/ui/topbar.rs:546
 msgid ""
-"Spotifast is offline. Reconnecting automatically when connection returns."
+"SpotiVista is offline. Reconnecting automatically when connection returns."
 msgstr ""
-"Spotifast가 오프라인 상태입니다. 연결이 복구되면 자동으로 다시 연결합니다."
+"SpotiVista가 오프라인 상태입니다. 연결이 복구되면 자동으로 다시 연결합니다."
 
 #: src/ui/topbar.rs:574
 msgid "MilkDrop visualiser (Ctrl+Shift+K)"
@@ -3772,8 +3772,8 @@ msgid "Version {version} is available."
 msgstr "{version} 버전을 사용할 수 있습니다."
 
 #: src/ui/update.rs:19
-msgid "Update Spotifast"
-msgstr "Spotifast 업데이트"
+msgid "Update SpotiVista"
+msgstr "SpotiVista 업데이트"
 
 #: src/ui/update.rs:51
 msgid "Close update"
@@ -3788,8 +3788,8 @@ msgid "Ready to install"
 msgstr "설치 준비 완료"
 
 #: src/ui/update.rs:115
-msgid "Music playing on this computer will stop when Spotifast restarts."
-msgstr "Spotifast를 다시 시작하면 이 컴퓨터에서 재생 중인 음악이 멈춥니다."
+msgid "Music playing on this computer will stop when SpotiVista restarts."
+msgstr "SpotiVista를 다시 시작하면 이 컴퓨터에서 재생 중인 음악이 멈춥니다."
 
 #: src/ui/update.rs:122
 msgid "Restart to update"
@@ -4108,8 +4108,8 @@ msgid "On Wayland, use your desktop's Keep Above shortcut or window rule."
 msgstr "Wayland에서는 데스크톱의 항상 위에 표시 단축키나 창 규칙을 사용하세요."
 
 #: src/window.rs:31
-msgid "Spotifast cannot open its window"
-msgstr "Spotifast 창을 열 수 없습니다"
+msgid "SpotiVista cannot open its window"
+msgstr "SpotiVista 창을 열 수 없습니다"
 
 #: src/window.rs:34
 msgid "Open page"
@@ -4117,24 +4117,24 @@ msgstr "페이지 열기"
 
 #: src/window.rs:51
 msgid ""
-"On Windows on ARM, the OpenGL that Spotifast draws with comes from "
+"On Windows on ARM, the OpenGL that SpotiVista draws with comes from "
 "Microsoft's OpenCL, OpenGL & Vulkan Compatibility Pack. Open its Microsoft "
 "Store page to install or repair it?"
 msgstr ""
-"Windows on ARM에서 Spotifast가 사용하는 OpenGL은 Microsoft의 OpenCL, OpenGL "
+"Windows on ARM에서 SpotiVista가 사용하는 OpenGL은 Microsoft의 OpenCL, OpenGL "
 "& Vulkan Compatibility Pack에서 제공됩니다. Microsoft Store 페이지를 열어 설"
 "치하거나 복구하시겠습니까?"
 
 #. Translators: Keep {url} exactly as written. It becomes the address
-#. of the Spotifast download page.
+#. of the SpotiVista download page.
 #: src/window.rs:58
 #, rust-format
 msgid ""
-"Spotifast needs a graphics driver with OpenGL 2.0 or newer, and this PC or "
+"SpotiVista needs a graphics driver with OpenGL 2.0 or newer, and this PC or "
 "virtual machine does not provide one. Install the graphics driver, or turn "
 "on GPU acceleration for the virtual machine. Open {url} to read more?"
 msgstr ""
-"Spotifast를 실행하려면 OpenGL 2.0 이상을 지원하는 그래픽 드라이버가 필요한"
+"SpotiVista를 실행하려면 OpenGL 2.0 이상을 지원하는 그래픽 드라이버가 필요한"
 "데, 이 PC 또는 가상 머신에서는 제공되지 않습니다. 그래픽 드라이버를 설치하거"
 "나 가상 머신의 GPU 가속을 켜세요. 자세한 내용을 보려면 {url}을(를) 여시겠습니"
 "까?"
@@ -4160,9 +4160,9 @@ msgstr ""
 #~ msgid "Spotify's official player for listening outside the Spotify app."
 #~ msgstr "Spotify 앱 밖에서 음악을 듣기 위한 Spotify 공식 플레이어입니다."
 
-#~ msgid "Requires Spotify Premium. Spotifast handles downloads and updates."
+#~ msgid "Requires Spotify Premium. SpotiVista handles downloads and updates."
 #~ msgstr ""
-#~ "Spotify Premium이 필요합니다. 다운로드와 업데이트는 Spotifast가 처리합니"
+#~ "Spotify Premium이 필요합니다. 다운로드와 업데이트는 SpotiVista가 처리합니"
 #~ "다."
 
 #~ msgid ""
@@ -4231,16 +4231,16 @@ msgstr ""
 #~ msgstr "개인 Spotify 앱"
 
 #~ msgid ""
-#~ "You're still signed in through the shared app Spotifast used before, "
+#~ "You're still signed in through the shared app SpotiVista used before, "
 #~ "which Spotify can stop accepting at any time. Set up your own app to keep "
 #~ "listening."
 #~ msgstr ""
-#~ "아직 Spotifast가 이전에 사용하던 공유 앱으로 로그인되어 있습니다. Spotify"
+#~ "아직 SpotiVista가 이전에 사용하던 공유 앱으로 로그인되어 있습니다. Spotify"
 #~ "는 언제든지 이 앱을 허용하지 않을 수 있습니다. 계속 들으려면 내 앱을 설정"
 #~ "하세요."
 
-#~ msgid "Spotifast signs in through your own free Spotify app."
-#~ msgstr "Spotifast는 무료로 만든 내 Spotify 앱으로 로그인합니다."
+#~ msgid "SpotiVista signs in through your own free Spotify app."
+#~ msgstr "SpotiVista는 무료로 만든 내 Spotify 앱으로 로그인합니다."
 
 #~ msgid "Create an app"
 #~ msgstr "앱 만들기"
@@ -4255,8 +4255,8 @@ msgstr ""
 #~ msgstr ""
 #~ "지원되는 요청은 내 앱을 사용합니다. 그 외 요청은 공유 앱을 사용합니다."
 
-#~ msgid "Spotifast uses your app for Spotify's Web API."
-#~ msgstr "Spotifast는 Spotify의 Web API에 내 앱을 사용합니다."
+#~ msgid "SpotiVista uses your app for Spotify's Web API."
+#~ msgstr "SpotiVista는 Spotify의 Web API에 내 앱을 사용합니다."
 
 #~ msgid "Authorize your personal app"
 #~ msgstr "개인 앱 승인"
@@ -4265,12 +4265,12 @@ msgstr ""
 #~ msgstr "내 Spotify 앱으로 옮기기"
 
 #~ msgid ""
-#~ "You're signed in through the shared app Spotifast used before. Spotifast "
+#~ "You're signed in through the shared app SpotiVista used before. SpotiVista "
 #~ "no longer offers it, and Spotify can stop accepting it at any time. Set "
 #~ "up your own free Spotify app so nothing stops your music. It takes a few "
 #~ "minutes."
 #~ msgstr ""
-#~ "Spotifast가 이전에 사용하던 공유 앱으로 로그인되어 있습니다. Spotifast는 "
+#~ "SpotiVista가 이전에 사용하던 공유 앱으로 로그인되어 있습니다. SpotiVista는 "
 #~ "더 이상 이 앱을 제공하지 않으며, Spotify는 언제든지 이 앱을 허용하지 않을 "
 #~ "수 있습니다. 음악이 끊기지 않도록 무료 Spotify 앱을 직접 설정하세요. 몇 분"
 #~ "이면 됩니다."
@@ -4300,10 +4300,10 @@ msgstr ""
 #~ "정으로 로그인하세요. 이 계정에는 Premium이 필요합니다."
 
 #~ msgid ""
-#~ "Spotify no longer accepts the shared sign-in Spotifast used before. Set "
+#~ "Spotify no longer accepts the shared sign-in SpotiVista used before. Set "
 #~ "up your own Spotify app to keep listening."
 #~ msgstr ""
-#~ "Spotify는 더 이상 Spotifast가 이전에 사용하던 공유 로그인을 허용하지 않습"
+#~ "Spotify는 더 이상 SpotiVista가 이전에 사용하던 공유 로그인을 허용하지 않습"
 #~ "니다. 계속 들으려면 내 Spotify 앱을 설정하세요."
 
 #~ msgid "How to set up your Spotify app"
@@ -4316,10 +4316,10 @@ msgstr ""
 #~ msgstr "Spotify 앱 설정"
 
 #~ msgid ""
-#~ "Spotifast signs in through your own free Spotify app. Spotify requires "
+#~ "SpotiVista signs in through your own free Spotify app. Spotify requires "
 #~ "its owner to have Premium."
 #~ msgstr ""
-#~ "Spotifast는 무료로 만든 내 Spotify 앱으로 로그인합니다. Spotify에서는 앱 "
+#~ "SpotiVista는 무료로 만든 내 Spotify 앱으로 로그인합니다. Spotify에서는 앱 "
 #~ "소유자에게 Premium이 필요합니다."
 
 #~ msgid "Click Create app. Any name will do."
@@ -4332,11 +4332,11 @@ msgstr ""
 #~ msgstr "공유 앱에서 Spotify가 느려지고 있습니다."
 
 #~ msgid ""
-#~ "Spotifast no longer offers the shared app, and Spotify can stop accepting "
+#~ "SpotiVista no longer offers the shared app, and Spotify can stop accepting "
 #~ "it at any time. Set up your own free Spotify app and you won't have to "
 #~ "wait."
 #~ msgstr ""
-#~ "Spotifast는 더 이상 공유 앱을 제공하지 않으며, Spotify는 언제든지 이 앱을 "
+#~ "SpotiVista는 더 이상 공유 앱을 제공하지 않으며, Spotify는 언제든지 이 앱을 "
 #~ "허용하지 않을 수 있습니다. 무료 Spotify 앱을 직접 설정하면 기다릴 필요가 "
 #~ "없습니다."
 
@@ -4377,10 +4377,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "You'll need Spotify Premium, your personal Soloist key and one pairing in "
-#~ "Spotify. Spotifast handles the download and updates."
+#~ "Spotify. SpotiVista handles the download and updates."
 #~ msgstr ""
 #~ "Spotify Premium, 개인 Soloist 키, Spotify에서 한 번의 페어링이 필요합니"
-#~ "다. 다운로드와 업데이트는 Spotifast가 처리합니다."
+#~ "다. 다운로드와 업데이트는 SpotiVista가 처리합니다."
 
 #~ msgid ""
 #~ "For local files and full queue editing, use the built-in player. You can "
@@ -4397,10 +4397,10 @@ msgstr ""
 #~ "와는 별개입니다."
 
 #~ msgid ""
-#~ "Soloist makes its own Spotify connections. Spotifast's proxy settings do "
+#~ "Soloist makes its own Spotify connections. SpotiVista's proxy settings do "
 #~ "not route its audio traffic."
 #~ msgstr ""
-#~ "Soloist는 자체적으로 Spotify에 연결합니다. Spotifast의 프록시 설정은 "
+#~ "Soloist는 자체적으로 Spotify에 연결합니다. SpotiVista의 프록시 설정은 "
 #~ "Soloist의 오디오 트래픽에 적용되지 않습니다."
 
 #~ msgid ""
@@ -4420,17 +4420,17 @@ msgstr ""
 #~ "서 다음을 선택하세요:"
 
 #~ msgid ""
-#~ "Spotifast will notice when pairing finishes. Future starts reconnect "
+#~ "SpotiVista will notice when pairing finishes. Future starts reconnect "
 #~ "automatically."
 #~ msgstr ""
-#~ "Spotifast가 페어링 완료를 감지합니다. 이후 시작할 때는 자동으로 다시 연결"
+#~ "SpotiVista가 페어링 완료를 감지합니다. 이후 시작할 때는 자동으로 다시 연결"
 #~ "합니다."
 
 #~ msgid ""
 #~ "If this takes a while, make sure Spotify is signed in to the same account "
-#~ "as Spotifast, then select this device there."
+#~ "as SpotiVista, then select this device there."
 #~ msgstr ""
-#~ "오래 걸리면 Spotify가 Spotifast와 같은 계정에 로그인되어 있는지 확인한 후 "
+#~ "오래 걸리면 Spotify가 SpotiVista와 같은 계정에 로그인되어 있는지 확인한 후 "
 #~ "Spotify에서 이 기기를 선택하세요."
 
 #~ msgid ""
@@ -4454,10 +4454,10 @@ msgstr ""
 #~ msgstr "세부 정보"
 
 #~ msgid ""
-#~ "Spotifast checks daily for a replacement during the last 30 days of each "
+#~ "SpotiVista checks daily for a replacement during the last 30 days of each "
 #~ "build. Updates wait until Soloist is inactive."
 #~ msgstr ""
-#~ "각 버전의 만료 전 마지막 30일 동안 Spotifast는 매일 새 버전을 확인합니다. "
+#~ "각 버전의 만료 전 마지막 30일 동안 SpotiVista는 매일 새 버전을 확인합니다. "
 #~ "업데이트는 Soloist가 비활성 상태가 될 때까지 기다립니다."
 
 #~ msgid ""
@@ -4488,11 +4488,11 @@ msgstr ""
 #~ "Soloist 키, Spotify 앱에서의 최초 페어링이 필요합니다."
 
 #~ msgid ""
-#~ "Soloist plays through your system audio output. Spotifast's EQ, "
+#~ "Soloist plays through your system audio output. SpotiVista's EQ, "
 #~ "visualizers, local files, and full queue editing are available with the "
 #~ "built-in player."
 #~ msgstr ""
-#~ "Soloist는 시스템 오디오 출력을 사용합니다. Spotifast의 EQ, 시각화, 로컬 파"
+#~ "Soloist는 시스템 오디오 출력을 사용합니다. SpotiVista의 EQ, 시각화, 로컬 파"
 #~ "일 및 전체 대기열 편집 기능은 내장 플레이어에서 사용할 수 있습니다."
 
 #~ msgid "Soloist is ready"
@@ -4500,9 +4500,9 @@ msgstr ""
 
 #~ msgid ""
 #~ "A fresh build is downloaded. It will be applied when Soloist is inactive "
-#~ "or Spotifast restarts."
+#~ "or SpotiVista restarts."
 #~ msgstr ""
-#~ "새 버전을 다운로드했습니다. Soloist가 비활성 상태가 되거나 Spotifast가 다"
+#~ "새 버전을 다운로드했습니다. Soloist가 비활성 상태가 되거나 SpotiVista가 다"
 #~ "시 시작될 때 적용됩니다."
 
 #~ msgid "Soloist setup, privacy and limitations"
@@ -4525,11 +4525,11 @@ msgstr ""
 #~ msgstr "공유 앱에서는 Spotify가 느릴 수 있습니다"
 
 #~ msgid ""
-#~ "Everyone using Spotifast shares one app, and Spotify slows it down when "
+#~ "Everyone using SpotiVista shares one app, and Spotify slows it down when "
 #~ "it's busy. Set up your own personal Spotify app and you won't have to "
 #~ "wait. It's free and takes a few minutes."
 #~ msgstr ""
-#~ "Spotifast 사용자는 모두 하나의 앱을 함께 쓰며, 사용량이 많으면 Spotify가 "
+#~ "SpotiVista 사용자는 모두 하나의 앱을 함께 쓰며, 사용량이 많으면 Spotify가 "
 #~ "이 앱의 속도를 늦춥니다. 나만의 개인 Spotify 앱을 설정하면 기다릴 필요가 "
 #~ "없습니다. 무료이며 몇 분이면 됩니다."
 
@@ -4544,9 +4544,9 @@ msgstr ""
 #~ "면 됩니다."
 
 #~ msgid ""
-#~ "Spotifast hides to the system tray. Quit from the tray menu or with Cmd+Q."
+#~ "SpotiVista hides to the system tray. Quit from the tray menu or with Cmd+Q."
 #~ msgstr ""
-#~ "Spotifast가 시스템 트레이로 숨겨집니다. 트레이 메뉴나 Cmd+Q로 종료하세요."
+#~ "SpotiVista가 시스템 트레이로 숨겨집니다. 트레이 메뉴나 Cmd+Q로 종료하세요."
 
 #~ msgid "Your most-played tracks from the last four weeks."
 #~ msgstr "지난 4주 동안 가장 많이 재생한 트랙입니다."
@@ -4555,11 +4555,11 @@ msgstr ""
 #~ msgstr "Spotify 대기 시간 줄이기"
 
 #~ msgid ""
-#~ "Spotifast's default connection shares Spotify's request limit with other "
+#~ "SpotiVista's default connection shares Spotify's request limit with other "
 #~ "listeners. When it gets busy, loading music and using playback controls "
 #~ "can take longer."
 #~ msgstr ""
-#~ "Spotifast의 기본 연결은 Spotify 요청 한도를 다른 사용자와 공유합니다. 요청"
+#~ "SpotiVista의 기본 연결은 Spotify 요청 한도를 다른 사용자와 공유합니다. 요청"
 #~ "이 많을 때는 음악을 불러오거나 재생 컨트롤을 사용하는 데 시간이 더 걸릴 "
 #~ "수 있습니다."
 

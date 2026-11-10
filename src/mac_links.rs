@@ -47,10 +47,10 @@ mod mac_impl {
     define_class!(
         #[unsafe(super(NSObject))]
         #[thread_kind = MainThreadOnly]
-        #[name = "SpotifastLinkHandler"]
-        pub struct SpotifastLinkHandler;
+        #[name = "SpotiVistaLinkHandler"]
+        pub struct SpotiVistaLinkHandler;
 
-        impl SpotifastLinkHandler {
+        impl SpotiVistaLinkHandler {
             #[unsafe(method(handleGetURLEvent:withReplyEvent:))]
             fn handle_get_url(
                 &self,
@@ -96,8 +96,8 @@ mod mac_impl {
         if INSTALLED.swap(true, Ordering::SeqCst) {
             return;
         }
-        let handler: Retained<SpotifastLinkHandler> =
-            unsafe { msg_send![mtm.alloc::<SpotifastLinkHandler>(), init] };
+        let handler: Retained<SpotiVistaLinkHandler> =
+            unsafe { msg_send![mtm.alloc::<SpotiVistaLinkHandler>(), init] };
         let target: &NSObject = &handler;
         let manager = NSAppleEventManager::sharedAppleEventManager();
         // The typed binding for this call wants the Core Services crate for

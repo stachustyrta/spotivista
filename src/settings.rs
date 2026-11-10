@@ -306,7 +306,7 @@ pub struct Settings {
     )]
     pub system_theme_cache: Option<crate::theme::CustomTheme>,
     /// The palettes Follow system shows in light and in dark mode, each with
-    /// its last accepted colours; empty slots are Spotifast's own Light and
+    /// its last accepted colours; empty slots are SpotiVista's own Light and
     /// Dark, as before this setting existed.
     #[serde(skip_serializing_if = "fastframe_theme::Pair::is_default")]
     pub theme_pair: crate::theme::ThemePair,
@@ -344,7 +344,7 @@ pub struct Settings {
     /// An optional personal Spotify Web API application id. The shared
     /// application remains active for coverage when this is present.
     pub web_client_id: Option<String>,
-    /// Legacy reminder time, retained for older Spotifast versions.
+    /// Legacy reminder time, retained for older SpotiVista versions.
     pub personal_app_nudge_at: Option<String>,
     /// The listener has dismissed or followed the personal-app introduction.
     pub personal_app_intro_seen: bool,
@@ -360,7 +360,7 @@ pub struct Settings {
     pub tray_icon: TrayIcon,
     /// Show the interactive Now Playing widget when hovering over the MacBook notch.
     pub mac_notch_widget: bool,
-    /// macOS: keep Spotifast in the Dock and Cmd-Tab. Off makes it a
+    /// macOS: keep SpotiVista in the Dock and Cmd-Tab. Off makes it a
     /// menu-bar app, whose menu-bar icon is the way back (#837).
     pub mac_show_in_dock: bool,
     /// Ask GitHub once a day whether a newer release exists.
@@ -384,7 +384,7 @@ pub struct Settings {
     pub winamp_window: bool,
     /// Windows and X11: keep a taskbar button while the Winamp window is visible.
     pub winamp_show_taskbar: bool,
-    /// Windows and Linux: draw Spotifast's own title bar and window buttons
+    /// Windows and Linux: draw SpotiVista's own title bar and window buttons
     /// instead of the desktop frame.
     pub custom_titlebar: bool,
     /// Skin file or folder name. `None` selects the built-in skin.
@@ -490,7 +490,7 @@ impl Default for Settings {
     fn default() -> Self {
         Self {
             soloist_enabled: false,
-            device_name: "Spotifast".to_string(),
+            device_name: "SpotiVista".to_string(),
             bitrate: 320,
             normalisation: false,
             autoplay: true,
@@ -610,7 +610,7 @@ impl Settings {
 
     /// The palette to show while the system is `dark` or light: the fixed
     /// one, else Follow system's choice for that appearance. `None` leaves
-    /// Spotifast's own Light or Dark.
+    /// SpotiVista's own Light or Dark.
     pub(crate) fn cached_palette(&self, dark: bool) -> Option<crate::theme::Palette> {
         if let Some(palette) = self.fixed_palette() {
             return Some(palette);
@@ -1201,7 +1201,7 @@ mod tests {
         assert!(single.theme_pair.is_default());
         assert_eq!(single.cached_palette(false), Some(nord));
         assert_eq!(single.cached_palette(true), Some(nord));
-        // Plain Follow system: Spotifast's own Light and Dark.
+        // Plain Follow system: SpotiVista's own Light and Dark.
         let follow: Settings = serde_json::from_str(r#"{"theme":"system"}"#).unwrap();
         assert_eq!(follow.cached_palette(false), None);
         assert_eq!(follow.cached_palette(true), None);
@@ -1219,7 +1219,7 @@ mod tests {
             })
         ));
         assert_eq!(paired.cached_palette(false), Some(latte));
-        assert_eq!(paired.cached_palette(true), None, "dark stays Spotifast's");
+        assert_eq!(paired.cached_palette(true), None, "dark stays SpotiVista's");
         let encoded = serde_json::to_string(&paired).unwrap();
         let decoded: Settings = serde_json::from_str(&encoded).unwrap();
         assert_eq!(decoded, paired);

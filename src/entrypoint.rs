@@ -15,7 +15,7 @@ struct Cli {
     control: Option<Control>,
 
     /// A Spotify link to open: spotify:track:…, or an open.spotify.com
-    /// address. The running Spotifast opens it when there is one, which
+    /// address. The running SpotiVista opens it when there is one, which
     /// is how the desktop hands links over.
     #[arg(value_name = "LINK")]
     link: Option<String>,
@@ -276,7 +276,7 @@ fn run_control(control: Control) -> i32 {
             }
         }
         Err(error) => {
-            eprintln!("Spotifast is not running or does not support remote control: {error}");
+            eprintln!("SpotiVista is not running or does not support remote control: {error}");
             return 1;
         }
     };
@@ -422,11 +422,11 @@ pub(crate) fn run() -> eframe::Result<()> {
         match single_instance::acquire(&waker, link.as_deref(), hidden) {
             single_instance::Outcome::Only(guard) => Some(guard),
             single_instance::Outcome::Surfaced if hidden => {
-                log::info!("Spotifast is already running");
+                log::info!("SpotiVista is already running");
                 return Ok(());
             }
             single_instance::Outcome::Surfaced => {
-                log::info!("Spotifast is already running; asked it to show its window");
+                log::info!("SpotiVista is already running; asked it to show its window");
                 return Ok(());
             }
         }
@@ -733,7 +733,7 @@ pub(crate) fn run() -> eframe::Result<()> {
                 screen_asked: None,
             }))
         }));
-        fastframe_graphics::Graphics::new("Spotifast")
+        fastframe_graphics::Graphics::new("SpotiVista")
             .help(spotifast::window::DOWNLOAD_PAGE)
             .dialog(move |trouble| spotifast::window::no_window_dialog(locale, trouble))
             .run_native(
@@ -866,7 +866,7 @@ fn native_options(
         app_icon()
     };
     let viewport = egui::ViewportBuilder::default()
-        .with_title("Spotifast")
+        .with_title("SpotiVista")
         .with_app_id(app_id)
         .with_taskbar(true)
         .with_icon(icon);

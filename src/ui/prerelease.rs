@@ -1,4 +1,4 @@
-//! Native counterpart of Spotify's countdown page, inside Spotifast's shell.
+//! Native counterpart of Spotify's countdown page, inside SpotiVista's shell.
 
 use std::sync::Arc;
 use std::time::Duration;

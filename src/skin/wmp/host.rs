@@ -888,7 +888,7 @@ impl Host for Bridge<'_> {
                 self.element_set((object - ELEMENT_BASE) as usize, name, value);
             }
             // `player.URL`, and everything else a skin might try: a skin
-            // plays what Spotifast plays.
+            // plays what SpotiVista plays.
             _ => {}
         }
     }

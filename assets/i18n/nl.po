@@ -1,14 +1,14 @@
-# Dutch translation of the Spotifast navigation pilot.
-# Distributed under the same MIT license as Spotifast.
+# Dutch translation of the SpotiVista navigation pilot.
+# Distributed under the same MIT license as SpotiVista.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Spotifast\n"
+"Project-Id-Version: SpotiVista\n"
 "Report-Msgid-Bugs-To: https://github.com/crmne/spotifast/issues/new?"
 "template=translation.yml\n"
 "POT-Creation-Date: 2026-11-02 20:27+0100\n"
 "PO-Revision-Date: 2026-09-09 13:30+0000\n"
-"Last-Translator: Spotifast contributors\n"
+"Last-Translator: SpotiVista contributors\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -308,8 +308,8 @@ msgid "Mute"
 msgstr "Dempen"
 
 #: src/ui/player_bar.rs:1011
-msgid "This device's volume can't be changed from Spotifast"
-msgstr "Het volume van dit apparaat kan niet vanuit Spotifast worden gewijzigd"
+msgid "This device's volume can't be changed from SpotiVista"
+msgstr "Het volume van dit apparaat kan niet vanuit SpotiVista worden gewijzigd"
 
 #: src/ui/player_bar.rs:1031 src/ui/devices.rs:401
 msgid "Connect to a device"
@@ -414,9 +414,9 @@ msgstr "Je bent offline"
 #: src/ui/collection.rs:2272 src/ui/collection.rs:2531 src/ui/home.rs:34
 #: src/ui/library.rs:262 src/ui/show.rs:69 src/ui/show.rs:115
 #: src/ui/show.rs:145
-msgid "Spotifast will reconnect automatically when your connection returns."
+msgid "SpotiVista will reconnect automatically when your connection returns."
 msgstr ""
-"Spotifast maakt automatisch opnieuw verbinding zodra je verbinding is "
+"SpotiVista maakt automatisch opnieuw verbinding zodra je verbinding is "
 "hersteld."
 
 #. Translators: Keep {error} unchanged. It is the original failure detail.
@@ -728,8 +728,8 @@ msgid "Restoring proxy settings"
 msgstr "Proxyinstellingen worden hersteld"
 
 #: src/app.rs:1734
-msgid "Couldn't change how Spotifast starts with your computer."
-msgstr "Kan niet wijzigen hoe Spotifast met je computer start."
+msgid "Couldn't change how SpotiVista starts with your computer."
+msgstr "Kan niet wijzigen hoe SpotiVista met je computer start."
 
 #: src/app.rs:2025 src/ui/soloist.rs:851
 msgid "Starting Soloist…"
@@ -754,7 +754,7 @@ msgstr "Verbinden met Spotify…"
 msgid "Cleared {size} of audio"
 msgstr "{size} aan audio gewist"
 
-#. Translators: Files in the audio cache that Spotifast did not put there, such as .DS_Store. They were not deleted.
+#. Translators: Files in the audio cache that SpotiVista did not put there, such as .DS_Store. They were not deleted.
 #: src/app.rs:2878
 #, rust-format
 msgid "{count} unrecognized file was left in place."
@@ -797,12 +797,12 @@ msgstr ""
 #. Translators: {version} is a version number such as 1.4.0.
 #: src/app.rs:3161
 #, rust-format
-msgid "Spotifast {version} is available"
-msgstr "Spotifast {version} is beschikbaar"
+msgid "SpotiVista {version} is available"
+msgstr "SpotiVista {version} is beschikbaar"
 
 #: src/app.rs:3178
-msgid "Spotifast is up to date"
-msgstr "Spotifast is up-to-date"
+msgid "SpotiVista is up to date"
+msgstr "SpotiVista is up-to-date"
 
 #. Translators: {error} is an error message.
 #: src/app.rs:3186
@@ -1051,8 +1051,8 @@ msgid "This song's album is not on Spotify"
 msgstr "Het album van dit nummer staat niet op Spotify"
 
 #: src/app.rs:10010
-msgid "Spotifast cannot open this kind of Spotify link"
-msgstr "Spotifast kan dit soort Spotify-link niet openen"
+msgid "SpotiVista cannot open this kind of Spotify link"
+msgstr "SpotiVista kan dit soort Spotify-link niet openen"
 
 #: src/app.rs:10258
 msgid "Nothing is playing. Pick something first"
@@ -1362,22 +1362,22 @@ msgstr "Spotify-registratie"
 
 #: src/ui/settings.rs:541
 msgid ""
-"You're still on the shared sign-in Spotifast used before, which Spotify can "
-"stop accepting at any time. Register Spotifast to keep listening."
+"You're still on the shared sign-in SpotiVista used before, which Spotify can "
+"stop accepting at any time. Register SpotiVista to keep listening."
 msgstr ""
-"Je gebruikt nog de gedeelde aanmelding die Spotifast eerder gebruikte, en "
-"Spotify kan die op elk moment weigeren. Registreer Spotifast om te blijven "
+"Je gebruikt nog de gedeelde aanmelding die SpotiVista eerder gebruikte, en "
+"Spotify kan die op elk moment weigeren. Registreer SpotiVista om te blijven "
 "luisteren."
 
 #: src/ui/settings.rs:546
-msgid "Spotifast connects with the Client ID you registered with Spotify."
+msgid "SpotiVista connects with the Client ID you registered with Spotify."
 msgstr ""
-"Spotifast verbindt met de Client ID die je bij Spotify hebt geregistreerd."
+"SpotiVista verbindt met de Client ID die je bij Spotify hebt geregistreerd."
 
 #: src/ui/settings.rs:551 src/ui/dialogs.rs:50 src/ui/login.rs:456
 #: src/ui/mod.rs:417
-msgid "Register Spotifast"
-msgstr "Spotifast registreren"
+msgid "Register SpotiVista"
+msgstr "SpotiVista registreren"
 
 #: src/ui/settings.rs:554
 msgid "It takes about two minutes in Spotify's developer dashboard."
@@ -1385,8 +1385,8 @@ msgstr ""
 "Dit duurt ongeveer twee minuten in het ontwikkelaarsdashboard van Spotify."
 
 #: src/ui/settings.rs:559
-msgid "Spotifast registered"
-msgstr "Spotifast geregistreerd"
+msgid "SpotiVista registered"
+msgstr "SpotiVista geregistreerd"
 
 #: src/ui/settings.rs:563
 msgid ""
@@ -1396,8 +1396,8 @@ msgstr ""
 "gedeelde aanmelding."
 
 #: src/ui/settings.rs:568
-msgid "Spotifast uses your Client ID for Spotify's Web API."
-msgstr "Spotifast gebruikt je Client ID voor de Web API van Spotify."
+msgid "SpotiVista uses your Client ID for Spotify's Web API."
+msgstr "SpotiVista gebruikt je Client ID voor de Web API van Spotify."
 
 #: src/ui/settings.rs:574
 msgid "Authorize your Client ID"
@@ -1559,16 +1559,16 @@ msgstr "Speelt nummers af zonder stilte ertussen."
 
 #: src/ui/settings.rs:802
 msgid ""
-"Spotifast hides to the system tray. Quit from the tray menu or with Ctrl+Q."
+"SpotiVista hides to the system tray. Quit from the tray menu or with Ctrl+Q."
 msgstr ""
-"Spotifast verdwijnt naar het systeemvak. Sluit af via het menu in het "
+"SpotiVista verdwijnt naar het systeemvak. Sluit af via het menu in het "
 "systeemvak of met Ctrl+Q."
 
 #: src/ui/settings.rs:807
 msgid ""
-"Spotifast hides to the menu bar. Quit from its menu-bar icon or with Cmd+Q."
+"SpotiVista hides to the menu bar. Quit from its menu-bar icon or with Cmd+Q."
 msgstr ""
-"Spotifast verdwijnt naar de menubalk. Sluit af via het symbool in de "
+"SpotiVista verdwijnt naar de menubalk. Sluit af via het symbool in de "
 "menubalk of met Cmd+Q."
 
 #: src/ui/settings.rs:814
@@ -1617,10 +1617,10 @@ msgstr "Lokale bestanden"
 
 #: src/ui/settings.rs:850
 msgid ""
-"When off, Spotifast lives in the menu bar and leaves Cmd+Tab. Open it from "
+"When off, SpotiVista lives in the menu bar and leaves Cmd+Tab. Open it from "
 "its menu-bar icon."
 msgstr ""
-"Uit: Spotifast staat alleen in de menubalk en verschijnt niet in Cmd+Tab. "
+"Uit: SpotiVista staat alleen in de menubalk en verschijnt niet in Cmd+Tab. "
 "Open het via het symbool in de menubalk."
 
 #: src/ui/settings.rs:856
@@ -1792,9 +1792,9 @@ msgstr ""
 
 #: src/ui/settings.rs:1335
 msgid ""
-"Draw Spotifast's own title bar and window buttons instead of the desktop's."
+"Draw SpotiVista's own title bar and window buttons instead of the desktop's."
 msgstr ""
-"Teken de eigen titelbalk en vensterknoppen van Spotifast in plaats van die "
+"Teken de eigen titelbalk en vensterknoppen van SpotiVista in plaats van die "
 "van de desktop."
 
 #: src/ui/settings.rs:1343
@@ -2011,36 +2011,36 @@ msgstr "Presets"
 #: src/ui/settings.rs:2113
 #, rust-format
 msgid ""
-"None yet in {folder}. Add .milk files here. Spotifast downloads presets when "
+"None yet in {folder}. Add .milk files here. SpotiVista downloads presets when "
 "MilkDrop first opens with an empty folder."
 msgstr ""
-"Nog geen in {folder}. Zet hier .milk-bestanden neer. Spotifast downloadt "
+"Nog geen in {folder}. Zet hier .milk-bestanden neer. SpotiVista downloadt "
 "presets als MilkDrop voor het eerst opent met een lege map."
 
 #. Translators: {folder} is the path of the MilkDrop presets folder.
 #: src/ui/settings.rs:2119
 #, rust-format
 msgid ""
-"One preset in {folder}. Add .milk files here. Spotifast downloads presets "
+"One preset in {folder}. Add .milk files here. SpotiVista downloads presets "
 "when MilkDrop first opens with an empty folder."
 msgstr ""
-"Eén preset in {folder}. Zet hier .milk-bestanden neer. Spotifast downloadt "
+"Eén preset in {folder}. Zet hier .milk-bestanden neer. SpotiVista downloadt "
 "presets als MilkDrop voor het eerst opent met een lege map."
 
 #. Translators: {count} is the number of presets, {folder} the path of the MilkDrop presets folder.
 #: src/ui/settings.rs:2125
 #, rust-format
 msgid ""
-"{count} preset in {folder}. Add .milk files here. Spotifast downloads "
+"{count} preset in {folder}. Add .milk files here. SpotiVista downloads "
 "presets when MilkDrop first opens with an empty folder."
 msgid_plural ""
-"{count} presets in {folder}. Add .milk files here. Spotifast downloads "
+"{count} presets in {folder}. Add .milk files here. SpotiVista downloads "
 "presets when MilkDrop first opens with an empty folder."
 msgstr[0] ""
-"{count} preset in {folder}. Zet hier .milk-bestanden neer. Spotifast "
+"{count} preset in {folder}. Zet hier .milk-bestanden neer. SpotiVista "
 "downloadt presets als MilkDrop voor het eerst opent met een lege map."
 msgstr[1] ""
-"{count} presets in {folder}. Zet hier .milk-bestanden neer. Spotifast "
+"{count} presets in {folder}. Zet hier .milk-bestanden neer. SpotiVista "
 "downloadt presets als MilkDrop voor het eerst opent met een lege map."
 
 #: src/ui/settings.rs:2134
@@ -2246,8 +2246,8 @@ msgid "In the tray"
 msgstr "In het systeemvak"
 
 #: src/ui/settings.rs:2623
-msgid "Allow Spotifast in System Settings, General, Login Items."
-msgstr "Sta Spotifast toe in Systeeminstellingen, Algemeen, Inlogonderdelen."
+msgid "Allow SpotiVista in System Settings, General, Login Items."
+msgstr "Sta SpotiVista toe in Systeeminstellingen, Algemeen, Inlogonderdelen."
 
 #: src/ui/settings.rs:2629
 msgid ""
@@ -2266,12 +2266,12 @@ msgstr ""
 "sluit’. Tot die tijd opent het venster."
 
 #: src/ui/settings.rs:2640
-msgid "Open Spotifast when you log in, with its window or in the menu bar."
-msgstr "Open Spotifast als je inlogt, met het venster of in de menubalk."
+msgid "Open SpotiVista when you log in, with its window or in the menu bar."
+msgstr "Open SpotiVista als je inlogt, met het venster of in de menubalk."
 
 #: src/ui/settings.rs:2645
-msgid "Open Spotifast when you log in, with its window or in the tray."
-msgstr "Open Spotifast als je inlogt, met het venster of in het systeemvak."
+msgid "Open SpotiVista when you log in, with its window or in the tray."
+msgstr "Open SpotiVista als je inlogt, met het venster of in het systeemvak."
 
 #: src/ui/settings.rs:2751
 msgctxt "language"
@@ -2298,10 +2298,10 @@ msgstr "Luister met Spotify Soloist"
 
 #: src/ui/soloist.rs:315
 msgid ""
-"Spotify's own player, running on this computer. Spotifast sets it up and "
+"Spotify's own player, running on this computer. SpotiVista sets it up and "
 "keeps it updated."
 msgstr ""
-"De eigen speler van Spotify, op deze computer. Spotifast stelt hem in en "
+"De eigen speler van Spotify, op deze computer. SpotiVista stelt hem in en "
 "houdt hem bijgewerkt."
 
 #: src/ui/soloist.rs:321
@@ -2309,8 +2309,8 @@ msgid "Get your personal key from Spotify."
 msgstr "Haal je persoonlijke sleutel op bij Spotify."
 
 #: src/ui/soloist.rs:322
-msgid "Spotifast downloads the player."
-msgstr "Spotifast downloadt de speler."
+msgid "SpotiVista downloads the player."
+msgstr "SpotiVista downloadt de speler."
 
 #: src/ui/soloist.rs:323
 msgid "Choose it once in the Spotify app."
@@ -2334,10 +2334,10 @@ msgstr "Haal je Soloist-sleutel op"
 
 #: src/ui/soloist.rs:368
 msgid ""
-"Spotify gives each Premium account its own key. Spotifast keeps it in your "
+"Spotify gives each Premium account its own key. SpotiVista keeps it in your "
 "system's credential store."
 msgstr ""
-"Spotify geeft elk Premium-account een eigen sleutel. Spotifast bewaart die "
+"Spotify geeft elk Premium-account een eigen sleutel. SpotiVista bewaart die "
 "in de referentieopslag van je systeem."
 
 #: src/ui/soloist.rs:384
@@ -2493,8 +2493,8 @@ msgid "Soloist needs your key"
 msgstr "Soloist heeft je sleutel nodig"
 
 #: src/ui/soloist.rs:744 src/ui/soloist.rs:858
-msgid "Spotifast can't find the key you saved."
-msgstr "Spotifast kan je opgeslagen sleutel niet vinden."
+msgid "SpotiVista can't find the key you saved."
+msgstr "SpotiVista kan je opgeslagen sleutel niet vinden."
 
 #: src/ui/soloist.rs:747 src/ui/soloist.rs:955
 msgid "Add your key"
@@ -2592,17 +2592,17 @@ msgstr "Dat lijkt geen Soloist-sleutel."
 
 #: src/soloist/mod.rs:82
 msgid ""
-"Spotifast couldn't reach your saved key. Unlock the system credential store "
+"SpotiVista couldn't reach your saved key. Unlock the system credential store "
 "and try again."
 msgstr ""
-"Spotifast kan je opgeslagen sleutel niet bereiken. Ontgrendel de "
+"SpotiVista kan je opgeslagen sleutel niet bereiken. Ontgrendel de "
 "referentieopslag van het systeem en probeer het opnieuw."
 
 #: src/soloist/mod.rs:86
 msgid ""
-"Spotifast couldn't download Soloist. Check your connection and try again."
+"SpotiVista couldn't download Soloist. Check your connection and try again."
 msgstr ""
-"Spotifast kan Soloist niet downloaden. Controleer je verbinding en probeer "
+"SpotiVista kan Soloist niet downloaden. Controleer je verbinding en probeer "
 "het opnieuw."
 
 #: src/soloist/mod.rs:90
@@ -2986,18 +2986,18 @@ msgid "Play here"
 msgstr "Hier afspelen"
 
 #: src/ui/dialogs.rs:44
-msgid "Register Spotifast with Spotify"
-msgstr "Spotifast registreren bij Spotify"
+msgid "Register SpotiVista with Spotify"
+msgstr "SpotiVista registreren bij Spotify"
 
 #: src/ui/dialogs.rs:46
 msgid ""
-"You're on the shared sign-in Spotifast used before. Spotifast no longer "
-"offers it, and Spotify can stop accepting it at any time. Register Spotifast "
+"You're on the shared sign-in SpotiVista used before. SpotiVista no longer "
+"offers it, and Spotify can stop accepting it at any time. Register SpotiVista "
 "so nothing stops your music. It takes about two minutes."
 msgstr ""
-"Je gebruikt de gedeelde aanmelding die Spotifast eerder gebruikte. Spotifast "
+"Je gebruikt de gedeelde aanmelding die SpotiVista eerder gebruikte. SpotiVista "
 "biedt die niet meer aan, en Spotify kan die op elk moment weigeren. "
-"Registreer Spotifast, zodat je muziek niet stopt. Het duurt ongeveer twee "
+"Registreer SpotiVista, zodat je muziek niet stopt. Het duurt ongeveer twee "
 "minuten."
 
 #: src/ui/dialogs.rs:64
@@ -3050,10 +3050,10 @@ msgstr "Met dit account kun je hier geen muziek afspelen"
 #: src/ui/dialogs.rs:213
 msgid ""
 "Playback needs Spotify Premium. Free accounts can browse and search, but "
-"cannot play music through Spotifast."
+"cannot play music through SpotiVista."
 msgstr ""
 "Afspelen vereist Spotify Premium. Met een Free-account kun je bladeren en "
-"zoeken, maar geen muziek afspelen via Spotifast."
+"zoeken, maar geen muziek afspelen via SpotiVista."
 
 #: src/ui/dialogs.rs:222
 msgid "OK"
@@ -3420,8 +3420,8 @@ msgstr "Nieuwe albums en singles van artiesten die je volgt verschijnen hier."
 
 #: src/ui/login.rs:156
 #, rust-format
-msgid "Spotifast {version} • not affiliated with Spotify"
-msgstr "Spotifast {version} • niet verbonden aan Spotify"
+msgid "SpotiVista {version} • not affiliated with Spotify"
+msgstr "SpotiVista {version} • niet verbonden aan Spotify"
 
 #: src/ui/login.rs:170
 msgid ""
@@ -3449,11 +3449,11 @@ msgstr ""
 
 #: src/ui/login.rs:182
 msgid ""
-"Spotify no longer accepts the shared sign-in Spotifast used before. Register "
-"Spotifast to keep listening."
+"Spotify no longer accepts the shared sign-in SpotiVista used before. Register "
+"SpotiVista to keep listening."
 msgstr ""
-"Spotify accepteert de gedeelde aanmelding die Spotifast eerder gebruikte "
-"niet meer. Registreer Spotifast om te blijven luisteren."
+"Spotify accepteert de gedeelde aanmelding die SpotiVista eerder gebruikte "
+"niet meer. Registreer SpotiVista om te blijven luisteren."
 
 #: src/ui/login.rs:219
 msgid "A native Spotify client."
@@ -3482,15 +3482,15 @@ msgstr "Inloggen met Spotify"
 
 #: src/ui/login.rs:321
 msgid ""
-"Sign in through your browser. Spotifast never sees your password. Local "
+"Sign in through your browser. SpotiVista never sees your password. Local "
 "playback needs Spotify Premium."
 msgstr ""
-"Log in via je browser. Spotifast ziet je wachtwoord nooit. Lokaal afspelen "
+"Log in via je browser. SpotiVista ziet je wachtwoord nooit. Lokaal afspelen "
 "vereist Spotify Premium."
 
 #: src/ui/login.rs:330
-msgid "How to register Spotifast"
-msgstr "Zo registreer je Spotifast"
+msgid "How to register SpotiVista"
+msgstr "Zo registreer je SpotiVista"
 
 #: src/ui/login.rs:354
 msgid "Proxy Settings"
@@ -3506,10 +3506,10 @@ msgstr ""
 
 #: src/ui/login.rs:464
 msgid ""
-"Spotify asks you to register Spotifast once, on an account with Premium. It "
+"Spotify asks you to register SpotiVista once, on an account with Premium. It "
 "takes about two minutes and gives you a Client ID."
 msgstr ""
-"Spotify vraagt je Spotifast eenmalig te registreren, op een account met "
+"Spotify vraagt je SpotiVista eenmalig te registreren, op een account met "
 "Premium. Het duurt ongeveer twee minuten en je krijgt er een Client ID voor "
 "terug."
 
@@ -3541,11 +3541,11 @@ msgstr "Spotify is traag met de gedeelde aanmelding."
 
 #: src/ui/mod.rs:412
 msgid ""
-"Spotifast no longer offers the shared sign-in, and Spotify can stop "
-"accepting it at any time. Register Spotifast and you won't have to wait."
+"SpotiVista no longer offers the shared sign-in, and Spotify can stop "
+"accepting it at any time. Register SpotiVista and you won't have to wait."
 msgstr ""
-"Spotifast biedt de gedeelde aanmelding niet meer aan, en Spotify kan die op "
-"elk moment weigeren. Registreer Spotifast, dan hoef je niet te wachten."
+"SpotiVista biedt de gedeelde aanmelding niet meer aan, en Spotify kan die op "
+"elk moment weigeren. Registreer SpotiVista, dan hoef je niet te wachten."
 
 #. Translators: a button that opens a page explaining why
 #. the banner it sits in appeared.
@@ -3555,11 +3555,11 @@ msgstr "Waarom?"
 
 #: src/ui/mod.rs:446
 msgid ""
-"Spotify refused the key that unlocks the audio. Spotifast can't fix that, "
+"Spotify refused the key that unlocks the audio. SpotiVista can't fix that, "
 "but it sometimes clears up on its own. You can still play on your phone or "
 "another Spotify device."
 msgstr ""
-"Spotify weigerde de sleutel die het geluid ontgrendelt. Spotifast kan daar "
+"Spotify weigerde de sleutel die het geluid ontgrendelt. SpotiVista kan daar "
 "niets aan doen, maar soms lost het zich vanzelf op. Je kunt nog steeds "
 "afspelen op je telefoon of een ander Spotify-apparaat."
 
@@ -3801,9 +3801,9 @@ msgstr "Wat wil je afspelen?"
 
 #: src/ui/topbar.rs:546
 msgid ""
-"Spotifast is offline. Reconnecting automatically when connection returns."
+"SpotiVista is offline. Reconnecting automatically when connection returns."
 msgstr ""
-"Spotifast is offline. Er wordt automatisch opnieuw verbinding gemaakt zodra "
+"SpotiVista is offline. Er wordt automatisch opnieuw verbinding gemaakt zodra "
 "de verbinding is hersteld."
 
 #: src/ui/topbar.rs:574
@@ -3837,8 +3837,8 @@ msgid "Version {version} is available."
 msgstr "Versie {version} is beschikbaar."
 
 #: src/ui/update.rs:19
-msgid "Update Spotifast"
-msgstr "Spotifast bijwerken"
+msgid "Update SpotiVista"
+msgstr "SpotiVista bijwerken"
 
 #: src/ui/update.rs:51
 msgid "Close update"
@@ -3853,8 +3853,8 @@ msgid "Ready to install"
 msgstr "Klaar om te installeren"
 
 #: src/ui/update.rs:115
-msgid "Music playing on this computer will stop when Spotifast restarts."
-msgstr "Muziek die op deze computer speelt, stopt als Spotifast herstart."
+msgid "Music playing on this computer will stop when SpotiVista restarts."
+msgstr "Muziek die op deze computer speelt, stopt als SpotiVista herstart."
 
 #: src/ui/update.rs:122
 msgid "Restart to update"
@@ -4180,8 +4180,8 @@ msgstr ""
 "bureaublad."
 
 #: src/window.rs:31
-msgid "Spotifast cannot open its window"
-msgstr "Spotifast kan zijn venster niet openen"
+msgid "SpotiVista cannot open its window"
+msgstr "SpotiVista kan zijn venster niet openen"
 
 #: src/window.rs:34
 msgid "Open page"
@@ -4189,24 +4189,24 @@ msgstr "Pagina openen"
 
 #: src/window.rs:51
 msgid ""
-"On Windows on ARM, the OpenGL that Spotifast draws with comes from "
+"On Windows on ARM, the OpenGL that SpotiVista draws with comes from "
 "Microsoft's OpenCL, OpenGL & Vulkan Compatibility Pack. Open its Microsoft "
 "Store page to install or repair it?"
 msgstr ""
-"Op Windows on ARM komt de OpenGL waarmee Spotifast tekent uit het OpenCL, "
+"Op Windows on ARM komt de OpenGL waarmee SpotiVista tekent uit het OpenCL, "
 "OpenGL & Vulkan Compatibility Pack van Microsoft. De pagina in de Microsoft "
 "Store openen om het te installeren of te herstellen?"
 
 #. Translators: Keep {url} exactly as written. It becomes the address
-#. of the Spotifast download page.
+#. of the SpotiVista download page.
 #: src/window.rs:58
 #, rust-format
 msgid ""
-"Spotifast needs a graphics driver with OpenGL 2.0 or newer, and this PC or "
+"SpotiVista needs a graphics driver with OpenGL 2.0 or newer, and this PC or "
 "virtual machine does not provide one. Install the graphics driver, or turn "
 "on GPU acceleration for the virtual machine. Open {url} to read more?"
 msgstr ""
-"Spotifast heeft een grafisch stuurprogramma met OpenGL 2.0 of nieuwer nodig, "
+"SpotiVista heeft een grafisch stuurprogramma met OpenGL 2.0 of nieuwer nodig, "
 "en deze pc of virtuele machine biedt dat niet. Installeer het grafische "
 "stuurprogramma of zet GPU-versnelling aan voor de virtuele machine. {url} "
 "openen voor meer informatie?"
@@ -4233,8 +4233,8 @@ msgstr ""
 #~ msgstr ""
 #~ "De officiële speler van Spotify om buiten de Spotify-app te luisteren."
 
-#~ msgid "Requires Spotify Premium. Spotifast handles downloads and updates."
-#~ msgstr "Spotify Premium vereist. Spotifast regelt downloads en updates."
+#~ msgid "Requires Spotify Premium. SpotiVista handles downloads and updates."
+#~ msgstr "Spotify Premium vereist. SpotiVista regelt downloads en updates."
 
 #~ msgid ""
 #~ "Open Spotify with the same account and network.\n"
@@ -4305,16 +4305,16 @@ msgstr ""
 #~ msgstr "Persoonlijke Spotify-app"
 
 #~ msgid ""
-#~ "You're still signed in through the shared app Spotifast used before, "
+#~ "You're still signed in through the shared app SpotiVista used before, "
 #~ "which Spotify can stop accepting at any time. Set up your own app to keep "
 #~ "listening."
 #~ msgstr ""
-#~ "Je bent nog ingelogd via de gedeelde app die Spotifast eerder gebruikte, "
+#~ "Je bent nog ingelogd via de gedeelde app die SpotiVista eerder gebruikte, "
 #~ "en Spotify kan die op elk moment weigeren. Stel je eigen app in om te "
 #~ "blijven luisteren."
 
-#~ msgid "Spotifast signs in through your own free Spotify app."
-#~ msgstr "Spotifast logt in via je eigen gratis Spotify-app."
+#~ msgid "SpotiVista signs in through your own free Spotify app."
+#~ msgstr "SpotiVista logt in via je eigen gratis Spotify-app."
 
 #~ msgid "Create an app"
 #~ msgstr "App maken"
@@ -4330,8 +4330,8 @@ msgstr ""
 #~ "Ondersteunde verzoeken gebruiken je app. Andere verzoeken gebruiken de "
 #~ "gedeelde app."
 
-#~ msgid "Spotifast uses your app for Spotify's Web API."
-#~ msgstr "Spotifast gebruikt je app voor de Web API van Spotify."
+#~ msgid "SpotiVista uses your app for Spotify's Web API."
+#~ msgstr "SpotiVista gebruikt je app voor de Web API van Spotify."
 
 #~ msgid "Authorize your personal app"
 #~ msgstr "Je persoonlijke app autoriseren"
@@ -4340,13 +4340,13 @@ msgstr ""
 #~ msgstr "Overstappen naar je eigen Spotify-app"
 
 #~ msgid ""
-#~ "You're signed in through the shared app Spotifast used before. Spotifast "
+#~ "You're signed in through the shared app SpotiVista used before. SpotiVista "
 #~ "no longer offers it, and Spotify can stop accepting it at any time. Set "
 #~ "up your own free Spotify app so nothing stops your music. It takes a few "
 #~ "minutes."
 #~ msgstr ""
-#~ "Je bent ingelogd via de gedeelde app die Spotifast eerder gebruikte. "
-#~ "Spotifast biedt die niet meer aan, en Spotify kan die op elk moment "
+#~ "Je bent ingelogd via de gedeelde app die SpotiVista eerder gebruikte. "
+#~ "SpotiVista biedt die niet meer aan, en Spotify kan die op elk moment "
 #~ "weigeren. Stel je eigen gratis Spotify-app in, zodat je muziek niet "
 #~ "stopt. Het duurt maar een paar minuten."
 
@@ -4375,10 +4375,10 @@ msgstr ""
 #~ "account dat de app heeft gemaakt. Dat account heeft Premium nodig."
 
 #~ msgid ""
-#~ "Spotify no longer accepts the shared sign-in Spotifast used before. Set "
+#~ "Spotify no longer accepts the shared sign-in SpotiVista used before. Set "
 #~ "up your own Spotify app to keep listening."
 #~ msgstr ""
-#~ "Spotify accepteert de gedeelde aanmelding die Spotifast eerder gebruikte "
+#~ "Spotify accepteert de gedeelde aanmelding die SpotiVista eerder gebruikte "
 #~ "niet meer. Stel je eigen Spotify-app in om te blijven luisteren."
 
 #~ msgid "How to set up your Spotify app"
@@ -4393,10 +4393,10 @@ msgstr ""
 #~ msgstr "Stel je Spotify-app in"
 
 #~ msgid ""
-#~ "Spotifast signs in through your own free Spotify app. Spotify requires "
+#~ "SpotiVista signs in through your own free Spotify app. Spotify requires "
 #~ "its owner to have Premium."
 #~ msgstr ""
-#~ "Spotifast logt in via je eigen gratis Spotify-app. Spotify vereist dat de "
+#~ "SpotiVista logt in via je eigen gratis Spotify-app. Spotify vereist dat de "
 #~ "eigenaar Premium heeft."
 
 #~ msgid "Click Create app. Any name will do."
@@ -4409,11 +4409,11 @@ msgstr ""
 #~ msgstr "Spotify is traag met de gedeelde app."
 
 #~ msgid ""
-#~ "Spotifast no longer offers the shared app, and Spotify can stop accepting "
+#~ "SpotiVista no longer offers the shared app, and Spotify can stop accepting "
 #~ "it at any time. Set up your own free Spotify app and you won't have to "
 #~ "wait."
 #~ msgstr ""
-#~ "Spotifast biedt de gedeelde app niet meer aan, en Spotify kan die op elk "
+#~ "SpotiVista biedt de gedeelde app niet meer aan, en Spotify kan die op elk "
 #~ "moment weigeren. Stel je eigen gratis Spotify-app in, dan hoef je niet te "
 #~ "wachten."
 
@@ -4456,10 +4456,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "You'll need Spotify Premium, your personal Soloist key and one pairing in "
-#~ "Spotify. Spotifast handles the download and updates."
+#~ "Spotify. SpotiVista handles the download and updates."
 #~ msgstr ""
 #~ "Je hebt Spotify Premium, je persoonlijke Soloist-sleutel en een eenmalige "
-#~ "koppeling in Spotify nodig. Spotifast regelt de download en updates."
+#~ "koppeling in Spotify nodig. SpotiVista regelt de download en updates."
 
 #~ msgid ""
 #~ "For local files and full queue editing, use the built-in player. You can "
@@ -4476,10 +4476,10 @@ msgstr ""
 #~ "los van de Client ID van je Web API-app."
 
 #~ msgid ""
-#~ "Soloist makes its own Spotify connections. Spotifast's proxy settings do "
+#~ "Soloist makes its own Spotify connections. SpotiVista's proxy settings do "
 #~ "not route its audio traffic."
 #~ msgstr ""
-#~ "Soloist maakt zelf verbinding met Spotify. Spotifasts proxy-instellingen "
+#~ "Soloist maakt zelf verbinding met Spotify. SpotiVistas proxy-instellingen "
 #~ "gelden niet voor zijn audioverkeer."
 
 #~ msgid ""
@@ -4499,18 +4499,18 @@ msgstr ""
 #~ "aangemeld. Kies in de apparatenlijst:"
 
 #~ msgid ""
-#~ "Spotifast will notice when pairing finishes. Future starts reconnect "
+#~ "SpotiVista will notice when pairing finishes. Future starts reconnect "
 #~ "automatically."
 #~ msgstr ""
-#~ "Spotifast merkt wanneer het koppelen klaar is. Bij volgende starts wordt "
+#~ "SpotiVista merkt wanneer het koppelen klaar is. Bij volgende starts wordt "
 #~ "de verbinding automatisch hersteld."
 
 #~ msgid ""
 #~ "If this takes a while, make sure Spotify is signed in to the same account "
-#~ "as Spotifast, then select this device there."
+#~ "as SpotiVista, then select this device there."
 #~ msgstr ""
 #~ "Duurt dit lang, controleer dan of Spotify hetzelfde account gebruikt als "
-#~ "Spotifast en kies dit apparaat in Spotify."
+#~ "SpotiVista en kies dit apparaat in Spotify."
 
 #~ msgid ""
 #~ "For EQ, visualizers, local files and queue editing, use the built-in "
@@ -4534,10 +4534,10 @@ msgstr ""
 #~ msgstr "Details"
 
 #~ msgid ""
-#~ "Spotifast checks daily for a replacement during the last 30 days of each "
+#~ "SpotiVista checks daily for a replacement during the last 30 days of each "
 #~ "build. Updates wait until Soloist is inactive."
 #~ msgstr ""
-#~ "Tijdens de laatste 30 dagen van elke versie zoekt Spotifast dagelijks "
+#~ "Tijdens de laatste 30 dagen van elke versie zoekt SpotiVista dagelijks "
 #~ "naar een vervanging. Updates wachten tot Soloist inactief is."
 
 #~ msgid ""
@@ -4571,11 +4571,11 @@ msgstr ""
 #~ "de Spotify-app."
 
 #~ msgid ""
-#~ "Soloist plays through your system audio output. Spotifast's EQ, "
+#~ "Soloist plays through your system audio output. SpotiVista's EQ, "
 #~ "visualizers, local files, and full queue editing are available with the "
 #~ "built-in player."
 #~ msgstr ""
-#~ "Soloist gebruikt de audio-uitvoer van je systeem. Spotifasts EQ, "
+#~ "Soloist gebruikt de audio-uitvoer van je systeem. SpotiVistas EQ, "
 #~ "visualisaties, lokale bestanden en volledige wachtrijbewerking zijn "
 #~ "beschikbaar met de ingebouwde speler."
 
@@ -4584,10 +4584,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "A fresh build is downloaded. It will be applied when Soloist is inactive "
-#~ "or Spotifast restarts."
+#~ "or SpotiVista restarts."
 #~ msgstr ""
 #~ "Een nieuwe versie is gedownload. Deze wordt toegepast zodra Soloist "
-#~ "inactief is of Spotifast opnieuw start."
+#~ "inactief is of SpotiVista opnieuw start."
 
 #~ msgid "Soloist setup, privacy and limitations"
 #~ msgstr "Soloist instellen, privacy en beperkingen"
@@ -4609,11 +4609,11 @@ msgstr ""
 #~ msgstr "Spotify kan traag zijn met de gedeelde app"
 
 #~ msgid ""
-#~ "Everyone using Spotifast shares one app, and Spotify slows it down when "
+#~ "Everyone using SpotiVista shares one app, and Spotify slows it down when "
 #~ "it's busy. Set up your own personal Spotify app and you won't have to "
 #~ "wait. It's free and takes a few minutes."
 #~ msgstr ""
-#~ "Iedereen die Spotifast gebruikt deelt één app, en Spotify remt die af als "
+#~ "Iedereen die SpotiVista gebruikt deelt één app, en Spotify remt die af als "
 #~ "het druk is. Stel je eigen persoonlijke Spotify-app in, dan hoef je niet "
 #~ "te wachten. Het is gratis en duurt een paar minuten."
 
@@ -4628,9 +4628,9 @@ msgstr ""
 #~ "Het is gratis en duurt een paar minuten."
 
 #~ msgid ""
-#~ "Spotifast hides to the system tray. Quit from the tray menu or with Cmd+Q."
+#~ "SpotiVista hides to the system tray. Quit from the tray menu or with Cmd+Q."
 #~ msgstr ""
-#~ "Spotifast verdwijnt naar het systeemvak. Sluit af via het menu in het "
+#~ "SpotiVista verdwijnt naar het systeemvak. Sluit af via het menu in het "
 #~ "systeemvak of met Cmd+Q."
 
 #~ msgid "Your most-played tracks from the last four weeks."
@@ -4640,11 +4640,11 @@ msgstr ""
 #~ msgstr "Minder wachten op Spotify"
 
 #~ msgid ""
-#~ "Spotifast's default connection shares Spotify's request limit with other "
+#~ "SpotiVista's default connection shares Spotify's request limit with other "
 #~ "listeners. When it gets busy, loading music and using playback controls "
 #~ "can take longer."
 #~ msgstr ""
-#~ "De standaardverbinding van Spotifast deelt de verzoeklimiet van Spotify "
+#~ "De standaardverbinding van SpotiVista deelt de verzoeklimiet van Spotify "
 #~ "met andere luisteraars. Als het druk is, kan het laden van muziek en het "
 #~ "gebruik van de afspeelknoppen langer duren."
 

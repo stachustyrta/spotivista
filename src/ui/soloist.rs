@@ -312,14 +312,14 @@ fn welcome(app: &mut App, ui: &mut egui::Ui) {
         &gettext(locale, "Listen with Spotify Soloist"),
         &gettext(
             locale,
-            "Spotify's own player, running on this computer. Spotifast sets it up and keeps it updated.",
+            "Spotify's own player, running on this computer. SpotiVista sets it up and keeps it updated.",
         ),
     );
     ui.add_space(20.0);
     left_aligned(ui, |ui| {
         for (number, text) in [
             gettext(locale, "Get your personal key from Spotify."),
-            gettext(locale, "Spotifast downloads the player."),
+            gettext(locale, "SpotiVista downloads the player."),
             gettext(locale, "Choose it once in the Spotify app."),
         ]
         .iter()
@@ -365,7 +365,7 @@ fn key(app: &mut App, ui: &mut egui::Ui, failure: Option<Failure>) {
         &gettext(locale, "Get your Soloist key"),
         &gettext(
             locale,
-            "Spotify gives each Premium account its own key. Spotifast keeps it in your system's credential store.",
+            "Spotify gives each Premium account its own key. SpotiVista keeps it in your system's credential store.",
         ),
     );
     ui.add_space(20.0);
@@ -741,7 +741,7 @@ pub fn banner(app: &mut App, ui: &mut egui::Ui) {
         ),
         Status::NeedsKey => (
             gettext(locale, "Soloist needs your key"),
-            gettext(locale, "Spotifast can't find the key you saved."),
+            gettext(locale, "SpotiVista can't find the key you saved."),
             false,
             vec![
                 (gettext(locale, "Add your key"), Action::StartSoloistSetup),
@@ -855,7 +855,7 @@ fn status_text(app: &App) -> Cow<'static, str> {
             format!("{downloading} {percent}%").into()
         }
         Status::Pairing { .. } => gettext(locale, "Waiting for Spotify…"),
-        Status::NeedsKey => gettext(locale, "Spotifast can't find the key you saved."),
+        Status::NeedsKey => gettext(locale, "SpotiVista can't find the key you saved."),
         Status::Failed(failure) => failure.message(locale),
     }
 }
@@ -871,7 +871,7 @@ fn version_text(app: &App) -> Cow<'static, str> {
                 .map(|at| at.to_zoned(jiff::tz::TimeZone::system()).date().to_string())
                 .unwrap_or_default();
             // Translators: {version} is Soloist's version; {date} is when this
-            // build stops working, unless Spotifast has renewed it by then.
+            // build stops working, unless SpotiVista has renewed it by then.
             gettext(
                 locale,
                 "{version}, good until {date}. Updates automatically.",

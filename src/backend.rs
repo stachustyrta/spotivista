@@ -123,7 +123,7 @@ pub enum SignInProblem {
     /// account that created the app, or that account has no Premium.
     AccountNotAllowed,
     /// Spotify refused the grant from before 0.14.2 that came through the
-    /// app Spotifast used to share, and there is no personal app to go on.
+    /// app SpotiVista used to share, and there is no personal app to go on.
     SharedRetired,
     /// Spotify refused the personal app's saved grant.
     Expired,
@@ -696,10 +696,10 @@ pub enum AutostartRequest {
     Set(Option<fastframe_autostart::Start>),
 }
 
-/// Spotifast's registration to start at login. The hidden start passes
+/// SpotiVista's registration to start at login. The hidden start passes
 /// `--start-hidden`, which the command line takes.
 pub fn autostart() -> fastframe_autostart::Autostart {
-    fastframe_autostart::Autostart::new("spotifast", "Spotifast")
+    fastframe_autostart::Autostart::new("spotifast", "SpotiVista")
 }
 
 pub enum Command {
@@ -4287,7 +4287,7 @@ impl Worker {
                 if !lease.current() {
                     return Err("Sign-in changed before receiver activation.".into());
                 }
-                crate::zeroconf::add_user(&http, &receiver, &info, &credentials, "Spotifast")
+                crate::zeroconf::add_user(&http, &receiver, &info, &credentials, "SpotiVista")
                     .map_err(|error| error.to_string())
             })();
             let _ = events.send(Event::ReceiverActivated { name, result });

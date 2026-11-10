@@ -409,12 +409,12 @@ fn slow_banner(app: &mut App, ui: &mut egui::Ui) {
         &gettext(locale, "Spotify is being slow on the shared sign-in."),
         &gettext(
             locale,
-            "Spotifast no longer offers the shared sign-in, and Spotify can stop accepting it at any time. Register Spotifast and you won't have to wait.",
+            "SpotiVista no longer offers the shared sign-in, and Spotify can stop accepting it at any time. Register SpotiVista and you won't have to wait.",
         ),
         false,
         vec![
             (
-                gettext(locale, "Register Spotifast"),
+                gettext(locale, "Register SpotiVista"),
                 Action::OpenPersonalAppSetup,
             ),
             (
@@ -443,7 +443,7 @@ fn audio_key_banner(app: &mut App, ui: &mut egui::Ui) {
         ),
         &gettext(
             locale,
-            "Spotify refused the key that unlocks the audio. Spotifast can't fix that, but it sometimes clears up on its own. You can still play on your phone or another Spotify device.",
+            "Spotify refused the key that unlocks the audio. SpotiVista can't fix that, but it sometimes clears up on its own. You can still play on your phone or another Spotify device.",
         ),
         false,
         vec![
