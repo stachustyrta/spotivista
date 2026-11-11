@@ -5,7 +5,7 @@ version = "0.1.3"
 edition = "2024"
 rust-version = "1.85"
 license = "MIT"
-description = "Native Spotify client for Windows 7 (Windows Vista support planned)"
+description = "Native Spotify client for Windows Vista and 7"
 repository = "https://github.com/stachustyrta/spotivista"
 keywords = ["spotify", "music", "egui", "librespot", "player"]
 categories = ["multimedia::audio"]
@@ -126,8 +126,8 @@ raw-window-handle = "0.6"
 # it (see [patch.crates-io]) onto rustls 0.23 so CONNECT-then-TLS uses the
 # same stack as the rest of the client. SOCKS5 still covers the Web API but
 # not the engine: librespot only speaks HTTP CONNECT.
-librespot-core = { version = "0.8", default-features = false, features = ["rustls-tls-native-roots"] }
-librespot-playback = { version = "0.8", default-features = false, features = ["rustls-tls-native-roots"] }
+librespot-core = { version = "0.8", default-features = false, features = ["rustls-tls-webpki-roots"] }
+librespot-playback = { version = "0.8", default-features = false, features = ["rustls-tls-webpki-roots"] }
 librespot-connect = { version = "0.8", default-features = false }
 librespot-metadata = { version = "0.8", default-features = false }
 librespot-protocol = { version = "0.8", default-features = false }
@@ -146,7 +146,7 @@ rodio = { version = "0.21", default-features = false }
 # update checks. HTTP proxies work without it. `system-proxy` reads the OS
 # proxy on macOS and Windows when the mode is System; Linux uses environment
 # variables either way.
-reqwest = { version = "0.12", default-features = false, features = ["rustls-tls-native-roots", "json", "gzip", "http2", "blocking", "socks", "system-proxy"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls-webpki-roots", "json", "gzip", "http2", "blocking", "socks", "system-proxy"] }
 # Same System-proxy matcher reqwest uses, so local playback follows the same
 # HTTP proxy (environment, and the OS proxy on macOS and Windows).
 hyper-util = { version = "0.1", default-features = false, features = ["client-proxy", "client-proxy-system"] }

@@ -4,11 +4,11 @@
 
 <h1 align="center">SpotiVista</h1>
 
-<p align="center"><strong>Spotify, native, lightweight, and authentic for Windows 7 (Windows Vista support planned).</strong><br>A tailored fork of Spotifast targeting Windows 7 SP1 (NT 6.1), with Windows Vista SP2 (NT 6.0) support planned in the future.</p>
+<p align="center"><strong>Spotify, native, lightweight, and authentic for Windows Vista and Windows 7.</strong><br>A tailored fork of Spotifast targeting Windows Vista SP2 (NT 6.0) and Windows 7 SP1 (NT 6.1).</p>
 
 <p align="center">
   <a href="Cargo.toml"><img src="https://img.shields.io/badge/Built_with-Rust_1.75-1ed760" alt="Built with Rust 1.75"></a>
-  <img src="https://img.shields.io/badge/Platform-Windows_7_SP1_%28Vista_Planned%29-0078D7" alt="Windows 7 SP1 (Vista Planned)">
+  <img src="https://img.shields.io/badge/Platform-Windows_Vista_SP2_%7C_Windows_7_SP1-0078D7" alt="Windows Vista SP2 / Windows 7 SP1">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-1ed760" alt="MIT license"></a>
 </p>
 
@@ -41,8 +41,8 @@ SpotiVista is a lightweight, native Spotify client built with Rust, [egui](https
 ## System Requirements
 
 - **Operating System**:
-  - Windows 7 SP1 (x86 or x64) (Supported)
-  - Windows Vista SP2 (x86 or x64) with Platform Update (Support planned in the future)
+  - Windows Vista SP2 (x86 or x64) with Platform Update
+  - Windows 7 SP1 (x86 or x64)
 - **Processor**: Intel Core 2 Duo, AMD Athlon 64 X2, or newer (SSE2 baseline).
 - **Graphics**: DirectX 9.0c / WDDM 1.0 capable graphics card supporting Desktop Window Manager (Aero Glass).
 - **Web Browser for Sign-In**: [Supermium](https://win32subsystem.live/supermium/) (or another Chromium-based browser supporting modern TLS 1.3 and OAuth) to approve the one-time Spotify authentication prompt.

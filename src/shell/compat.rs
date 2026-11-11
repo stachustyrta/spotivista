@@ -900,6 +900,192 @@ pub unsafe extern "system" fn SetFileCompletionNotificationModes(
     }
 }
 
+// ============================================================================
+// 17. FindFirstFileExW Fallback for Windows Vista (os error 87 fix)
+// ============================================================================
+
+#[allow(non_snake_case)]
+pub unsafe extern "system" fn hooked_FindFirstFileExW(
+    file_name: *const u16,
+    info_level_id: i32,
+    find_file_data: *mut c_void,
+    search_op: i32,
+    search_filter: *mut c_void,
+    additional_flags: u32,
+) -> *mut c_void {
+    type Func = unsafe extern "system" fn(
+        *const u16,
+        i32,
+        *mut c_void,
+        i32,
+        *mut c_void,
+        u32,
+    ) -> *mut c_void;
+    static FUNC: AtomicPtr<c_void> = AtomicPtr::new(std::ptr::null_mut());
+    static INIT: AtomicBool = AtomicBool::new(false);
+    if !INIT.load(Ordering::Acquire) {
+        let k32 = unsafe { windows_sys::Win32::System::LibraryLoader::GetModuleHandleA(b"kernel32.dll\0".as_ptr()) };
+        if !k32.is_null() {
+            let p = unsafe { windows_sys::Win32::System::LibraryLoader::GetProcAddress(k32, b"FindFirstFileExW\0".as_ptr()) };
+            if let Some(proc) = p {
+                FUNC.store(proc as *mut c_void, Ordering::Release);
+            }
+        }
+        INIT.store(true, Ordering::Release);
+    }
+    let p = FUNC.load(Ordering::Acquire);
+    if !p.is_null() {
+        let f: Func = unsafe { std::mem::transmute(p) };
+        let ret = unsafe {
+            f(
+                file_name,
+                info_level_id,
+                find_file_data,
+                search_op,
+                search_filter,
+                additional_flags,
+            )
+        };
+        let invalid = -1isize as *mut c_void;
+        if ret != invalid {
+            return ret;
+        }
+        // If it failed with ERROR_INVALID_PARAMETER (87):
+        // On Windows Vista, FindExInfoBasic (1) and FIND_FIRST_EX_LARGE_FETCH (2)
+        // are not supported and return ERROR_INVALID_PARAMETER.
+        // Fall back to FindExInfoStandard (0) and clear the large fetch flag.
+        let err = unsafe { windows_sys::Win32::Foundation::GetLastError() };
+        if err == windows_sys::Win32::Foundation::ERROR_INVALID_PARAMETER {
+            let fallback_level = if info_level_id == 1 { 0 } else { info_level_id };
+            let fallback_flags = additional_flags & !2;
+            let retry = unsafe {
+                f(
+                    file_name,
+                    fallback_level,
+                    find_file_data,
+                    search_op,
+                    search_filter,
+                    fallback_flags,
+                )
+            };
+            return retry;
+        }
+        ret
+    } else {
+        -1isize as *mut c_void
+    }
+}
+
+// ============================================================================
+// 18. In-Memory IAT Hooking for Windows Vista Compatibility
+// ============================================================================
+
+/// Patches the Import Address Table of the current process module to redirect
+/// Windows Vista incompatible API calls to our shims.
+pub unsafe fn patch_iat_for_vista() {
+    unsafe {
+        let module = windows_sys::Win32::System::LibraryLoader::GetModuleHandleW(std::ptr::null());
+        if module.is_null() {
+            return;
+        }
+        let base = module as usize;
+        let dos_header = base as *const u8;
+        if *dos_header != b'M' || *(dos_header.add(1)) != b'Z' {
+            return;
+        }
+        let e_lfanew = *(base.wrapping_add(0x3C) as *const i32) as usize;
+        let nt_headers = (base + e_lfanew) as *const u8;
+        if *nt_headers != b'P' || *(nt_headers.add(1)) != b'E' {
+            return;
+        }
+        let optional_header = nt_headers.add(24);
+        let magic = *(optional_header as *const u16);
+        // 0x020B is PE32+ (64-bit)
+        if magic != 0x020B {
+            return;
+        }
+        // Import Directory is DataDirectory[1] at offset 112 from OptionalHeader
+        let import_dir_rva = *(optional_header.add(112) as *const u32) as usize;
+        if import_dir_rva == 0 {
+            return;
+        }
+
+        #[repr(C)]
+        struct ImportDescriptor {
+            original_first_thunk: u32,
+            time_date_stamp: u32,
+            forwarder_chain: u32,
+            name: u32,
+            first_thunk: u32,
+        }
+
+        let mut desc = (base + import_dir_rva) as *const ImportDescriptor;
+        while (*desc).name != 0 {
+            let dll_name_ptr = (base + (*desc).name as usize) as *const u8;
+            let mut len = 0;
+            while *(dll_name_ptr.add(len)) != 0 {
+                len += 1;
+            }
+            let dll_name = std::slice::from_raw_parts(dll_name_ptr, len);
+            if dll_name.eq_ignore_ascii_case(b"kernel32.dll") {
+                let thunk_rva = if (*desc).original_first_thunk != 0 {
+                    (*desc).original_first_thunk as usize
+                } else {
+                    (*desc).first_thunk as usize
+                };
+                let mut orig_thunk = (base + thunk_rva) as *const usize;
+                let mut iat_thunk = (base + (*desc).first_thunk as usize) as *mut usize;
+
+                while *orig_thunk != 0 {
+                    // Not an ordinal import
+                    if (*orig_thunk & 0x8000_0000_0000_0000) == 0 {
+                        let import_by_name = (base + (*orig_thunk & 0x7FFF_FFFF)) as *const u8;
+                        // Skip hint (u16 at offset 0), function name begins at offset 2
+                        let func_name_ptr = import_by_name.add(2);
+                        let mut fn_len = 0;
+                        while *(func_name_ptr.add(fn_len)) != 0 {
+                            fn_len += 1;
+                        }
+                        let func_name = std::slice::from_raw_parts(func_name_ptr, fn_len);
+
+                        let replacement: Option<usize> = if func_name == b"SetFileCompletionNotificationModes" {
+                            Some(SetFileCompletionNotificationModes as *const () as usize)
+                        } else if func_name == b"FindFirstFileExW" {
+                            Some(hooked_FindFirstFileExW as *const () as usize)
+                        } else {
+                            None
+                        };
+
+                        if let Some(target_fn) = replacement {
+                            use windows_sys::Win32::System::Memory::{VirtualProtect, PAGE_EXECUTE_READWRITE};
+                            unsafe extern "system" {
+                                fn FlushInstructionCache(
+                                    process: *mut c_void,
+                                    base_address: *const c_void,
+                                    size: usize,
+                                ) -> i32;
+                            }
+                            let mut old_protect = 0;
+                            if VirtualProtect(iat_thunk as *mut _, 8, PAGE_EXECUTE_READWRITE, &mut old_protect) != 0 {
+                                *iat_thunk = target_fn;
+                                VirtualProtect(iat_thunk as *mut _, 8, old_protect, &mut old_protect);
+                                FlushInstructionCache(
+                                    windows_sys::Win32::System::Threading::GetCurrentProcess() as *mut c_void,
+                                    iat_thunk as *const _,
+                                    8,
+                                );
+                            }
+                        }
+                    }
+                    orig_thunk = orig_thunk.add(1);
+                    iat_thunk = iat_thunk.add(1);
+                }
+            }
+            desc = desc.add(1);
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -955,5 +1141,29 @@ mod tests {
         let res = unsafe { SetFileCompletionNotificationModes(std::ptr::null_mut(), 2) };
         // Valid execution: either succeeds or handles the call without crashing
         assert!(res == 0 || res == 1);
+    }
+
+    #[test]
+    fn find_first_file_ex_w_executes_safely() {
+        let path = [b'C' as u16, b':' as u16, b'\\' as u16, b'*' as u16, 0];
+        let mut data = [0u8; 600];
+        let handle = unsafe {
+            hooked_FindFirstFileExW(
+                path.as_ptr(),
+                1, // FindExInfoBasic
+                data.as_mut_ptr() as *mut c_void,
+                0,
+                std::ptr::null_mut(),
+                2, // FIND_FIRST_EX_LARGE_FETCH
+            )
+        };
+        if handle != -1isize as *mut c_void {
+            unsafe { windows_sys::Win32::Storage::FileSystem::FindClose(handle as _) };
+        }
+    }
+
+    #[test]
+    fn patch_iat_for_vista_runs_safely() {
+        unsafe { patch_iat_for_vista(); }
     }
 }
